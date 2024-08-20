@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import type { MetaFunction } from "@remix-run/node";
 
 import { LoremIpsum } from "~/entities/loremipsum";
+import { frontPageMetaArray } from "~/shared/website-config/meta-semantic";
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "Welcome to Our App" },
-    { name: "description", content: "A stylish frontpage for our Remix app" },
-  ];
+  return [...frontPageMetaArray];
 };
 
 export default function Index() {
