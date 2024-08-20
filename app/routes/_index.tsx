@@ -25,11 +25,6 @@ export default function Index() {
         >
           Go to Login
         </Link>
-        <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
       </div>
       <LoremIpsum />
       <LoremIpsum />
