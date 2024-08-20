@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import type { MetaFunction } from "@remix-run/node";
 
+import { LoremIpsum } from "~/entities/loremipsum";
+
 export const meta: MetaFunction = () => {
   return [
     { title: "Welcome to Our App" },
@@ -11,7 +13,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex items-center justify-center bg-gray-100">
+    <div className="flex flex-col items-center justify-center bg-gray-100">
       <div className="rounded-lg bg-white p-8 text-center shadow-lg">
         <h1 className="mb-4 text-4xl font-bold text-gray-800">
           Welcome to Our App
@@ -25,7 +27,18 @@ export default function Index() {
         >
           Go to Login
         </Link>
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
       </div>
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
     </div>
   );
 }

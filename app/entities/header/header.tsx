@@ -1,23 +1,15 @@
+import websiteConfig from "~/shared/website-config";
+
 const navigationLinks = [
-  {
-    url: "/graphiql-client",
-    label: "graphiql-client",
-    title: "graphiql-client",
-  },
-  {
-    url: "/rest-client",
-    label: "rest-client",
-    title: "rest-client",
-  },
   {
     url: "/login",
     label: "Login",
     title: "Login",
   },
   {
-    url: "/about",
-    label: "about",
-    title: "about",
+    url: "/logout",
+    label: "Logout",
+    title: "Logout",
   },
 ];
 
@@ -33,13 +25,14 @@ export function Header() {
             >
               <img
                 className="h-8 w-auto sm:h-10"
-                src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
-                alt="Workflow Logo"
+                src={websiteConfig.logos.connectLogo}
+                alt={websiteConfig.name}
               />
-              <span className="text-xl font-semibold">Workflow</span>
+              <span className="text-xl font-semibold">
+                {websiteConfig.name}
+              </span>
             </a>
           </h1>
-          {/* Добавьте элементы навигации здесь, если нужно */}
           <nav>
             <ul className="flex space-x-4">
               {navigationLinks.map((link) => (

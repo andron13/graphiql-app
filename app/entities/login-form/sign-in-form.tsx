@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-export function RegisterForm() {
+export function SignInForm() {
   const [formData, setFormData] = useState({ username: "", password: "" });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -10,14 +10,14 @@ export function RegisterForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Registering with", formData);
+    console.log("Logging in with", formData);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700">
-          Username:
+          Email:
         </label>
         <input
           type="text"
@@ -45,7 +45,7 @@ export function RegisterForm() {
         type="submit"
         className="w-full rounded-md bg-indigo-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
-        Register
+        Submit
       </button>
     </form>
   );

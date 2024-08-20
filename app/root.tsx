@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 import {
   Links,
   Meta,
@@ -10,7 +12,7 @@ import { Footer, Header } from "~/entities";
 
 import "./tailwind.css";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -19,9 +21,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="flex min-h-svh flex-col bg-gray-100">
+      <body>
         <Header />
-        <main className="flex flex-grow justify-center">{children}</main>
+
+        <main className="flex-1">{children}</main>
         <Footer />
         <ScrollRestoration />
         <Scripts />

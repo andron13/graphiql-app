@@ -1,2 +1,2 @@
-export { LoginForm } from "~/entities/login-form/login-form";
-export { RegisterForm } from "./register-form";
+export { SignInForm } from "~/entities/login-form/sign-in-form";
+export { SignUpForm } from "./sign-up-form";

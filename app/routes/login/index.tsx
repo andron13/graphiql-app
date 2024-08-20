@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import { LoginForm, RegisterForm } from "~/entities/login-form";
+import { SignInForm, SignUpForm } from "~/entities/login-form";
 
 export default function Auth() {
   const [isRegistering, setIsRegistering] = useState(false);
-  const authForm = isRegistering ? <RegisterForm /> : <LoginForm />;
+  const authForm = isRegistering ? <SignUpForm /> : <SignInForm />;
 
   return (
     <div className="flex w-96 items-center justify-center bg-gray-100 px-4">
@@ -18,7 +18,7 @@ export default function Auth() {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            Login
+            Sign In
           </button>
           <button
             onClick={() => setIsRegistering(true)}
@@ -28,7 +28,7 @@ export default function Auth() {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            Register
+            Sign Up
           </button>
         </div>
         {authForm}
