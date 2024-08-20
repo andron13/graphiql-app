@@ -25,7 +25,7 @@ The goal is to create a tool that supports both REST and GraphQL requests, integ
 
 - React 18+, Remix with Vite, Typescript, Eslint, Prettier.
 
-## Layout 
+## Layout
 
 ```
 +----------------------------------------------------+
