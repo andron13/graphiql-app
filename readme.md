@@ -48,3 +48,8 @@ The goal is to create a tool that supports both REST and GraphQL requests, integ
 |    [GitHub Link] | Year | [Course Logo]            |
 +----------------------------------------------------+
 ```
+
+## Deployment
+
+- https://graphiql-app-psi.vercel.app/
+- https://graphiql-app-git-develop-andron13s-projects.vercel.app/
