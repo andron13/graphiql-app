@@ -23,7 +23,7 @@ The goal is to create a tool that supports both REST and GraphQL requests, integ
 
 ## Technical Requirements
 
-- React 18+, NextJS or Remix with Vite, Typescript, Eslint, Prettier.
+- React 18+, Remix with Vite, Typescript, Eslint, Prettier.
 
 ## Layout 
 
