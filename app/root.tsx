@@ -6,6 +6,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import { Footer, Header } from "~/entities";
+
 import "./tailwind.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -17,8 +19,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="flex min-h-svh flex-col bg-gray-100">
+        <Header />
+        <main className="flex flex-grow justify-center">{children}</main>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
