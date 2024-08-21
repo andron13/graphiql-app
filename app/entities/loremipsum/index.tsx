@@ -1,7 +1,9 @@
 export const LoremIpsum = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-gray-800">Lorem Ipsum</h1>
+    <div className="flex flex-col items-center justify-center rounded-lg border-2 border-gray-200 p-8 shadow-md">
+      <h1 className="mb-4 text-center text-4xl font-bold text-gray-800">
+        Lorem Ipsum
+      </h1>
       <p className="mb-6 text-lg text-gray-600">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
         Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies

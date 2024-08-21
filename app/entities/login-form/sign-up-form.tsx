@@ -86,12 +86,12 @@ export function SignUpForm() {
               <EyeIcon className="eyebrow" />
             )}
           </button>
-          {errors.confirmPassword && (
-            <span className="text-sm text-red-500">
-              {errors.confirmPassword.message}
-            </span>
-          )}
         </div>
+        {errors.confirmPassword && (
+          <span className="text-sm text-red-500">
+            {errors.confirmPassword.message}
+          </span>
+        )}
       </div>
       <button type="submit" className="registerButton">
         Register

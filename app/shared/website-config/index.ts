@@ -1,8 +1,9 @@
 import {
-  andron13logoPath,
+  andron13LogoPath,
   connectLogoPath,
+  rssLogoJsPath,
   rssLogoPath,
-} from "app/entities/images";
+} from "app/shared/images";
 
 const websiteConfig = {
   name: "Graphiql App",
@@ -11,7 +12,8 @@ const websiteConfig = {
   logos: {
     connectLogo: connectLogoPath,
     rssLogo: rssLogoPath,
-    andron13: andron13logoPath,
+    andron13: andron13LogoPath,
+    rsLogoJs: rssLogoJsPath,
   },
   links: {
     author: {
