@@ -1,3 +1,5 @@
+export { LanguageCode } from "./i18n";
+
 export type { UserContextType } from "./context";
 export type {
   BaseUser,

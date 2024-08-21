@@ -14,8 +14,8 @@ export interface II18nStrings {
   [LanguageCode.RU_RU]?: IAppStrings;
   [LanguageCode.BE_BY]?: IAppStrings;
   [LanguageCode.UK_UA]?: IAppStrings;
-  [LanguageCode.PL_PL]?: IAppStrings;
-  [LanguageCode.JA_JP]?: IAppStrings;
+  // [LanguageCode.PL_PL]?: IAppStrings;
+  // [LanguageCode.JA_JP]?: IAppStrings;
 }
 
 export interface IAppStrings {
