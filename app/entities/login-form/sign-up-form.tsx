@@ -3,8 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useLanguage } from "app/shared/context";
 
-import { useLanguage } from "~/shared/store";
 import { AccountRegistration } from "~/shared/types";
 import { createYupSchema } from "~/shared/validation";
 
@@ -34,7 +34,10 @@ export function SignUpForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col justify-between space-y-4"
+    >
       <div>
         <label className="passwordLabel">Email:</label>
         <input type="text" {...register("email")} className="textInput" />

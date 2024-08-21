@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 
 import { Footer, Header } from "~/entities";
-import { UserProvider } from "~/shared/store/UserContext";
+import { UserProvider } from "~/shared/context";
 
 import "./tailwind.css";
 
@@ -25,7 +25,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <body>
         <UserProvider>
           <Header />
-          <main className="mx-auto w-[1024px] flex-1">{children}</main>
+          <main>{children}</main>
           <Footer />
         </UserProvider>
         <ScrollRestoration />

@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-import { defaultLanguage } from "~/shared/translations/appStrings";
+import { defaultLanguage } from "~/shared/translations";
 import { BaseUser, LanguageCode, User } from "~/shared/types";
 
 interface UserContextType {
@@ -18,7 +18,7 @@ interface UserContextType {
   setLanguage: (language: LanguageCode) => void;
 }
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+const UseContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<BaseUser | User>({
@@ -27,10 +27,8 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
-    // Проверяем, что мы на клиенте
     setIsClient(true);
 
-    // Инициализируем язык из localStorage, если он существует
     const storedLanguage = localStorage.getItem("language") as LanguageCode;
     if (storedLanguage) {
       setUser((prevUser) => ({
@@ -41,7 +39,6 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Сохраняем язык в localStorage при его изменении
     if (isClient) {
       localStorage.setItem("language", user.language as LanguageCode);
     }
@@ -55,14 +52,14 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, setLanguage }}>
+    <UseContext.Provider value={{ user, setUser, setLanguage }}>
       {children}
-    </UserContext.Provider>
+    </UseContext.Provider>
   );
 };
 
 export const useUser = (): UserContextType => {
-  const context = useContext(UserContext);
+  const context = useContext(UseContext);
   if (context === undefined) {
     throw new Error("useUser must be used within a UserProvider");
   }

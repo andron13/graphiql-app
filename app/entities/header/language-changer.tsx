@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { useUser } from "~/shared/store";
+import { useUser } from "app/shared/context";
+
 import { LanguageCode } from "~/shared/types";
 
 const languageOptions = [

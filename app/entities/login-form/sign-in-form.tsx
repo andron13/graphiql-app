@@ -14,11 +14,12 @@ export function SignInForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-between space-y-4"
+    >
       <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Email:
-        </label>
+        <label className="passwordLabel">Email:</label>
         <input
           type="text"
           name="username"
@@ -29,9 +30,7 @@ export function SignInForm() {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Password:
-        </label>
+        <label className="passwordLabel">Password:</label>
         <input
           type="password"
           name="password"

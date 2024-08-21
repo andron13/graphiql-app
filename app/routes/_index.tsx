@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 import type { MetaFunction } from "@remix-run/node";
+import { useLanguage } from "app/shared/context";
 
 import { LoremIpsum } from "~/entities/loremipsum";
-import { useLanguage } from "~/shared/store";
 import { frontPageMetaArray } from "~/shared/website-config/meta-semantic";
 
 export const meta: MetaFunction = () => {
@@ -14,8 +14,8 @@ export default function Index() {
   const { site_content } = useLanguage();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-      <div className="w-11/12 max-w-lg rounded-lg bg-white p-8 text-center shadow-lg">
+    <>
+      <div className="mt-10 w-11/12 max-w-lg rounded-lg bg-white p-8 text-center shadow-lg">
         <h1 className="mb-4 text-4xl font-bold text-gray-800">
           {site_content.welcomeMessage.title}
         </h1>
@@ -31,12 +31,7 @@ export default function Index() {
       </div>
       <div className="mt-8 w-11/12 max-w-lg">
         <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
-        <LoremIpsum />
       </div>
-    </div>
+    </>
   );
 }
