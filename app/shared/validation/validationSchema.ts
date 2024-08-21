@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+import { IAppStrings } from "~/shared/types";
+
 /*
     Client-side validation should be implemented
     for email and password strength:
@@ -31,22 +33,26 @@ const passwordStrengthTest = (password: string) => {
   );
 };
 
-export const yupSchema = yup.object({
-  email: yup
-    .string()
-    .trim()
-    .required("Email is required")
-    .email("Email must be a valid email address"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .test(
-      "password-strength",
-      "Password must be at least 8 characters long, include at least 1 digit, one special character, and at least one letter (Unicode characters are supported)",
-      passwordStrengthTest,
-    ),
-  confirmPassword: yup
-    .string()
-    .required("Confirm Password is required")
-    .oneOf([yup.ref("password")], "Passwords must match"),
-});
+export const createYupSchema = (site_content: IAppStrings) =>
+  yup.object({
+    email: yup
+      .string()
+      .trim()
+      .required(site_content.validationErrors.emailRequired)
+      .email(site_content.validationErrors.emailInvalid),
+    password: yup
+      .string()
+      .required(site_content.validationErrors.passwordRequired)
+      .test(
+        "password-strength",
+        site_content.validationErrors.passwordStrength,
+        passwordStrengthTest,
+      ),
+    confirmPassword: yup
+      .string()
+      .required(site_content.validationErrors.confirmPasswordRequired)
+      .oneOf(
+        [yup.ref("password")],
+        site_content.validationErrors.passwordsMustMatch,
+      ),
+  });

@@ -14,20 +14,24 @@ export interface II18nStrings {
   [LanguageCode.RU_RU]?: IAppStrings;
   [LanguageCode.BE_BY]?: IAppStrings;
   [LanguageCode.UK_UA]?: IAppStrings;
-  // [LanguageCode.PL_PL]?: IAppStrings;
-  // [LanguageCode.JA_JP]?: IAppStrings;
+  [LanguageCode.PL_PL]?: IAppStrings;
+  [LanguageCode.JA_JP]?: IAppStrings;
 }
 
 export interface IAppStrings {
-  WELCOME_MESSAGE: string;
-  SIGN_IN: string;
-  SIGN_OUT: string;
-  VALIDATION_ERRORS: {
-    EMAIL_REQUIRED: string;
-    EMAIL_INVALID: string;
-    PASSWORD_REQUIRED: string;
-    PASSWORD_STRENGTH: string;
-    CONFIRM_PASSWORD_REQUIRED: string;
-    PASSWORDS_MUST_MATCH: string;
+  welcomeMessage: {
+    title: string;
+    subtitle: string;
+    mission: string;
+  };
+  signIn: string;
+  signOut: string;
+  validationErrors: {
+    emailRequired: string;
+    emailInvalid: string;
+    passwordRequired: string;
+    passwordStrength: string;
+    confirmPasswordRequired: string;
+    passwordsMustMatch: string;
   };
 }

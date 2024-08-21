@@ -1,1 +1,1 @@
-export { yupSchema } from "~/shared/validation/validationSchema";
+export { createYupSchema } from "~/shared/validation/validationSchema";

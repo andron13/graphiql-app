@@ -4,10 +4,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { useLanguage } from "~/shared/store";
 import { AccountRegistration } from "~/shared/types";
-import { yupSchema } from "~/shared/validation";
+import { createYupSchema } from "~/shared/validation";
 
 export function SignUpForm() {
+  const { site_content } = useLanguage();
+  const yupSchema = createYupSchema(site_content);
+
   const {
     register,
     handleSubmit,
