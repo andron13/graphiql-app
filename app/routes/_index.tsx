@@ -1,27 +1,29 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import type { MetaFunction } from "@remix-run/node";
 
 import { LoremIpsum } from "~/entities/loremipsum";
-import { defaultLanguage } from "~/shared/translations/appStrings";
-import { BaseUser, User } from "~/shared/types/types";
+import { useUser } from "~/shared/store";
+import { User } from "~/shared/types";
+import { LanguageCode } from "~/shared/types/i18n";
 import { frontPageMetaArray } from "~/shared/website-config/meta-semantic";
 
 export const meta: MetaFunction = () => {
   return [...frontPageMetaArray];
 };
 
-const anonymousUser: BaseUser = {
-  language: defaultLanguage,
-};
 export default function Index() {
-  const [user, setUser] = useState<BaseUser | User>(anonymousUser);
+  const { user, setUser } = useUser();
+  const authUser: User = {
+    language: LanguageCode.DE_DE,
+    email: "john@doe.com",
+    password: "123456",
+  };
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100">
       <div className="rounded-lg bg-white p-8 text-center shadow-lg">
-        <p>Current Language: {user.language}</p>
+        <p>Current Language: {authUser.language}</p>
 
         <h1 className="mb-4 text-4xl font-bold text-gray-800">
           Welcome to Our App

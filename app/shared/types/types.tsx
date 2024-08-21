@@ -1,7 +1,7 @@
-import { II18nStrings } from "./";
+import { LanguageCode } from "~/shared/types/i18n";
 
 export interface BaseUser {
-  language: keyof II18nStrings;
+  language: LanguageCode;
 }
 
 export type AccountCredentials<T = Record<string, unknown>> = {

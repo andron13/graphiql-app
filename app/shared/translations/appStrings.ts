@@ -1,9 +1,10 @@
 import { II18nStrings } from "~/shared/types";
+import { LanguageCode } from "~/shared/types/i18n";
 
-export const defaultLanguage: keyof II18nStrings = "en_GB";
+export const defaultLanguage: LanguageCode = LanguageCode.EN_GB;
 
 export const appStrings: II18nStrings = {
-  en_GB: {
+  [LanguageCode.EN_GB]: {
     WELCOME_MESSAGE: "Welcome",
     SIGN_IN: "Sign In",
     SIGN_OUT: "Sign Out",
@@ -17,7 +18,7 @@ export const appStrings: II18nStrings = {
       PASSWORDS_MUST_MATCH: "Passwords must match",
     },
   },
-  de_DE: {
+  [LanguageCode.DE_DE]: {
     WELCOME_MESSAGE: "Willkommen",
     SIGN_IN: "Anmelden",
     SIGN_OUT: "Abmelden",
@@ -31,7 +32,7 @@ export const appStrings: II18nStrings = {
       PASSWORDS_MUST_MATCH: "Passwörter müssen übereinstimmen",
     },
   },
-  be_BY: {
+  [LanguageCode.BE_BY]: {
     WELCOME_MESSAGE: "Сардэчна запрашаем",
     SIGN_IN: "Увайсці",
     SIGN_OUT: "Выйсці",
@@ -45,7 +46,7 @@ export const appStrings: II18nStrings = {
       PASSWORDS_MUST_MATCH: "Паролі павінны супадаць",
     },
   },
-  uk_UA: {
+  [LanguageCode.UK_UA]: {
     WELCOME_MESSAGE: "Ласкаво просимо",
     SIGN_IN: "Увійти",
     SIGN_OUT: "Вийти",
@@ -59,7 +60,7 @@ export const appStrings: II18nStrings = {
       PASSWORDS_MUST_MATCH: "Паролі повинні співпадати",
     },
   },
-  ru_RU: {
+  [LanguageCode.RU_RU]: {
     WELCOME_MESSAGE: "Добро пожаловать",
     SIGN_IN: "Войти",
     SIGN_OUT: "Выйти",
