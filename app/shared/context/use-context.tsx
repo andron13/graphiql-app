@@ -16,6 +16,8 @@ interface UserContextType {
   user: BaseUser | User;
   setUser: Dispatch<SetStateAction<BaseUser | User>>;
   setLanguage: (language: LanguageCode) => void;
+  login: (email: string, password: string) => void;
+  logout: () => void;
 }
 
 const UseContext = createContext<UserContextType | undefined>(undefined);
@@ -51,8 +53,21 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }));
   };
 
+  const login = (email: string, password: string) => {
+    const userData: User = {
+      email,
+      password,
+      language: user.language,
+    };
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setUser({ language: defaultLanguage });
+  };
+
   return (
-    <UseContext.Provider value={{ user, setUser, setLanguage }}>
+    <UseContext.Provider value={{ user, setUser, setLanguage, login, logout }}>
       {children}
     </UseContext.Provider>
   );

@@ -5,6 +5,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLanguage } from "app/shared/context";
 
+import { registerWithEmailAndPassword } from "~/shared/authentification/email-auth";
 import { AccountRegistration } from "~/shared/types";
 import { createYupSchema } from "~/shared/validation";
 
@@ -29,8 +30,13 @@ export function SignUpForm() {
     setShowConfirmPassword((prev) => !prev);
   };
 
-  const onSubmit: SubmitHandler<AccountRegistration> = (data) => {
-    console.log("Registering with", data);
+  const onSubmit: SubmitHandler<AccountRegistration> = async (data) => {
+    const { email, password } = data;
+    try {
+      await registerWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.error("Ошибка регистрации:", error);
+    }
   };
 
   return (

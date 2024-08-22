@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import type { MetaFunction } from "@remix-run/node";
-import { useLanguage } from "app/shared/context";
+import { useLanguage, useUser } from "app/shared/context";
 
 import { LoremIpsum } from "~/entities/loremipsum";
 import { frontPageMetaArray } from "~/shared/website-config/meta-semantic";
@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const { site_content } = useLanguage();
-
+  const { user } = useUser();
   return (
     <>
       <div className="mt-10 w-11/12 max-w-lg rounded-lg bg-white p-8 text-center shadow-lg">
@@ -22,6 +22,11 @@ export default function Index() {
         <p className="mb-6 text-lg text-gray-600">
           {site_content.welcomeMessage.mission}
         </p>
+        <ul>
+          {"email" in user && <li>Email: {user.email}</li>}
+          {"password" in user && <li>Password: {user.password}</li>}
+          <li>Language: {user.language}</li>
+        </ul>
         <Link
           to="/login"
           className="inline-block rounded-md bg-indigo-600 px-6 py-3 font-semibold text-white shadow-md transition duration-200 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
