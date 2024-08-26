@@ -17,9 +17,12 @@ export const Footer: FC = (): ReactNode => {
             width={30}
           />
         </Link>
-
-        <p className="flex items-center text-sm">Anno 08.2024</p>
-
+        {/*TODO удалить тест страницу about*/}
+        <p className="flex items-center text-sm">
+          <Link to="/about" title="about">
+            Anno 08.2024
+          </Link>
+        </p>
         <Link
           to={websiteConfig.links.course}
           title={websiteConfig.links.author.title}
