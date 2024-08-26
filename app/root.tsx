@@ -11,13 +11,11 @@ import {
 } from "@remix-run/react";
 
 import { Footer, Header } from "~/entities";
-import getEnv from "~/get-env";
 import { UserProvider } from "~/shared/context";
 
 import "./tailwind.css";
 
 export async function loader() {
-  console.log(process.env.REACT_APP_FIREBASE_API_KEY);
   return json({
     ENV: {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -33,8 +31,7 @@ export async function loader() {
 
 export function Layout({ children }: { children: ReactNode }) {
   const data = useLoaderData<typeof loader>();
-  const env = getEnv();
-  console.log({ env });
+  // const env = getEnv();
 
   return (
     <html lang="en">
@@ -43,7 +40,6 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-
         <Scripts />
       </head>
       <body>
