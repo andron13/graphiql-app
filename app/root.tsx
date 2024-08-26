@@ -39,9 +39,7 @@ export function Layout({ children }: { children: ReactNode }) {
     minute: "2-digit",
   });
   const humanReadableDateTime = `${day} ${month}, ${time}`;
-
   console.log(`Дата и время: ${humanReadableDateTime}`);
-
   return (
     <html lang="en">
       <head>
