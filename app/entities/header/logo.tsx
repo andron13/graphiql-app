@@ -9,7 +9,7 @@ export const Logo = () => {
           src={websiteConfig.logos.connectLogo}
           alt={websiteConfig.name}
         />
-        <h2 className="text-xl font-semibold">{websiteConfig.name}</h2>
+        <h2 className="text-xl font-semibold">{websiteConfig.name} - test</h2>
       </a>
     </div>
   );
