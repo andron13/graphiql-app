@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-eeb1b2a-20240818",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.10",
+    "eslint-plugin-react-refresh": "^0.4.11",
     "eslint-plugin-vitest": "^0.5.4",
     "happy-dom": "^15.0.0",
     "husky": "^9.1.5",
