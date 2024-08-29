@@ -9,6 +9,9 @@ import {
   useState,
 } from "react";
 
+import { signOut } from "firebase/auth";
+
+import { auth } from "~/shared/authentification";
 import { defaultLanguage } from "~/shared/translations";
 import { BaseUser, LanguageCode, User } from "~/shared/types";
 
@@ -18,6 +21,7 @@ interface UserContextType {
   setLanguage: (language: LanguageCode) => void;
   login: (email: string, password: string) => void;
   logout: () => void;
+  isUserLoggedIn: () => boolean; // Добавляем функцию проверки
 }
 
 const UseContext = createContext<UserContextType | undefined>(undefined);
@@ -62,12 +66,20 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setUser(userData);
   };
 
-  const logout = () => {
-    setUser({ language: defaultLanguage });
+  const logout = async () => {
+    const lang = user.language;
+    await signOut(auth);
+    setUser({ language: lang });
+  };
+
+  const isUserLoggedIn = () => {
+    return "email" in user;
   };
 
   return (
-    <UseContext.Provider value={{ user, setUser, setLanguage, login, logout }}>
+    <UseContext.Provider
+      value={{ user, setUser, setLanguage, login, logout, isUserLoggedIn }}
+    >
       {children}
     </UseContext.Provider>
   );

@@ -1,35 +1,44 @@
+import { useNavigate } from "@remix-run/react";
+
+import { useUser } from "~/shared/context";
+
 export const PrimaryMenu = () => {
-  const navigationLinks = [
-    {
-      url: "/login",
-      label: "Login",
-      title: "Login",
-    },
-    {
-      url: "/logout",
-      label: "Logout",
-      title: "Logout",
-    },
-    {
-      url: "/about",
-      label: "about",
-      title: "about it is just test",
-    },
-  ];
+  const { logout: logoutContext, isUserLoggedIn } = useUser(); // Используем функцию проверки
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      logoutContext();
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   return (
     <nav>
       <ul className="flex space-x-4">
-        {navigationLinks.map((link) => (
-          <li key={link.url}>
-            <a
-              href={link.url}
+        {isUserLoggedIn() ? (
+          <li>
+            <button
+              onClick={handleLogout}
               className="text-gray-600 hover:text-gray-900"
-              title={link.title}
+              title="Logout"
             >
-              {link.label}
+              Logout
+            </button>
+          </li>
+        ) : (
+          <li>
+            <a
+              href="/login"
+              className="text-gray-600 hover:text-gray-900"
+              title="Login"
+            >
+              Login
             </a>
           </li>
-        ))}
+        )}
       </ul>
     </nav>
   );
