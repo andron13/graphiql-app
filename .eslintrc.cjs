@@ -40,6 +40,9 @@ module.exports = {
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
       ],
+      rules: {
+        "react/no-unescaped-entities": ["off"],
+      },
       settings: {
         react: {
           version: "detect",

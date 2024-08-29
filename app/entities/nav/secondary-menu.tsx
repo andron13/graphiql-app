@@ -10,7 +10,7 @@ const links = [
 
 export const SecondaryMenu = () => {
   const { isUserLoggedIn } = useUser();
-  if (!isUserLoggedIn()) return null;
+  // if (!isUserLoggedIn()) return null;
   return (
     <nav className="mt-20 w-2/3">
       <ul className="flex w-full justify-between space-x-6">
