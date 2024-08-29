@@ -12,17 +12,16 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const { site_content } = useLanguage();
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, isUserLoggedIn } = useUser();
+
   return (
     <>
       <h1 className="mb-4 text-4xl font-bold text-gray-800">
-        {site_content.welcomeMessage.title}
+        {isUserLoggedIn()
+          ? `Welcome back ${"email" in user ? user.email : null}`
+          : site_content.welcomeMessage.title}
       </h1>
-      <ul>
-        <li>User: {"email" in user ? user.email : "Аноним"}</li>
-        {"password" in user && <li>Password: {user.password}</li>}
-        <li>Language: {user.language}</li>
-      </ul>
+
       <div className="mb-6 flex justify-center space-x-4">
         <button
           onClick={() => navigate("/login")}

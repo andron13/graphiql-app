@@ -21,7 +21,7 @@ interface UserContextType {
   setLanguage: (language: LanguageCode) => void;
   login: (email: string, password: string) => void;
   logout: () => void;
-  isUserLoggedIn: () => boolean; // Добавляем функцию проверки
+  isUserLoggedIn: () => boolean;
 }
 
 const UseContext = createContext<UserContextType | undefined>(undefined);
