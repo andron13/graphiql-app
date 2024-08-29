@@ -42,31 +42,32 @@ export function SignInForm() {
       className="flex flex-col justify-between space-y-4"
     >
       <div>
-        <label className="passwordLabel">Email:</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Email:
+        </label>
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleInputChange}
           required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="textInput"
         />
       </div>
       <div>
-        <label className="passwordLabel">Password:</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Password:
+        </label>
         <input
           type="password"
           name="password"
           value={formData.password}
           onChange={handleInputChange}
           required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+          className="textInput"
         />
       </div>
-      <button
-        type="submit"
-        className="w-full rounded-md bg-indigo-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
+      <button type="submit" className="registerButton">
         Submit
       </button>
     </form>

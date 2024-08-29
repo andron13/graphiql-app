@@ -67,8 +67,9 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const logout = async () => {
+    const lang = user.language;
     await signOut(auth);
-    setUser({ language: defaultLanguage });
+    setUser({ language: lang });
   };
 
   const isUserLoggedIn = () => {

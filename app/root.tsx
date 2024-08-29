@@ -12,6 +12,7 @@ import {
 
 import { Footer, Header } from "~/entities";
 import { UserProvider } from "~/shared/context";
+import { getTime } from "~/shared/time";
 
 import "./tailwind.css";
 
@@ -31,15 +32,7 @@ export async function loader() {
 
 export function Layout({ children }: { children: ReactNode }) {
   const data = useLoaderData<typeof loader>();
-  const now = new Date();
-  const day = now.getDate();
-  const month = now.toLocaleString("ru-RU", { month: "long" });
-  const time = now.toLocaleTimeString("ru-RU", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  const humanReadableDateTime = `${day} ${month}, ${time}`;
-  console.log(`Дата и время: ${humanReadableDateTime}`);
+  getTime();
   return (
     <html lang="en">
       <head>
