@@ -1,6 +1,10 @@
 // app/routes/login/index.tsx
-import LoginForm from "~/entities/login-form/login-form";
+import { useSearchParams } from "@remix-run/react";
+
+import { LoginForm } from "~/entities/login-form";
 
 export default function Auth() {
-  return <LoginForm />;
+  const [searchParams] = useSearchParams();
+  const isSignup = searchParams.get("signup") === "true";
+  return <LoginForm isSignup={isSignup} />;
 }

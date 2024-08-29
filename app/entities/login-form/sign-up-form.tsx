@@ -3,9 +3,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useLanguage } from "app/shared/context";
 
-import { registerWithEmailAndPassword } from "~/shared/authentification/email-auth";
+import { registerWithEmailAndPassword } from "~/shared/authentification";
+import { useLanguage } from "~/shared/context";
 import { AccountRegistration } from "~/shared/types";
 import { createYupSchema } from "~/shared/validation";
 

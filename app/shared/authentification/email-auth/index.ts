@@ -1,7 +1,4 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "@firebase/auth";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 
 import { auth } from "~/shared/authentification/firebase";
 

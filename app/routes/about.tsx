@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
-import { useLanguage, useUser } from "app/shared/context";
-
 import { LoremIpsum } from "~/entities/loremipsum";
+import { useLanguage, useUser } from "~/shared/context";
 
 export default function About() {
   const { site_content } = useLanguage();

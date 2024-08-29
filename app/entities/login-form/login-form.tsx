@@ -3,11 +3,11 @@ import { useState } from "react";
 import { SignInForm, SignUpForm } from "~/entities/login-form";
 
 interface LoginFormProps {
-  showSignUp?: boolean;
+  isSignup?: boolean;
 }
 
-export default function LoginForm({ showSignUp = false }: LoginFormProps) {
-  const [isRegistering, setIsRegistering] = useState(showSignUp);
+export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
+  const [isRegistering, setIsRegistering] = useState(isSignup);
   const authForm = isRegistering ? <SignUpForm /> : <SignInForm />;
 
   return (
@@ -39,4 +39,4 @@ export default function LoginForm({ showSignUp = false }: LoginFormProps) {
       </div>
     </div>
   );
-}
+};
