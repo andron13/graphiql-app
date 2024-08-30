@@ -8,6 +8,7 @@ export const Logo = () => {
           className="h-8 w-auto sm:h-10"
           src={websiteConfig.logos.connectLogo}
           alt={websiteConfig.name}
+          width={30}
         />
         <h2 className="text-xl font-semibold">{websiteConfig.name} - test</h2>
       </a>
