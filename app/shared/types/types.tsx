@@ -1,4 +1,4 @@
-import { LanguageCode } from "~/shared/types/i18n";
+import { LanguageCode } from "~/shared/types";
 
 export interface BaseUser {
   language: LanguageCode;
@@ -16,3 +16,17 @@ export interface User extends BaseUser, AccountCredentials {
 export type AccountRegistration = AccountCredentials<{
   confirmPassword: string;
 }>;
+
+export type HistoryRequest = {
+  timestamp: number;
+  type: RequestType;
+  url: string;
+};
+
+export enum RequestType {
+  GRAPHQL = "GRAPHQL",
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
