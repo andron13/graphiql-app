@@ -1,13 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { HistoryRequest } from "~/shared/types";
+import { mockHistory } from "~/test/mock";
 
 type HistoryState = {
   requestHistory: HistoryRequest[];
 };
 
 const initialState: HistoryState = {
-  requestHistory: [],
+  requestHistory: [...mockHistory],
 };
 
 const historySlice = createSlice({

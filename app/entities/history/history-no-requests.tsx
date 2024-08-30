@@ -1,4 +1,4 @@
-export default function HistoryNoRequests() {
+export function HistoryNoRequests() {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100 p-4">
       <div className="rounded bg-white p-6 text-center shadow">

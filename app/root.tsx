@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Provider as ReduxProvider } from "react-redux";
 
 import { json } from "@remix-run/node";
 import {
@@ -12,6 +13,7 @@ import {
 
 import { Footer, Header } from "~/entities";
 import { UserProvider } from "~/shared/context";
+import { store } from "~/shared/store/store";
 import { getTime } from "~/shared/time";
 
 import "./tailwind.css";
@@ -43,11 +45,14 @@ export function Layout({ children }: { children: ReactNode }) {
         <Scripts />
       </head>
       <body>
-        <UserProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </UserProvider>
+        <ReduxProvider store={store}>
+          <UserProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </UserProvider>
+        </ReduxProvider>
+
         <ScrollRestoration />
         <script
           dangerouslySetInnerHTML={{
