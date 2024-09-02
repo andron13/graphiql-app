@@ -41,6 +41,7 @@ module.exports = {
         "plugin:react-hooks/recommended",
       ],
       rules: {
+        "react-compiler/react-compiler": "error",
         "react/no-unescaped-entities": ["off"],
       },
       settings: {

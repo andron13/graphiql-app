@@ -1,0 +1,1 @@
+GraphiQL client, which includes: - text input for the endpoint url - request editor - variables editor - headers editor - text input for the endpoint which is used for getting the documentation (sdl) - documentation explorer - response section
