@@ -1,3 +1,5 @@
+import { RestRequestType as RequestType } from "~/shared/types";
+
 export const RestApiRequestSection = () => {
   return (
     <div className="rounded bg-white p-4 shadow">
@@ -5,10 +7,11 @@ export const RestApiRequestSection = () => {
         <div className="flex-1">
           <label className="mb-2 block font-medium">Method</label>
           <select className="w-full rounded border border-gray-300 p-2">
-            <option value="GET">GET</option>
-            <option value="POST">POST</option>
-            <option value="PUT">PUT</option>
-            <option value="DELETE">DELETE</option>
+            {Object.values(RequestType).map((method) => (
+              <option key={method} value={method}>
+                {method}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex-2">

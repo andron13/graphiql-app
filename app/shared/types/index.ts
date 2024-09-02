@@ -1,4 +1,4 @@
-export { RequestType } from "./types";
+export { RequestType, RestRequestType, GraphqlRequestType } from "./types";
 export type { HistoryRequest } from "./types";
 export type { AccountCredentials, AccountRegistration } from "./types";
 export type { BaseUser, User } from "./types";

@@ -35,3 +35,19 @@ export enum RequestType {
   CONNECT = "CONNECT",
   TRACE = "TRACE",
 }
+
+export enum RestRequestType {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+  // PATCH = "PATCH",
+  // OPTIONS = "OPTIONS",
+  // HEAD = "HEAD",
+  // CONNECT = "CONNECT",
+  TRACE = "TRACE",
+}
+
+export enum GraphqlRequestType {
+  GRAPHQL = "GRAPHQL",
+}
