@@ -1,16 +1,12 @@
-import { useSelector } from "react-redux";
-
 import { HistoryList, HistoryNoRequests } from "~/entities/history";
-import { RootState } from "~/shared/store";
+import { useRequestHistory } from "~/shared/hooks";
 
 export default function History() {
-  const requestHistory = useSelector(
-    (state: RootState) => state.history.requestHistory,
-  );
+  const { history } = useRequestHistory();
 
-  if (requestHistory.length === 0) {
-    return <HistoryNoRequests />;
-  }
+  // if (history.length === 0) {
+  //   return <HistoryNoRequests />;
+  // }
 
-  return <HistoryList requests={requestHistory} />;
+  return <HistoryList requests={history} />;
 }
