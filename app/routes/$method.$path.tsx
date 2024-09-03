@@ -27,32 +27,32 @@ export default function PostHandler() {
   const location = useLocation();
 
   return (
-    <div className="rounded-lg bg-white p-6 shadow-lg">
-      <h2 className="mb-4 text-3xl font-bold text-blue-600">
+    <div className="rounded-lg bg-white p-8 shadow-xl ring-1 ring-gray-200">
+      <h2 className="mb-6 border-b-2 border-blue-300 pb-2 text-4xl font-extrabold text-blue-700">
         Полученные данные:
       </h2>
-      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-100 p-4 text-gray-800">
+      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner">
         {JSON.stringify(data, null, 2)}
       </pre>
 
-      <h3 className="mb-2 mt-6 text-2xl font-semibold text-green-600">
+      <h3 className="mb-4 mt-8 border-b-2 border-green-300 pb-2 text-3xl font-semibold text-green-700">
         URL из окна браузера:
       </h3>
-      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-100 p-4 text-gray-800">
+      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner">
         {location.pathname}
       </pre>
 
-      <h3 className="mb-2 mt-6 text-2xl font-semibold text-purple-600">
+      <h3 className="mb-4 mt-8 border-b-2 border-purple-300 pb-2 text-3xl font-semibold text-purple-700">
         URL из данных:
       </h3>
-      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-100 p-4 text-gray-800">
+      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner">
         {data.url}
       </pre>
 
-      <h3 className="mb-2 mt-6 text-2xl font-semibold text-red-600">
+      <h3 className="mb-4 mt-8 border-b-2 border-red-300 pb-2 text-3xl font-semibold text-red-700">
         Параметры маршрута:
       </h3>
-      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-100 p-4 text-gray-800">
+      <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner">
         {params.path}
       </pre>
     </div>
