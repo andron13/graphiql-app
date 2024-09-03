@@ -51,3 +51,18 @@ export enum RestRequestType {
 export enum GraphqlRequestType {
   GRAPHQL = "GRAPHQL",
 }
+export type Header = { key: string; value: string };
+
+export type UrlencodedFormData = {
+  method: RestRequestType | GraphqlRequestType;
+  endpoint: string;
+  headers: Header[];
+  body: string;
+};
+
+export interface FormValues {
+  method: RestRequestType | GraphqlRequestType;
+  endpoint: string;
+  headers: { key: string; value: string }[];
+  body: string;
+}

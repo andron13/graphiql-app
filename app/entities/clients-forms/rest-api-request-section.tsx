@@ -1,101 +1,54 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { FC } from "react";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 
-import { RestRequestType as RequestType } from "~/shared/types";
+import { GraphqlRequestType, RestRequestType } from "~/shared/types";
+import { FormValues } from "~/shared/types/types";
 
-interface FormState {
-  method: RequestType;
-  endpoint: string;
-  headers: { key: string; value: string }[];
-  body: string;
+interface RestApiRequestSectionProps {
+  onSubmit: (data: FormValues) => void;
+  defaultValues: FormValues;
 }
 
-const serializeState = (state: FormState) => {
-  return encodeURIComponent(JSON.stringify(state));
-};
+export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
+  onSubmit,
+  defaultValues,
+}) => {
+  const { control, handleSubmit, register, reset } = useForm<FormValues>({
+    defaultValues,
+  });
 
-const deserializeState = (stateString: string): FormState => {
-  return JSON.parse(decodeURIComponent(stateString));
-};
-
-const defaultValues = {
-  method: RequestType.POST,
-  endpoint: "https://hp-api.onrender.com/api/characters",
-  headers: [
-    { key: "Accept", value: "application/json" },
-    { key: "Authorization", value: "Bearer YOUR_TOKEN" },
-    { key: "Content-Type", value: "application/json" },
-  ],
-  body: JSON.stringify({
-    name: "Harry Potter",
-    house: "Gryffindor",
-    age: 11,
-  }),
-};
-
-export const RestApiRequestSection = () => {
-  const [method, setMethod] = useState<RequestType>(defaultValues.method);
-  const [endpoint, setEndpoint] = useState<string>(defaultValues.endpoint);
-  const [headers, setHeaders] = useState<{ key: string; value: string }[]>(
-    defaultValues.headers,
-  );
-  const [body, setBody] = useState<string>(defaultValues.body);
-  const [headerKey, setHeaderKey] = useState<string>("");
-  const [headerValue, setHeaderValue] = useState<string>("");
-
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const stateString = params.get("state");
-    if (stateString) {
-      const state = deserializeState(stateString);
-      setMethod(state.method || defaultValues.method);
-      setEndpoint(state.endpoint || defaultValues.endpoint);
-      setHeaders(state.headers || defaultValues.headers);
-      setBody(state.body || defaultValues.body);
-    }
-  }, [location.search]);
+  const { fields, append } = useFieldArray({
+    control,
+    name: "headers",
+  });
 
   const handleAddHeader = () => {
-    if (headerKey && headerValue) {
-      setHeaders([...headers, { key: headerKey, value: headerValue }]);
-      setHeaderKey("");
-      setHeaderValue("");
-    }
+    append({ key: "", value: "" });
   };
 
-  const handleFormSubmit = () => {
-    const state = {
-      method,
-      endpoint,
-      headers,
-      body,
-    };
-    const serializedState = serializeState(state);
-    const url = `${window.location.origin}${window.location.pathname}?state=${serializedState}`;
-    console.log("Сформированный URL:", url);
-
-    // Navigate to the new URL with the serialized state
-    navigate(`?state=${serializedState}`);
+  const handleFormSubmit = (data: FormValues) => {
+    onSubmit(data);
+    reset(defaultValues);
   };
 
   return (
-    <div className="rounded bg-white p-4 shadow">
+    <form
+      className="rounded bg-white p-4 shadow"
+      onSubmit={handleSubmit(handleFormSubmit)}
+    >
       <div className="mb-4 flex gap-4">
         <div className="flex-1">
           <label className="mb-2 block font-medium">Method</label>
           <select
             className="w-fit rounded border border-gray-300 p-2"
-            value={method}
-            onChange={(e) => setMethod(e.target.value as RequestType)}
+            {...register("method")}
           >
-            {Object.values(RequestType).map((method) => (
+            {Object.values(RestRequestType).map((method) => (
               <option key={method} value={method}>
                 {method}
               </option>
             ))}
+            <option value={GraphqlRequestType.GRAPHQL}>GRAPHQL</option>
           </select>
         </div>
         <div className="flex-2 w-full">
@@ -103,61 +56,59 @@ export const RestApiRequestSection = () => {
           <input
             type="text"
             className="w-full rounded border border-gray-300 p-2"
-            value={endpoint}
-            onChange={(e) => setEndpoint(e.target.value)}
+            {...register("endpoint")}
           />
         </div>
       </div>
 
       <div className="mb-4">
         <label className="mb-2 block font-medium">Headers</label>
-        <div className="mb-2 flex gap-2">
-          <input
-            type="text"
-            placeholder="Header Key"
-            className="flex-1 rounded border border-gray-300 p-2"
-            value={headerKey}
-            onChange={(e) => setHeaderKey(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Header Value"
-            className="flex-1 rounded border border-gray-300 p-2"
-            value={headerValue}
-            onChange={(e) => setHeaderValue(e.target.value)}
-          />
-          <button
-            className="rounded bg-blue-500 p-2 text-white"
-            onClick={handleAddHeader}
-          >
-            Add Header
-          </button>
-        </div>
-        <div className="rounded border border-gray-300 bg-gray-50 p-2">
-          {headers.map((header, index) => (
-            <div key={index}>
-              {header.key}: {header.value}
-            </div>
-          ))}
-        </div>
+        {fields.map((item, index) => (
+          <div key={item.id} className="mb-2 flex gap-2">
+            <input
+              type="text"
+              placeholder="Header Key"
+              className="flex-1 rounded border border-gray-300 p-2"
+              {...register(`headers.${index}.key` as const)}
+            />
+            <input
+              type="text"
+              placeholder="Header Value"
+              className="flex-1 rounded border border-gray-300 p-2"
+              {...register(`headers.${index}.value` as const)}
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          className="rounded bg-blue-500 p-2 text-white"
+          onClick={handleAddHeader}
+        >
+          Add Header
+        </button>
       </div>
 
       <div className="mb-4">
         <label className="mb-2 block font-medium">Body</label>
-        <textarea
-          className="h-32 w-full rounded border border-gray-300 p-2"
-          placeholder="JSON/Text Editor"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
+        <Controller
+          control={control}
+          name="body"
+          render={({ field }) => (
+            <textarea
+              className="h-32 w-full rounded border border-gray-300 p-2"
+              placeholder="JSON/Text Editor"
+              {...field}
+            />
+          )}
         />
       </div>
 
       <button
+        type="submit"
         className="mt-4 rounded bg-green-500 p-2 text-white"
-        onClick={handleFormSubmit}
       >
         Send Request
       </button>
-    </div>
+    </form>
   );
 };
