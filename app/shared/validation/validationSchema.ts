@@ -56,3 +56,15 @@ export const createYupSchema = (site_content: IAppStrings) =>
         site_content.validationErrors.passwordsMustMatch,
       ),
   });
+
+export const createYupSchemaSignIn = (site_content: IAppStrings) =>
+  yup.object({
+    email: yup
+      .string()
+      .trim()
+      .required(site_content.validationErrors.emailRequired)
+      .email(site_content.validationErrors.emailInvalid),
+    password: yup
+      .string()
+      .required(site_content.validationErrors.passwordRequired),
+  });

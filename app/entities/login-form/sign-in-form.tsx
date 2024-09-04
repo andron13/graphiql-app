@@ -1,24 +1,32 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { signInWithEmailAndPassword } from "@firebase/auth";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "@remix-run/react";
 
 import { auth } from "~/shared/authentification/firebase";
-import { useUser } from "~/shared/context";
+import { useLanguage, useUser } from "~/shared/context";
+import { AccountCredentials } from "~/shared/types";
+import { createYupSchemaSignIn } from "~/shared/validation/validationSchema";
 
 export function SignInForm() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { login: loginContext } = useUser();
+  const { site_content } = useLanguage();
+  const yupSchema = createYupSchemaSignIn(site_content);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<AccountCredentials>({
+    resolver: yupResolver(yupSchema),
+  });
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { email, password } = formData;
+  const onSubmit: SubmitHandler<AccountCredentials> = async (data) => {
+    const { email, password } = data;
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -33,12 +41,16 @@ export function SignInForm() {
       navigate("/");
     } catch (error) {
       console.error("Error during login:", error);
+      setError("email", {
+        type: "firebase",
+        message: "Invalid email or password.",
+      });
     }
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col justify-between space-y-4"
     >
       <div>
@@ -47,12 +59,13 @@ export function SignInForm() {
         </label>
         <input
           type="email"
+          {...register("email")}
           name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          required
           className="textInput"
         />
+        {errors.email && (
+          <span className="text-sm text-red-500">{errors.email.message}</span>
+        )}
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700">
@@ -60,12 +73,15 @@ export function SignInForm() {
         </label>
         <input
           type="password"
+          {...register("password")}
           name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          required
           className="textInput"
         />
+        {errors.password && (
+          <span className="text-sm text-red-500">
+            {errors.password.message}
+          </span>
+        )}
       </div>
       <button type="submit" className="registerButton">
         Submit
