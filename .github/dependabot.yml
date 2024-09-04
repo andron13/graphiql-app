@@ -15,6 +15,7 @@ updates:
       development-dependencies:
         dependency-type: 'development'
     ignore:
+      - dependency-name: 'eslint-plugin-react-compiler'
       - dependency-name: 'eslint'
         update-types: ['version-update:semver-major']
     labels:
