@@ -73,7 +73,7 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
     secondaryMenu: {
       restClient: "Rest Client",
       graphiqlClient: "GraphiQL Client",
-      history: "История",
+      history: "Гісторыя",
     },
     signIn: "Увайсці",
     signOut: "Выйсці",
@@ -103,7 +103,7 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
     secondaryMenu: {
       restClient: "Rest Client",
       graphiqlClient: "GraphiQL Client",
-      history: "Гісторыя",
+      history: "Історія",
     },
     signIn: "Увійти",
     signOut: "Вийти",
@@ -133,7 +133,7 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
     secondaryMenu: {
       restClient: "Rest Client",
       graphiqlClient: "GraphiQL Client",
-      history: "Історія",
+      history: "История",
     },
     signIn: "Войти",
     signOut: "Выйти",
