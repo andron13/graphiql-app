@@ -14,7 +14,9 @@
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "ncu:check": "ncu",
-    "ncu:update": "ncu --interactive"
+    "ncu:update": "ncu --interactive",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
@@ -54,7 +56,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-compiler": "^0.0.0-experimental-b8a7b48-20240830",
+    "eslint-plugin-react-compiler": "^0.0.0-experimental-b8a7b48-20240903",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
     "eslint-plugin-vitest": "^0.5.4",
