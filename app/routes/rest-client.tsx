@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import { useFetcher } from "@remix-run/react";
 import {
   ResponseSection,
   RestApiRequestSection,
@@ -10,7 +9,6 @@ import { UrlencodedFormData } from "~/shared/types";
 import { defaultRequestValues } from "~/test/mock";
 
 export default function RestClient() {
-  const fetcher = useFetcher();
   const navigate = useNavigate();
   const handleSubmit = async (data: UrlencodedFormData) => {
     const method = data.method;
@@ -27,14 +25,6 @@ export default function RestClient() {
 
     const fullUrl = queryParams ? `${urlPath}?${queryParams}` : urlPath;
     console.log("Сформированный URL:", fullUrl);
-
-    // fetcher.load(fullUrl, {
-    //   method: method,
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-    //   body: body ? `body=${body}` : null,
-    // });
 
     navigate(fullUrl);
   };

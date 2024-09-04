@@ -23,6 +23,14 @@
   article {
     @apply flex flex-col items-center justify-center rounded-lg border-2 border-gray-200 p-8 shadow-md;
   }
+
+  pre {
+    @apply max-w-full overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner;
+  }
+
+  a {
+    @apply transition duration-300 ease-in-out;
+  }
 }
 
 @layer components {
@@ -44,5 +52,9 @@
 
   .textInput {
     @apply mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 tracking-wider shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
+  }
+
+  .notFoundLink {
+    @apply mt-8 inline-block rounded-md bg-green-500 px-6 py-3 text-lg font-medium text-white shadow hover:bg-green-600;
   }
 }

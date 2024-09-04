@@ -24,6 +24,11 @@ export interface IAppStrings {
     subtitle: string;
     mission: string;
   };
+  secondaryMenu: {
+    restClient: string;
+    graphiqlClient: string;
+    history: string;
+  };
   signIn: string;
   signOut: string;
   validationErrors: {
@@ -33,5 +38,11 @@ export interface IAppStrings {
     passwordStrength: string;
     confirmPasswordRequired: string;
     passwordsMustMatch: string;
+  };
+  websiteErrors: {
+    siteNotFound: string;
+    pageNotFoundMessage: string;
+    wrongTurnMessage: string;
+    goBackToHomepage: string;
   };
 }
