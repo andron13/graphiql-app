@@ -171,6 +171,6 @@ _Front-end. Back-end._
 ### Contact 👋:
 
 - Email - `vadympopov.dev@gmail.com` 📬
-- Linkedin - [Vadym Popov](https://www.linkedin.com/in/?) ✒️
+- Linkedin - [Vadym Popov](https://www.linkedin.com/in/vadym-popov/) ✒️
 - Telegram - [@boy_cristal](https://t.me/boy_cristal) 📱
-- GutHub - [VadymPopov](https://github.com/VadymPopov) 🦉
+- GitHub - [Vadym Popov](https://github.com/VadymPopov) 🦉
