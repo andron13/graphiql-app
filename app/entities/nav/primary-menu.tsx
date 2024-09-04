@@ -1,10 +1,11 @@
 import { useNavigate } from "@remix-run/react";
 
-import { useUser } from "~/shared/context";
+import { useLanguage, useUser } from "~/shared/context";
 
 export const PrimaryMenu = () => {
-  const { logout: logoutContext, isUserLoggedIn } = useUser(); // Используем функцию проверки
+  const { logout: logoutContext, isUserLoggedIn } = useUser();
   const navigate = useNavigate();
+  const { site_content } = useLanguage();
 
   const handleLogout = async () => {
     try {
@@ -25,7 +26,7 @@ export const PrimaryMenu = () => {
               className="text-gray-600 hover:text-gray-900"
               title="Logout"
             >
-              Logout
+              {site_content.signOut}
             </button>
           </li>
         ) : (
@@ -35,7 +36,7 @@ export const PrimaryMenu = () => {
               className="text-gray-600 hover:text-gray-900"
               title="Login"
             >
-              Login
+              {site_content.signIn}
             </a>
           </li>
         )}

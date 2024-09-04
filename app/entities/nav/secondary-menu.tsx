@@ -1,15 +1,18 @@
 import { Link } from "@remix-run/react";
 
-import { useUser } from "~/shared/context";
-
-const links = [
-  { name: "REST Client", to: "/rest-client" },
-  { name: "GraphiQL Client", to: "/graphiql-client" },
-  { name: "History", to: "/history" },
-];
+import { useLanguage, useUser } from "~/shared/context";
 
 export const SecondaryMenu = () => {
+  const { site_content } = useLanguage();
+
+  const links = [
+    { name: site_content.secondaryMenu.restClient, to: "/rest-client" },
+    { name: site_content.secondaryMenu.graphiqlClient, to: "/graphiql-client" },
+    { name: site_content.secondaryMenu.history, to: "/history" },
+  ];
+
   const { isUserLoggedIn } = useUser();
+  //   TODO: FOR PRODUCTION, COMMENT IT OUT
   // if (!isUserLoggedIn()) return null;
   return (
     <nav className="mt-20 w-2/3">

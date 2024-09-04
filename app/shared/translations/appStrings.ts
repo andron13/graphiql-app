@@ -1,5 +1,4 @@
-import { IAppStrings } from "~/shared/types";
-import { LanguageCode } from "~/shared/types/i18n";
+import { IAppStrings, LanguageCode } from "~/shared/types";
 
 export const defaultLanguage: LanguageCode = LanguageCode.EN_GB;
 
@@ -9,6 +8,11 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       title: "Welcome",
       subtitle: "Welcome to our website!",
       mission: "Discover amazing features and functionality.",
+    },
+    secondaryMenu: {
+      restClient: "Rest Client",
+      graphiqlClient: "GraphiQL Client",
+      history: "History",
     },
     signIn: "Sign In",
     signOut: "Sign Out",
@@ -21,12 +25,24 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       confirmPasswordRequired: "Confirm Password is required",
       passwordsMustMatch: "Passwords must match",
     },
+    websiteErrors: {
+      siteNotFound: "Page not found",
+      pageNotFoundMessage: "We can't find the page at:",
+      wrongTurnMessage:
+        "It looks like you took a wrong turn. Please go back to the homepage to find what you are looking for.",
+      goBackToHomepage: "Go back to the homepage",
+    },
   },
   [LanguageCode.DE_DE]: {
     welcomeMessage: {
       title: "Willkommen",
       subtitle: "Willkommen auf unserer Website!",
       mission: "Entdecken Sie erstaunliche Funktionen und Möglichkeiten.",
+    },
+    secondaryMenu: {
+      restClient: "Rest-Client",
+      graphiqlClient: "GraphiQL-Client",
+      history: "Verlauf",
     },
     signIn: "Anmelden",
     signOut: "Abmelden",
@@ -39,12 +55,25 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       confirmPasswordRequired: "Bestätigungs-Passwort ist erforderlich",
       passwordsMustMatch: "Passwörter müssen übereinstimmen",
     },
+    websiteErrors: {
+      siteNotFound: "Seite nicht gefunden",
+      pageNotFoundMessage:
+        "Wir können die Seite unter folgender Adresse nicht finden:",
+      wrongTurnMessage:
+        "Es scheint, dass Sie sich verirrt haben. Bitte gehen Sie zur Startseite zurück, um das Gesuchte zu finden.",
+      goBackToHomepage: "Zur Startseite zurückkehren",
+    },
   },
   [LanguageCode.BE_BY]: {
     welcomeMessage: {
       title: "Сардэчна запрашаем",
       subtitle: "Сардэчна запрашаем на наш сайт!",
       mission: "Аглядзіце дзіўныя магчымасці і функцыі.",
+    },
+    secondaryMenu: {
+      restClient: "Rest Client",
+      graphiqlClient: "GraphiQL Client",
+      history: "История",
     },
     signIn: "Увайсці",
     signOut: "Выйсці",
@@ -57,12 +86,24 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       confirmPasswordRequired: "Пацверджанне пароля неабходна",
       passwordsMustMatch: "Паролі павінны супадаць",
     },
+    websiteErrors: {
+      siteNotFound: "Старонка не знойдзена",
+      pageNotFoundMessage: "Мы не можам знайсці старонку па адрасе:",
+      wrongTurnMessage:
+        "Здаецца, вы збіліся з шляху. Вярніцеся на галоўную старонку, каб знайсці патрэбную інфармацыю.",
+      goBackToHomepage: "Вярнуцца на галоўную старонку",
+    },
   },
   [LanguageCode.UK_UA]: {
     welcomeMessage: {
       title: "Ласкаво просимо",
-      subtitle: "Ласкаво просимо ",
+      subtitle: "Ласкаво просимо на наш сайт!",
       mission: "Відкрийте для себе дивовижні можливості та функції.",
+    },
+    secondaryMenu: {
+      restClient: "Rest Client",
+      graphiqlClient: "GraphiQL Client",
+      history: "Гісторыя",
     },
     signIn: "Увійти",
     signOut: "Вийти",
@@ -75,12 +116,24 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       confirmPasswordRequired: "Підтвердження пароля є обов'язковим",
       passwordsMustMatch: "Паролі повинні співпадати",
     },
+    websiteErrors: {
+      siteNotFound: "Сторінка не знайдена",
+      pageNotFoundMessage: "Ми не можемо знайти сторінку за адресою:",
+      wrongTurnMessage:
+        "Здається, ви заблукали. Поверніться на головну сторінку, щоб знайти те, що вам потрібно.",
+      goBackToHomepage: "Повернутися на головну сторінку",
+    },
   },
   [LanguageCode.RU_RU]: {
     welcomeMessage: {
       title: "Добро пожаловать",
       subtitle: "Добро пожаловать на наш сайт!",
       mission: "Откройте для себя удивительные функции и возможности.",
+    },
+    secondaryMenu: {
+      restClient: "Rest Client",
+      graphiqlClient: "GraphiQL Client",
+      history: "Історія",
     },
     signIn: "Войти",
     signOut: "Выйти",
@@ -93,12 +146,24 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       confirmPasswordRequired: "Подтверждение пароля обязательно",
       passwordsMustMatch: "Пароли должны совпадать",
     },
+    websiteErrors: {
+      siteNotFound: "Страница не найдена",
+      pageNotFoundMessage: "Мы не можем найти страницу по адресу:",
+      wrongTurnMessage:
+        "Похоже, вы ошиблись. Вернитесь на главную страницу, чтобы найти то, что вам нужно.",
+      goBackToHomepage: "Вернуться на главную страницу",
+    },
   },
   [LanguageCode.PL_PL]: {
     welcomeMessage: {
       title: "Witamy",
       subtitle: "Witamy na naszej stronie!",
       mission: "Odkryj niesamowite funkcje i możliwości.",
+    },
+    secondaryMenu: {
+      restClient: "Rest Client",
+      graphiqlClient: "GraphiQL Client",
+      history: "Historia",
     },
     signIn: "Zaloguj się",
     signOut: "Wyloguj się",
@@ -111,12 +176,24 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
       confirmPasswordRequired: "Potwierdzenie hasła jest wymagane",
       passwordsMustMatch: "Hasła muszą się zgadzać",
     },
+    websiteErrors: {
+      siteNotFound: "Strona nie znaleziona",
+      pageNotFoundMessage: "Nie możemy znaleźć strony pod adresem:",
+      wrongTurnMessage:
+        "Wygląda na to, że się zgubiłeś. Wróć na stronę główną, aby znaleźć to, czego szukasz.",
+      goBackToHomepage: "Wróć na stronę główną",
+    },
   },
   [LanguageCode.JA_JP]: {
     welcomeMessage: {
       title: "ようこそ",
       subtitle: "ようこそ",
       mission: "素晴らしい機能と可能性を発見してください。",
+    },
+    secondaryMenu: {
+      restClient: "Rest Client",
+      graphiqlClient: "GraphiQL Client",
+      history: "履歴",
     },
     signIn: "サインイン",
     signOut: "サインアウト",
@@ -128,6 +205,13 @@ export const appStrings: Record<LanguageCode, IAppStrings> = {
         "パスワードは8文字以上で、少なくとも1つの数字、1つの特殊文字、および少なくとも1つの文字を含む必要があります",
       confirmPasswordRequired: "パスワードの確認が必要です",
       passwordsMustMatch: "パスワードが一致しません",
+    },
+    websiteErrors: {
+      siteNotFound: "ページが見つかりません",
+      pageNotFoundMessage: "次の場所でページが見つかりません:",
+      wrongTurnMessage:
+        "道に迷ったようです。ホームページに戻って、探しているものを見つけてください。",
+      goBackToHomepage: "ホームページに戻る",
     },
   },
 };
