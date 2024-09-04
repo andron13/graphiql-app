@@ -31,6 +31,9 @@ export interface IAppStrings {
   };
   signIn: string;
   signOut: string;
+  signUp: string;
+  submit: string;
+  register: string;
   validationErrors: {
     emailRequired: string;
     emailInvalid: string;
@@ -38,6 +41,7 @@ export interface IAppStrings {
     passwordStrength: string;
     confirmPasswordRequired: string;
     passwordsMustMatch: string;
+    invalidEmailPassword: string;
   };
   websiteErrors: {
     siteNotFound: string;
