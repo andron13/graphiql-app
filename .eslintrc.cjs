@@ -31,7 +31,7 @@ module.exports = {
       plugins: [
         "react",
         "react-refresh",
-        // "react-compiler",
+        "react-compiler",
         "prettier",
         "vitest",
       ],
@@ -41,7 +41,7 @@ module.exports = {
         "plugin:react-hooks/recommended",
       ],
       rules: {
-        // "react-compiler/react-compiler": "error",
+        "react-compiler/react-compiler": "error",
         "react/no-unescaped-entities": ["off"],
       },
       settings: {
