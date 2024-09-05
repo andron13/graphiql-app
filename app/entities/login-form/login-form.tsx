@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { SignInForm, SignUpForm } from "~/entities/login-form";
+import { useLanguage } from "~/shared/context";
 
 interface LoginFormProps {
   isSignup?: boolean;
@@ -9,6 +10,7 @@ interface LoginFormProps {
 export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
   const [isRegistering, setIsRegistering] = useState(isSignup);
   const authForm = isRegistering ? <SignUpForm /> : <SignInForm />;
+  const { site_content } = useLanguage();
 
   return (
     <div className="flex w-96 items-center justify-center bg-gray-100 px-4">
@@ -22,7 +24,7 @@ export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            Sign In
+            {site_content.signIn}
           </button>
           <button
             onClick={() => setIsRegistering(true)}
@@ -32,7 +34,7 @@ export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            Sign Up
+            {site_content.signUp}
           </button>
         </div>
         {authForm}

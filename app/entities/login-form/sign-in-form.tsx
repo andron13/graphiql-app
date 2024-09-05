@@ -43,7 +43,7 @@ export function SignInForm() {
       console.error("Error during login:", error);
       setError("email", {
         type: "firebase",
-        message: "Invalid email or password.",
+        message: "Invalid email or password",
       });
     }
   };
@@ -84,7 +84,7 @@ export function SignInForm() {
         )}
       </div>
       <button type="submit" className="registerButton">
-        Submit
+        {site_content.submit}
       </button>
     </form>
   );

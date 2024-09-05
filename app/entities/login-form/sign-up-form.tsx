@@ -107,7 +107,7 @@ export function SignUpForm() {
         )}
       </div>
       <button type="submit" className="registerButton">
-        Register
+        {site_content.register}
       </button>
     </form>
   );
