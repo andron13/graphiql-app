@@ -6,7 +6,7 @@ import {
   ResponseSection,
 } from "~/features/clients-forms";
 
-export const GraphqlPath = () => {
+export function GraphqlPath() {
   const location = useLocation();
   const path = location.pathname.substring(1);
   const firstSegment = path.split("/")[1];
@@ -23,4 +23,4 @@ export const GraphqlPath = () => {
       <DocumentationSection />
     </div>
   );
-};
+}
