@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@remix-run/react";
 
 import {
   ResponseSection,
   RestApiRequestSection,
-} from "app/entities/clients-forms";
-
+} from "~/features/clients-forms";
 import { UrlencodedFormData } from "~/shared/types";
 import { defaultRequestValues } from "~/test/mock";
 
@@ -13,7 +12,6 @@ export default function RestClient() {
   const handleSubmit = async (data: UrlencodedFormData) => {
     const method = data.method;
     const endpoint = encodeURIComponent(data.endpoint);
-    const body = data.body ? encodeURIComponent(data.body) : null;
 
     const urlPath = `/${method}/${endpoint}`;
     const queryParams = data.headers

@@ -3,7 +3,7 @@ import {
   connectLogoPath,
   rssLogoJsPath,
   rssLogoPath,
-} from "app/shared/images";
+} from "~/shared/images";
 
 const websiteConfig = {
   name: "Graphiql App",
