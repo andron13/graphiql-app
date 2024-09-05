@@ -135,7 +135,7 @@ npm run dev
 
 ## Code Quality 🧹
 
-- **Vitest** - The Test Runner 🧪
+- **Vitest** - The GraphqlPath Runner 🧪
 - **Testing** Library - The Testing Framework 🫂
 - **React Testing Library** - The Testing Framework 🫂
 - **ESLint** — Air-bnb base - The Linter 🔔

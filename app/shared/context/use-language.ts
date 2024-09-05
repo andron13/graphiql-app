@@ -1,5 +1,4 @@
-import { useUser } from "app/shared/context";
-
+import { useUser } from "~/shared/context";
 import { appStrings, defaultLanguage } from "~/shared/translations";
 import { IAppStrings, LanguageCode } from "~/shared/types";
 

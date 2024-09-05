@@ -2,7 +2,7 @@ import websiteConfig from "~/shared/website-config/index";
 
 export const metatags = {
   description: "description", // <meta name="description" content="This is an example page.">
-  keywords: "keywords", // <meta name="keywords" content="Example, Sample, Test">
+  keywords: "keywords", // <meta name="keywords" content="Example, Sample, GraphqlPath">
   language: "language", // <meta http-equiv="content-language" content="en">
   subject: "subject", //<meta name="subject" content="your website subjects">
   copyright: "copyright", // <meta name="copyright" content="Company Name">
