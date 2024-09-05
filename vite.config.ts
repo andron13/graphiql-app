@@ -10,7 +10,16 @@ export default defineConfig({
         v3_relativeSplatPath: true,
         v3_throwAbortReason: true,
       },
+      ignoredRouteFiles: ["**/*.css"],
     }),
     tsconfigPaths(),
   ],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    // setupFiles: [""],
+    coverage: {
+      provider: "v8",
+    },
+  },
 });
