@@ -1,33 +1,44 @@
 import { FC } from "react";
 
-import { RequestType } from "~/shared/types";
+const RequestTypes = {
+  GRAPHQL: "GRAPHQL",
+  GET: "GET",
+  POST: "POST",
+  PUT: "PUT",
+  DELETE: "DELETE",
+  PATCH: "PATCH",
+  OPTIONS: "OPTIONS",
+  HEAD: "HEAD",
+  CONNECT: "CONNECT",
+  TRACE: "TRACE",
+};
 
 interface RequestTypeBadgeProps {
-  type: RequestType;
+  type: string;
 }
 
-const getRequestTypeClasses = (type: RequestType) => {
+const getRequestTypeClasses = (type: string) => {
   switch (type) {
-    case RequestType.GET:
+    case RequestTypes.GET:
       return "bg-green-100 text-green-800";
-    case RequestType.POST:
+    case RequestTypes.POST:
       return "bg-blue-100 text-blue-800";
-    case RequestType.PUT:
+    case RequestTypes.PUT:
       return "bg-yellow-100 text-yellow-800";
-    case RequestType.DELETE:
+    case RequestTypes.DELETE:
       return "bg-red-100 text-red-800";
-    case RequestType.GRAPHQL:
-      return "bg-purple-100 text-purple-800";
-    case RequestType.PATCH:
+    case RequestTypes.PATCH:
       return "bg-orange-100 text-orange-800";
-    case RequestType.OPTIONS:
+    case RequestTypes.OPTIONS:
       return "bg-gray-100 text-gray-800";
-    case RequestType.HEAD:
+    case RequestTypes.HEAD:
       return "bg-teal-100 text-teal-800";
-    case RequestType.CONNECT:
+    case RequestTypes.CONNECT:
       return "bg-indigo-100 text-indigo-800";
-    case RequestType.TRACE:
+    case RequestTypes.TRACE:
       return "bg-pink-100 text-pink-800";
+    case RequestTypes.GRAPHQL:
+      return "bg-purple-100 text-purple-800";
     default:
       return "bg-gray-100 text-gray-800";
   }

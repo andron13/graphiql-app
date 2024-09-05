@@ -17,24 +17,7 @@ export type AccountRegistration = AccountCredentials<{
   confirmPassword: string;
 }>;
 
-export type HistoryRequest = {
-  timestamp: number;
-  type: RequestType;
-  url: string;
-};
-
-export enum RequestType {
-  GRAPHQL = "GRAPHQL",
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
-  PATCH = "PATCH",
-  OPTIONS = "OPTIONS",
-  HEAD = "HEAD",
-  CONNECT = "CONNECT",
-  TRACE = "TRACE",
-}
+export type RequestType = RestRequestType | GraphqlRequestType;
 
 export enum RestRequestType {
   GET = "GET",
@@ -54,10 +37,16 @@ export enum GraphqlRequestType {
 export type Header = { key: string; value: string };
 
 export type UrlencodedFormData = {
-  method: RestRequestType | GraphqlRequestType;
+  method: RequestType;
   endpoint: string;
   headers: Header[];
   body: string;
+};
+
+export type HistoryRequest = {
+  timestamp: number;
+  type: RequestType;
+  url: string;
 };
 
 export interface FormValues {

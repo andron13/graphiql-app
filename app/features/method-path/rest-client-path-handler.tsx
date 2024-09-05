@@ -4,17 +4,25 @@ import {
   ResponseSection,
   RestApiRequestSection,
 } from "~/features/clients-forms";
-import { UrlencodedFormData } from "~/shared/types";
+import { RequestHistoryViewer } from "~/features/local-storage-viewer-props";
+import { useRequestHistory } from "~/shared/hooks";
+import {
+  RequestType,
+  RestRequestType,
+  UrlencodedFormData,
+} from "~/shared/types";
 import { defaultRequestValues } from "~/test/mock";
 
 export function RestClientPathHandler() {
+  const { history, addRequestToHistory, clearHistory } = useRequestHistory();
+
   const params = useParams();
   const location = useLocation();
   const path = location.pathname.substring(1);
   const firstSegment = path.split("/")[1];
   const navigate = useNavigate();
   const handleSubmit = async (data: UrlencodedFormData) => {
-    const method = data.method;
+    const method = data.method as RestRequestType;
     const endpoint = encodeURIComponent(data.endpoint);
 
     const urlPath = `/${method}/${endpoint}`;
@@ -28,8 +36,25 @@ export function RestClientPathHandler() {
     const fullUrl = queryParams ? `${urlPath}?${queryParams}` : urlPath;
     console.log("Сформированный URL:", fullUrl);
 
-    navigate(fullUrl);
+    urlWorker(fullUrl, method);
   };
+
+  function urlWorker(url: string, method: RestRequestType) {
+    // TODO:
+    // 1. Fetch the data and display the response
+    // 2. Format the URL for an internal page if needed
+    // 3. Navigate to this URL (x- done)
+    // 4. Record the request in the user's history
+    const request = {
+      timestamp: Date.now(),
+      type: method,
+      url: url,
+    };
+
+    addRequestToHistory(request);
+
+    navigate(url);
+  }
 
   return (
     <div className="bg-gray-100 p-4">
@@ -62,6 +87,7 @@ export function RestClientPathHandler() {
         onSubmit={handleSubmit}
       />
       <ResponseSection />
+      <RequestHistoryViewer />
     </div>
   );
 }
