@@ -16,6 +16,7 @@
     "ncu:check": "ncu",
     "ncu:update": "ncu --interactive",
     "test": "vitest",
+    "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
