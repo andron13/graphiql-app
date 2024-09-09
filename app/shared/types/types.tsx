@@ -55,3 +55,11 @@ export interface FormValues {
   headers: { key: string; value: string }[];
   body: string;
 }
+
+export interface FormValuesGraphql {
+  endpoint: string;
+  sdlURL: string;
+  headers: { key: string; value: string }[];
+  query: string;
+  variables: string;
+}
