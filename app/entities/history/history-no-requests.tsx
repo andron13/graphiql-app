@@ -8,7 +8,7 @@ export function HistoryNoRequests() {
         <p className="mb-6">It's empty here. Try:</p>
         <div className="flex justify-center gap-4">
           <a
-            href="/app/features/method-path/rest-client-path-handler"
+            href="/rest-client"
             className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           >
             REST Client

@@ -10,12 +10,10 @@ import {
 
 import { Footer, Header } from "~/entities";
 import { UserProvider } from "~/shared/context";
-import { getTime } from "~/shared/time";
 
 import "./tailwind.css";
 
 export function Layout({ children }: { children: ReactNode }) {
-  getTime();
   return (
     <html lang="en">
       <head>
@@ -28,7 +26,9 @@ export function Layout({ children }: { children: ReactNode }) {
       <body>
         <UserProvider>
           <Header />
-          <main>{children}</main>
+          <div className="mx-auto flex flex-grow flex-col items-center justify-center md:w-[1024px]">
+            {children}
+          </div>
           <Footer />
         </UserProvider>
         <ScrollRestoration />

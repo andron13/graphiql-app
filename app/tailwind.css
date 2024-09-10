@@ -8,9 +8,9 @@
     @apply flex min-h-screen flex-col bg-gray-100;
   }
 
-  body > main {
-    @apply mx-auto flex flex-grow flex-col items-center justify-center md:w-[1024px];
-  }
+  /*body > main {*/
+  /*  @apply mx-auto flex flex-grow flex-col items-center justify-center md:w-[1024px];*/
+  /*}*/
 
   body > footer {
     @apply sticky bottom-0 border-2 border-gray-200 bg-white p-2;
