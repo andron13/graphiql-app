@@ -5,7 +5,11 @@ import {
   RestApiRequestSection,
 } from "~/features/clients-forms";
 import { RoutesLayout } from "~/layouts";
-import { useDecodedUrl, useRequestHistory } from "~/shared/hooks";
+import {
+  useDecodedUrl,
+  useEncodedUrl,
+  useRequestHistory,
+} from "~/shared/hooks";
 import { RestRequestType, UrlencodedFormData } from "~/shared/types";
 import { defaultRequestValues } from "~/test/mock";
 
@@ -13,14 +17,30 @@ export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const { method, endpoint, body, headers, fullUrl } = useDecodedUrl();
 
+  // Добавляем хук useEncodedUrl
+  // const { url } = useEncodedUrl({
+  //   method,
+  //   endpoint,
+  //   body,
+  //   headers,
+  // });
+
   const params = useParams();
   const location = useLocation();
   const path = location.pathname.substring(1);
   const firstSegment = path.split("/")[1];
   const navigate = useNavigate();
+
   const handleSubmit = async (data: UrlencodedFormData) => {
     const method = data.method as RestRequestType;
     const endpoint = encodeURIComponent(data.endpoint);
+    const headers = data.headers.reduce(
+      (acc, header) => {
+        acc[header.key] = header.value;
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
     const urlPath = `/${method}/${endpoint}`;
     const queryParams = data.headers
@@ -103,7 +123,7 @@ export function RestClientPathHandler() {
           </p>
           <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
             Body: <span className="font-medium">{JSON.stringify(body)}</span>
-          </p>{" "}
+          </p>
           <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
             fullUrl: <span className="font-medium">{fullUrl}</span>
           </p>
