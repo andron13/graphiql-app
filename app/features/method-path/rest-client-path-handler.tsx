@@ -7,16 +7,18 @@ import {
 import { RoutesLayout } from "~/layouts";
 import { useRequestHistory } from "~/shared/hooks";
 import { RestRequestType, UrlencodedFormData } from "~/shared/types";
-import { decodeRequestUrl } from "~/shared/url/decodeRequestUrl";
-import { encodeRequestUrl } from "~/shared/url/encodeRequestUrl";
+import { decodeRequestUrl, encodeRequestUrl } from "~/shared/url";
 import { defaultRequestValues } from "~/test/mock";
 
 export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const urlForDecode = location.pathname + location.search;
   const path = location.pathname.substring(1);
   const firstSegment = path.split("/")[1];
-  const navigate = useNavigate();
+  const decodedData = decodeRequestUrl(urlForDecode);
 
   const handleSubmit = async (data: UrlencodedFormData) => {
     const method = data.method as RestRequestType;
@@ -27,33 +29,20 @@ export function RestClientPathHandler() {
     console.log("Encoded URL:", encodedUrl);
 
     // Call function to handle URL
-    urlWorker(encodedUrl, method);
-  };
-
-  function urlWorker(url: string, method: RestRequestType) {
     const request = {
       timestamp: Date.now(),
       type: method,
-      url: url,
+      url: encodedUrl,
+      shortUlr: data.endpoint,
     };
 
-    // Log request added to history and navigation URL
-    console.log("Adding request to history:", request);
     addRequestToHistory(request);
-
-    console.log("Navigating to URL:", url);
-    navigate(url);
-  }
-
-  // Decode URL
-  const decodedData = decodeRequestUrl(path);
-
-  // Log decoded data
-  console.log("Decoded Data:", decodedData);
+    navigate(encodedUrl);
+  };
 
   return (
     <RoutesLayout>
-      <div className="bg-gray-100">
+      <div className="bg-gray-100 p-8">
         <RestApiRequestSection
           defaultValues={defaultRequestValues}
           onSubmit={handleSubmit}
@@ -64,15 +53,16 @@ export function RestClientPathHandler() {
         <h2 className="mb-6 border-b-2 border-blue-300 pb-2 text-4xl font-extrabold text-blue-700">
           Received Data:
         </h2>
-        <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
-          Rest path: <span className="font-medium">{path}</span>
-        </p>
-        <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
-          URL segment: <span className="font-medium">{firstSegment}</span>
-        </p>
+        <div className="mb-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
+          <p>
+            Rest path: <span className="font-medium">{path}</span>
+          </p>
+          <p>
+            URL segment: <span className="font-medium">{firstSegment}</span>
+          </p>
+        </div>
 
-        {/* Display original data and encoded URL */}
-        <h3 className="mb-4 mt-8 border-b-2 border-green-300 pb-2 text-3xl font-semibold text-green-700">
+        <h3 className="mb-4 border-b-2 border-green-300 pb-2 text-3xl font-semibold text-green-700">
           Original Data:
         </h3>
         <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner">
@@ -96,7 +86,7 @@ export function RestClientPathHandler() {
         <pre className="overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner">
           {JSON.stringify(decodedData, null, 2)}
         </pre>
-        <div className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
+        <div className="mb-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
           <h4 className="font-semibold">Decoded Headers:</h4>
           <pre className="rounded border border-gray-300 bg-gray-50 p-3">
             {decodedData.headers

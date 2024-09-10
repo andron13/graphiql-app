@@ -2,9 +2,9 @@ import { UrlencodedFormData } from "~/shared/types";
 
 function encodeBase64(data: string): string {
   try {
-    return btoa(unescape(encodeURIComponent(data)));
+    return btoa(encodeURIComponent(data));
   } catch (e) {
-    console.error("Failed to encode base64:", e);
+    // console.error("Failed to encode base64:", e);
     return "";
   }
 }
@@ -13,7 +13,7 @@ export function encodeRequestUrl(data: UrlencodedFormData): string {
   const { method, endpoint, body, headers } = data;
 
   if (!method || !endpoint) {
-    console.error("Method and endpoint are required.");
+    // console.error("Method and endpoint are required.");
     return "";
   }
 
@@ -23,12 +23,12 @@ export function encodeRequestUrl(data: UrlencodedFormData): string {
   const queryParams = headers
     .map((header) => {
       if (!header.key || !header.value) {
-        console.error("Header key or value is missing.");
+        // console.error("Header key or value is missing.");
         return "";
       }
       return `${encodeURIComponent(header.key)}=${encodeURIComponent(header.value)}`;
     })
-    .filter((param) => param !== "") // Убираем пустые параметры
+    .filter((param) => param !== "")
     .join("&");
 
   const fullUrl = `/${method}/${encodedEndpoint}${
