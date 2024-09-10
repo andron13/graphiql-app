@@ -54,7 +54,7 @@ export function RestClientPathHandler() {
 
   return (
     <RoutesLayout>
-      <div className="bg-gray-100 p-4">
+      <div className="bg-gray-100">
         <div className="rounded-lg bg-white p-8 shadow-xl ring-1 ring-gray-200">
           <h2 className="mb-6 border-b-2 border-blue-300 pb-2 text-4xl font-extrabold text-blue-700">
             Received Data:

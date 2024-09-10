@@ -26,7 +26,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <body>
         <UserProvider>
           <Header />
-          <div className="mx-auto flex flex-grow flex-col items-center justify-center md:w-[1024px]">
+          <div className="mx-auto mt-10 flex flex-grow flex-col items-center md:w-[1024px]">
             {children}
           </div>
           <Footer />
