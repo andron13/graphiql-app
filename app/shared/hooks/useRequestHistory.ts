@@ -19,7 +19,6 @@ export function useRequestHistory() {
       const updatedHistory = [...prevHistory, request];
       if (typeof window !== "undefined") {
         localStorage.setItem("requestHistory", JSON.stringify(updatedHistory));
-        console.log("Added request to history:", updatedHistory);
       }
       return updatedHistory;
     });
@@ -29,7 +28,6 @@ export function useRequestHistory() {
     setHistory([]);
     if (typeof window !== "undefined") {
       localStorage.removeItem("requestHistory");
-      console.log("History cleared.");
     }
   };
 

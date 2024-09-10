@@ -315,7 +315,9 @@ Headers, specified in the editor, should be provided as url query parameters (mi
 #### Routing on GraphiQL client
 
 Similar to the RESTfull client, the request infromation should be provided via the url, with the only exception - all the GraphQL queries are POST queries, so to distinguish it from the usual REST queries, you should use GRAPHQL as a first route parameter:
-`http://localhost:5137/GRAPHQL/{endpointUrlBase64encoded}/{bodyBase64encoded}?header1=header1value&header2=header2value...`
+`http://localhost:5173/GRAPHQL/{endpointUrlBase64encoded}/{bodyBase64encoded}?header1=header1value&header2=header2value...`
+
+[test link](http://localhost:5173/post/{endpointUrlBase64encoded}/{bodyBase64encoded}?header1=header1value&header2=header2value)
 
 ### History
 
