@@ -17,13 +17,17 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
     defaultValues,
   });
 
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "headers",
   });
 
   const handleAddHeader = () => {
     append({ key: "", value: "" });
+  };
+
+  const handleRemoveHeader = (index: number) => {
+    remove(index);
   };
 
   const handleFormSubmit = (data: FormValues) => {
@@ -40,7 +44,7 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
         <div className="flex-1">
           <label className="mb-2 block font-medium">Method</label>
           <select
-            className="w-fit rounded border border-gray-300 p-2"
+            className="w-28 rounded border border-gray-300 p-2"
             {...register("method")}
           >
             {Object.values(RestRequestType).map((method) => (
@@ -48,7 +52,6 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
                 {method}
               </option>
             ))}
-            <option value={GraphqlRequestType.GRAPHQL}>GRAPHQL</option>
           </select>
         </div>
         <div className="flex-2 w-full">
@@ -63,25 +66,36 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
 
       <div className="mb-4">
         <label className="mb-2 block font-medium">Headers</label>
-        {fields.map((item, index) => (
-          <div key={item.id} className="mb-2 flex gap-2">
-            <input
-              type="text"
-              placeholder="Header Key"
-              className="flex-1 rounded border border-gray-300 p-2"
-              {...register(`headers.${index}.key` as const)}
-            />
-            <input
-              type="text"
-              placeholder="Header Value"
-              className="flex-1 rounded border border-gray-300 p-2"
-              {...register(`headers.${index}.value` as const)}
-            />
-          </div>
-        ))}
+        {fields.length > 0 ? (
+          fields.map((item, index) => (
+            <div key={item.id} className="mb-2 flex items-center gap-2">
+              <input
+                type="text"
+                placeholder="Header Key"
+                className="flex-1 rounded border border-gray-300 p-2"
+                {...register(`headers.${index}.key` as const)}
+              />
+              <input
+                type="text"
+                placeholder="Header Value"
+                className="flex-1 rounded border border-gray-300 p-2"
+                {...register(`headers.${index}.value` as const)}
+              />
+              <button
+                type="button"
+                className="rounded bg-red-500 p-2 text-white"
+                onClick={() => handleRemoveHeader(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-500">No headers added</p>
+        )}
         <button
           type="button"
-          className="rounded bg-blue-500 p-2 text-white"
+          className="mt-2 rounded bg-blue-500 p-2 text-white"
           onClick={handleAddHeader}
         >
           Add Header

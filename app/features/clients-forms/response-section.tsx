@@ -13,7 +13,7 @@ export const ResponseSection: FC<ResponseSectionProps> = ({
   responseBody = dummyResponseBody,
 }) => {
   return (
-    <div className="mt-4 rounded bg-white p-4 shadow">
+    <div className="mt-4 rounded-lg bg-white p-4 shadow">
       <div className="mb-4">
         <label className="mb-2 block font-medium">Response</label>
         <div className="mb-2">

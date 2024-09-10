@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-import { useLocation, useNavigate, useParams } from "@remix-run/react";
+import { useLocation, useNavigate } from "@remix-run/react";
 
 import {
   DocumentationSection,
   GraphiQLClientRequestSection,
   ResponseSection,
 } from "~/features/clients-forms";
+import { RoutesLayout } from "~/layouts/routes-layout";
 import { useRequestHistory } from "~/shared/hooks";
 import { FormValuesGraphql, RestRequestType } from "~/shared/types/types";
 import { defaultGraphqlRequestValues } from "~/test/mock";
@@ -81,22 +82,24 @@ export function GraphqlPath() {
   };
 
   return (
-    <div className="bg-gray-100 p-4">
-      <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
-        GraphQL path: <span className="font-medium">{path}</span>
-      </p>
-      <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
-        Url segment: <span className="font-medium">{firstSegment}</span>
-      </p>
-      <GraphiQLClientRequestSection
-        defaultValues={defaultGraphqlRequestValues}
-        onSubmit={onSubmit}
-      />
-      <ResponseSection
-        responseStatus={response.responseStatus}
-        responseBody={response.responseBody}
-      />
-      <DocumentationSection />
-    </div>
+    <RoutesLayout>
+      <div className="bg-gray-100 p-4">
+        <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
+          GraphQL path: <span className="font-medium">{path}</span>
+        </p>
+        <p className="m-4 border-l-4 border-green-500 pl-4 text-lg font-semibold text-green-700">
+          Url segment: <span className="font-medium">{firstSegment}</span>
+        </p>
+        <GraphiQLClientRequestSection
+          defaultValues={defaultGraphqlRequestValues}
+          onSubmit={onSubmit}
+        />
+        <ResponseSection
+          responseStatus={response.responseStatus}
+          responseBody={response.responseBody}
+        />
+        <DocumentationSection />
+      </div>
+    </RoutesLayout>
   );
 }

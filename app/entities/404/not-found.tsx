@@ -1,6 +1,17 @@
+import { MetaFunction } from "@remix-run/node";
 import { Link, useLocation } from "@remix-run/react";
 
 import { useLanguage } from "~/shared/context";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Error 404 - Not Found" },
+    {
+      name: "description",
+      content: "Error 404 - Not Found",
+    },
+  ];
+};
 
 export function NotFound() {
   const { site_content } = useLanguage();
@@ -21,6 +32,7 @@ export function NotFound() {
       <Link className="notFoundLink" to="/">
         {site_content.websiteErrors.goBackToHomepage}
       </Link>
+      <h1 className="mt-20 text-5xl font-bold text-red-500">404</h1>
     </div>
   );
 }
