@@ -24,11 +24,12 @@ export function GraphqlPath() {
   const firstSegment = path.split("/")[1];
   const navigate = useNavigate();
 
-  function urlWorker(url: string, method: RestRequestType) {
+  function urlWorker(url: string, shortUrl: string, method: RestRequestType) {
     const request = {
       timestamp: Date.now(),
       type: method,
       url: url,
+      shortUrl,
     };
 
     addRequestToHistory(request);
@@ -63,7 +64,7 @@ export function GraphqlPath() {
 
     const fullUrl = queryParams ? `${urlPath}?${queryParams}` : urlPath;
 
-    urlWorker(fullUrl, method);
+    urlWorker(fullUrl, data.endpoint, method);
 
     try {
       const response = await fetch("/graphiql", {
