@@ -1,6 +1,7 @@
 import {
   andron13LogoPath,
   connectLogoPath,
+  githubLogoPath,
   rssLogoJsPath,
   rssLogoPath,
 } from "~/shared/images";
@@ -14,11 +15,18 @@ const websiteConfig = {
     rssLogo: rssLogoPath,
     andron13: andron13LogoPath,
     rsLogoJs: rssLogoJsPath,
+    githubLogo: githubLogoPath,
   },
   links: {
-    author: {
-      pathname: "https://github.com/andron13",
-      title: "andron13",
+    authors: {
+      lead: {
+        pathname: "https://github.com/andron13",
+        title: "andron13",
+      },
+      dev: {
+        pathname: "https://github.com/VadymPopov",
+        title: "VadymPopov",
+      },
     },
     course: "https://rs.school/courses/reactjs",
   },
