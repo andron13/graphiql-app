@@ -13,6 +13,9 @@ import { FormValues, RestRequestType } from "~/shared/types";
 import { decodeRequestUrl, encodeRequestUrl } from "~/shared/url";
 import { sendRequest } from "~/shared/url/send-request";
 
+interface ApiResponse {
+  [key: string]: unknown;
+}
 // Компонент обработки запросов клиента
 export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
@@ -20,7 +23,7 @@ export function RestClientPathHandler() {
   const navigate = useNavigate();
 
   // Состояния для загрузки, ошибок и ответа
-  const [response, setResponse] = useState<any>(null);
+  const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -60,12 +63,13 @@ export function RestClientPathHandler() {
     );
 
     try {
-      const result = await sendRequest({
-        method,
-        endpoint: data.endpoint,
-        headers: headersObject,
-        body: data.body,
-      });
+      const result = await sendRequest();
+      //     {
+      //   method,
+      //   endpoint: data.endpoint,
+      //   headers: headersObject,
+      //   body: data.body,
+      // }
       setResponse(result.response);
     } catch (err) {
       setError(err as Error);
