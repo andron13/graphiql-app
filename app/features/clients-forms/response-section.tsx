@@ -1,15 +1,13 @@
 import { FC } from "react";
 
-import { dummyResponseBody, dummyResponseStatus } from "~/__mock__";
-
 interface ResponseSectionProps {
-  responseStatus?: string;
-  responseBody?: string;
+  responseStatus: string;
+  responseBody: string;
 }
 
 export const ResponseSection: FC<ResponseSectionProps> = ({
-  responseStatus = dummyResponseStatus,
-  responseBody = dummyResponseBody,
+  responseStatus,
+  responseBody,
 }) => {
   return (
     <div className="mt-4 rounded-lg bg-white p-4 shadow">
