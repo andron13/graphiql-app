@@ -11,7 +11,6 @@ export default function NotFound404() {
   const isRestRequest = Object.values(RestRequestType)
     .map((type) => type.toLowerCase())
     .includes(firstSegment);
-
   const isGraphqlRequest =
     firstSegment === GraphqlRequestType.GRAPHQL.toLowerCase();
 

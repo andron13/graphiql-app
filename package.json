@@ -32,6 +32,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-select": "^5.8.0",
+    "remix-utils": "^7.6.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
