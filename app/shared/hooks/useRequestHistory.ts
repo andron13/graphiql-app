@@ -2,6 +2,25 @@ import { useEffect, useState } from "react";
 
 import { HistoryRequest } from "~/shared/types";
 
+/**
+ * Custom React hook to manage request history in local storage.
+ *
+ * This hook provides functionality to retrieve, add, and clear request history.
+ * It uses the browser's local storage to persist the history across page reloads.
+ *
+ * @returns {Object} An object containing the following properties:
+ * @returns {HistoryRequest[]} history - The current list of request history items.
+ * @returns {Function} addRequestToHistory - Function to add a new request to the history.
+ * @returns {Function} clearHistory - Function to clear all history items.
+ *
+ * @example
+ * const { history, addRequestToHistory, clearHistory } = useRequestHistory();
+ *
+ * addRequestToHistory({ ...requestData });
+ * clearHistory();
+ *
+ * @author @andron13 - Andrej Podlubnyj
+ */
 export function useRequestHistory() {
   const [history, setHistory] = useState<HistoryRequest[]>([]);
 
