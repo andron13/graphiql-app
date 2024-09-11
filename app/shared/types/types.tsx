@@ -47,7 +47,7 @@ export type HistoryRequest = {
   timestamp: number;
   type: RequestType;
   url: string;
-  shortUlr: string;
+  shortUrl: string;
 };
 
 export interface FormValues {
