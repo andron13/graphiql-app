@@ -33,7 +33,7 @@ export function RestClientPathHandler() {
       timestamp: Date.now(),
       type: method,
       url: encodedUrl,
-      shortUlr: data.endpoint,
+      shortUrl: data.endpoint,
     };
 
     addRequestToHistory(request);

@@ -8,6 +8,7 @@ const mockRequest: HistoryRequest = {
   url: "https://api.example.com",
   type: RestRequestType.GET,
   timestamp: Date.now(),
+  shortUrl: "https://api.example.com",
 };
 
 const TestComponent = () => {
@@ -61,6 +62,6 @@ describe("useRequestHistory", () => {
 
     expect(getByText("0")).toBeTruthy();
     const storedHistory = JSON.parse(localStorage.getItem("requestHistory")!);
-    expect(storedHistory).toEqual([]);
+    expect(storedHistory).toBe(null);
   });
 });

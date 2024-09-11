@@ -25,7 +25,7 @@ export const HistoryListItem: FC<HistoryListItemProps> = ({ request }) => {
           className={linkStyle}
           title={request.url} // Показываем полный URL при наведении
         >
-          {request.shortUlr}
+          {request.shortUrl}
         </Link>
       </div>
       <span className="text-xs text-gray-500">{germanDate}</span>
