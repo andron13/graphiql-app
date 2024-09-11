@@ -20,7 +20,7 @@ export default function NotFound404() {
     return <RestClientPathHandler />;
   }
 
-  if (isGraphqlRequest) {
+  if (isGraphqlRequest || path === "/graphiql-client") {
     return <GraphqlPath />;
   }
 
