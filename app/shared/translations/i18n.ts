@@ -19,6 +19,10 @@ export interface II18nStrings {
 }
 
 export interface IAppStrings {
+  websiteConfig: {
+    name: string;
+    description: string;
+  };
   welcomeMessage: {
     title: string;
     subtitle: string;

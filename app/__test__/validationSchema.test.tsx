@@ -4,6 +4,10 @@ import { IAppStrings } from "~/shared/types";
 import { createYupSchema, createYupSchemaSignIn } from "~/shared/validation";
 
 const siteContent: IAppStrings = {
+  websiteConfig: {
+    name: "",
+    description: "",
+  },
   validationErrors: {
     emailRequired: "Email is required",
     emailInvalid: "Email is invalid",

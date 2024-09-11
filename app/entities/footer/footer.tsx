@@ -1,5 +1,6 @@
 import { FC, ReactNode, useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Link } from "@remix-run/react";
 
 import websiteConfig from "~/shared/website-config";
 
@@ -44,12 +45,7 @@ export const Footer: FC = (): ReactNode => {
             </Link>
           </div>
         </div>
-        {/*TODO удалить тест страницу about*/}
-        <p className="flex items-center text-sm">
-          <Link to="/about" title="about">
-            Anno 08.2024
-          </Link>
-        </p>
+        <p className="flex items-center text-sm">Anno 08.2024</p>
         <Link
           to={websiteConfig.links.course}
           title={websiteConfig.links.authors.lead.title}

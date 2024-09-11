@@ -13,12 +13,12 @@ export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
   const { site_content } = useLanguage();
 
   return (
-    <div className="flex w-96 items-center justify-center bg-gray-100 px-4">
+    <div className="text flex w-96 items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-4xl rounded-lg bg-white p-8 shadow-lg">
-        <div className="mb-6 flex">
+        <div className="mb-6 flex gap-1">
           <button
             onClick={() => setIsRegistering(false)}
-            className={`flex-1 rounded-t-lg py-2 text-lg font-semibold ${
+            className={`flex-1 rounded-t-lg p-2 font-semibold ${
               !isRegistering
                 ? "bg-indigo-600 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -28,7 +28,7 @@ export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
           </button>
           <button
             onClick={() => setIsRegistering(true)}
-            className={`flex-1 rounded-t-lg py-2 text-lg font-semibold ${
+            className={`flex-1 rounded-t-lg p-2 font-semibold ${
               isRegistering
                 ? "bg-indigo-600 text-white"
                 : "bg-gray-200 text-gray-700"
