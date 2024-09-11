@@ -70,15 +70,13 @@ export function RestClientPathHandler() {
 
   return (
     <RoutesLayout>
-      <div className="bg-gray-100 p-8">
-        <RestApiRequestSection onSubmit={handleSubmit} data={requestData} />
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error.message}</p>}
-        <ResponseSection
-          responseStatus={response ? "Success" : "N/A"}
-          responseBody={response ? JSON.stringify(response, null, 2) : ""}
-        />
-      </div>
+      <RestApiRequestSection onSubmit={handleSubmit} data={requestData} />
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      <ResponseSection
+        responseStatus={response ? "Success" : "N/A"}
+        responseBody={response ? JSON.stringify(response, null, 2) : ""}
+      />
     </RoutesLayout>
   );
 }
