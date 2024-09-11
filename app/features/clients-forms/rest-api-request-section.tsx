@@ -1,20 +1,24 @@
 import { FC } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 
-import { GraphqlRequestType, RestRequestType } from "~/shared/types";
-import { FormValues } from "~/shared/types/types";
+import { FormValues, RestRequestType } from "~/shared/types";
 
-interface RestApiRequestSectionProps {
+export interface RestApiRequestSectionProps {
   onSubmit: (data: FormValues) => void;
-  defaultValues: FormValues;
+  data?: FormValues;
 }
 
 export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
   onSubmit,
-  defaultValues,
+  data = {
+    method: RestRequestType.GET,
+    endpoint: "test.url",
+    headers: [{ key: "Header key", value: "Header value" }],
+    body: "",
+  },
 }) => {
   const { control, handleSubmit, register, reset } = useForm<FormValues>({
-    defaultValues,
+    defaultValues: data,
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -32,7 +36,6 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
 
   const handleFormSubmit = (data: FormValues) => {
     onSubmit(data);
-    reset(defaultValues);
   };
 
   return (

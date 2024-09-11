@@ -8,7 +8,6 @@ export default function NotFound404() {
   const location = useLocation();
   const path = location.pathname;
   const firstSegment = (path.split("/")[1] || "").toLowerCase();
-  console.log("First segment:", firstSegment);
   const isRestRequest = Object.values(RestRequestType)
     .map((type) => type.toLowerCase())
     .includes(firstSegment);
