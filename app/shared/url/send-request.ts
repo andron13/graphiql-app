@@ -1,25 +1,31 @@
-export const sendRequest = async () => {
-  try {
-    const apiUrl = "https://jsonplaceholder.typicode.com/posts";
+import { FormValues } from "~/shared/types";
 
-    console.log("Sending request to:", apiUrl);
+export const sendRequest = async (formValues: FormValues) => {
+  try {
+    const { method, endpoint, headers, body } = formValues;
+
+    const formattedHeaders: HeadersInit = headers.reduce(
+      (acc, { key, value }) => ({ ...acc, [key]: value }),
+      {},
+    );
 
     const fetchOptions: RequestInit = {
-      method: "GET",
+      method,
       headers: {
         "Content-Type": "application/json",
+        ...formattedHeaders,
       },
+      body: method !== "GET" ? JSON.stringify(body) : undefined, // Тело только для методов, кроме GET
     };
 
-    const response = await fetch(apiUrl, fetchOptions);
-    console.log("Response Status:", response.status);
-    console.log("Response Status Text:", response.statusText);
-
+    const response = await fetch(endpoint, fetchOptions);
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.statusText}`);
     }
 
     const data = await response.json();
+    console.log({ endpoint });
+    console.log("Response Status:", response.status);
     console.log("Response Data:", data);
 
     return {

@@ -16,13 +16,12 @@ import { sendRequest } from "~/shared/url/send-request";
 interface ApiResponse {
   [key: string]: unknown;
 }
-// Компонент обработки запросов клиента
+
 export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Состояния для загрузки, ошибок и ответа
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,7 +32,6 @@ export function RestClientPathHandler() {
     ? decodedData
     : defaultRequestValues;
 
-  // Обработчик отправки формы
   const handleSubmit = async (data: FormValues) => {
     console.log("Submitting data:", data);
     const method = data.method as RestRequestType;
@@ -49,11 +47,9 @@ export function RestClientPathHandler() {
     addRequestToHistory(request);
     navigate(encodedUrl);
 
-    // Устанавливаем состояние загрузки
     setLoading(true);
     setError(null);
 
-    // Преобразование массива заголовков в объект
     const headersObject: Record<string, string> = data.headers.reduce(
       (acc, { key, value }) => {
         acc[key] = value;
@@ -63,13 +59,7 @@ export function RestClientPathHandler() {
     );
 
     try {
-      const result = await sendRequest();
-      //     {
-      //   method,
-      //   endpoint: data.endpoint,
-      //   headers: headersObject,
-      //   body: data.body,
-      // }
+      const result = await sendRequest(data);
       setResponse(result.response);
     } catch (err) {
       setError(err as Error);
