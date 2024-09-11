@@ -2,15 +2,6 @@ import * as yup from "yup";
 
 import { IAppStrings } from "~/shared/types";
 
-/*
-    Client-side validation should be implemented
-    for email and password strength:
-         - minimum 8 characters,
-         - one digit,
-         - one special character,
-         - at least one letter; Unicode passwords must be supported.
- */
-
 const hasMinLength = (password: string, length: number = 8) =>
   password.length >= length;
 

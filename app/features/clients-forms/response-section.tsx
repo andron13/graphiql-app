@@ -1,7 +1,6 @@
-// app/entities/clients-forms/response-section.tsx
 import { FC } from "react";
 
-import { dummyResponseBody, dummyResponseStatus } from "~/test/mock";
+import { dummyResponseBody, dummyResponseStatus } from "~/__mock__";
 
 interface ResponseSectionProps {
   responseStatus?: string;

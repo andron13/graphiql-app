@@ -51,6 +51,7 @@ export default defineConfig({
         "**/entry.client.tsx",
         "**/entry.server.tsx",
         "app/__test__",
+        "app/__mock__",
       ],
       thresholds: {
         functions: 80,

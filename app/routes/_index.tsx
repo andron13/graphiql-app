@@ -1,7 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useNavigate } from "@remix-run/react";
 
-import { SecondaryMenu } from "~/entities/nav/secondary-menu";
+import { SecondaryMenu } from "~/entities/nav";
 import { useLanguage, useUser } from "~/shared/context";
 import websiteConfig from "~/shared/website-config";
 import { metatags } from "~/shared/website-config/meta-semantic";

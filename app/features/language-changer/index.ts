@@ -1,1 +1,1 @@
-export { LanguageChanger } from "~/features/language-changer/language-changer";
+export { LanguageChanger } from "./language-changer";

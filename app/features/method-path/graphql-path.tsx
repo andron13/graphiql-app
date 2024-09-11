@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useLocation, useNavigate } from "@remix-run/react";
 
+import { defaultGraphqlRequestValues } from "~/__mock__";
 import {
   DocumentationSection,
   GraphiQLClientRequestSection,
@@ -9,8 +10,7 @@ import {
 } from "~/features/clients-forms";
 import { RoutesLayout } from "~/layouts/routes-layout";
 import { useRequestHistory } from "~/shared/hooks";
-import { FormValuesGraphql, RestRequestType } from "~/shared/types/types";
-import { defaultGraphqlRequestValues } from "~/test/mock";
+import { FormValuesGraphql, RestRequestType } from "~/shared/types";
 
 export function GraphqlPath() {
   const [response, setResponse] = useState({

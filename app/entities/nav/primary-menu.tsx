@@ -3,9 +3,9 @@ import { useNavigate } from "@remix-run/react";
 import { useLanguage, useUser } from "~/shared/context";
 
 export const PrimaryMenu = () => {
-  const { logout: logoutContext, isUserLoggedIn } = useUser();
   const navigate = useNavigate();
   const { site_content } = useLanguage();
+  const { logout: logoutContext, isUserLoggedIn } = useUser();
 
   const handleLogout = async () => {
     try {

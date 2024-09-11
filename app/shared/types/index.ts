@@ -1,5 +1,10 @@
-export { type RequestType, RestRequestType, GraphqlRequestType } from "./types";
-export type { HistoryRequest, UrlencodedFormData } from "./types";
+export { RestRequestType, GraphqlRequestType } from "./types";
+export type {
+  HistoryRequest,
+  UrlencodedFormData,
+  RequestType,
+  FormValuesGraphql,
+} from "./types";
 export type { AccountCredentials, AccountRegistration } from "./types";
 export type { BaseUser, User } from "./types";
 

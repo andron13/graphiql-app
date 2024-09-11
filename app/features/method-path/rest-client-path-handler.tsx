@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "@remix-run/react";
 
+import { defaultRequestValues } from "~/__mock__";
 import {
   ResponseSection,
   RestApiRequestSection,
@@ -8,7 +9,6 @@ import { RoutesLayout } from "~/layouts";
 import { useRequestHistory } from "~/shared/hooks";
 import { RestRequestType, UrlencodedFormData } from "~/shared/types";
 import { decodeRequestUrl, encodeRequestUrl } from "~/shared/url";
-import { defaultRequestValues } from "~/test/mock";
 
 export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
@@ -24,11 +24,6 @@ export function RestClientPathHandler() {
     const method = data.method as RestRequestType;
     const encodedUrl = encodeRequestUrl(data);
 
-    // Log original data and encoded URL
-    console.log("Original Data:", data);
-    console.log("Encoded URL:", encodedUrl);
-
-    // Call function to handle URL
     const request = {
       timestamp: Date.now(),
       type: method,
