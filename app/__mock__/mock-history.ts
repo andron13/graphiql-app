@@ -18,19 +18,19 @@ export const mockHistory: HistoryRequest[] = [
     shortUrl: "https://graphql.example.com/query",
   },
   {
-    type: RestRequestType.POST,
+    type: RestRequestType.GET,
     url: "https://api.example.com/resource",
     timestamp: 1716633039000,
     shortUrl: "https://graphql.example.com/query",
   },
   {
-    type: RestRequestType.PUT,
+    type: RestRequestType.GET,
     url: "https://api.example.com/resource/1",
     timestamp: 1716460239000,
     shortUrl: "https://graphql.example.com/query",
   },
   {
-    type: RestRequestType.DELETE,
+    type: RestRequestType.GET,
     url: "https://api.example.com/resource/123",
     timestamp: 1504095567183,
     shortUrl: "https://graphql.example.com/query",
