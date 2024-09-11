@@ -27,10 +27,4 @@ export const metatags = {
 export const frontPageMetaArray = [
   { title: websiteConfig.name },
   { name: metatags.description, content: websiteConfig.description },
-  // { name: metatags.robots, content: WEBSITE_API.description },
-  // { name: metatags.language, content: WEBSITE_API.language },
-  // { name: metatags.classification, content: WEBSITE_API.classification },
-  // { name: metatags.author, content: WEBSITE_API.author },
-  // { name: metatags.owner, content: WEBSITE_API.author },
-  // { name: metatags.url, content: WEBSITE_API.url },
 ];
