@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useLocation, useNavigate } from "@remix-run/react";
 
+import { defaultGraphqlRequestValues } from "~/__mock__";
 import {
   DocumentationSection,
   GraphiQLClientRequestSection,
@@ -9,8 +10,7 @@ import {
 } from "~/features/clients-forms";
 import { RoutesLayout } from "~/layouts/routes-layout";
 import { useRequestHistory } from "~/shared/hooks";
-import { FormValuesGraphql, RestRequestType } from "~/shared/types/types";
-import { defaultGraphqlRequestValues } from "~/test/mock";
+import { FormValuesGraphql, RestRequestType } from "~/shared/types";
 
 export function GraphqlPath() {
   const [response, setResponse] = useState({
@@ -24,11 +24,12 @@ export function GraphqlPath() {
   const firstSegment = path.split("/")[1];
   const navigate = useNavigate();
 
-  function urlWorker(url: string, method: RestRequestType) {
+  function urlWorker(url: string, shortUrl: string, method: RestRequestType) {
     const request = {
       timestamp: Date.now(),
       type: method,
       url: url,
+      shortUrl,
     };
 
     addRequestToHistory(request);
@@ -63,7 +64,7 @@ export function GraphqlPath() {
 
     const fullUrl = queryParams ? `${urlPath}?${queryParams}` : urlPath;
 
-    urlWorker(fullUrl, method);
+    urlWorker(fullUrl, data.endpoint, method);
 
     try {
       const response = await fetch("/graphiql", {

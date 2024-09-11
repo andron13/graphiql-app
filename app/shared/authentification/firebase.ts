@@ -1,4 +1,3 @@
-// firebase.ts
 import { initializeApp } from "@firebase/app";
 import { getAuth } from "@firebase/auth";
 
@@ -15,11 +14,3 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export { app, auth };
-
-// // import { getAnalytics } from "@firebase/analytics";
-// import { getFirebaseConfig } from "~/get-env";
-// const firebaseConfig = getFirebaseConfig();
-// const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-// // const analytics = getAnalytics(app);
-// const auth = getAuth(app);
-// export { app, auth };

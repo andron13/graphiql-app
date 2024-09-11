@@ -1,12 +1,16 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useNavigate } from "@remix-run/react";
 
-import { SecondaryMenu } from "~/entities/nav/secondary-menu";
+import { SecondaryMenu } from "~/entities/nav";
 import { useLanguage, useUser } from "~/shared/context";
-import { frontPageMetaArray } from "~/shared/website-config/meta-semantic";
+import websiteConfig from "~/shared/website-config";
+import { metatags } from "~/shared/website-config/meta-semantic";
 
 export const meta: MetaFunction = () => {
-  return [...frontPageMetaArray];
+  return [
+    { title: websiteConfig.name },
+    { name: metatags.description, content: websiteConfig.description },
+  ];
 };
 
 export default function Index() {
@@ -28,6 +32,7 @@ export default function Index() {
 
 const SignInSignUp = () => {
   const navigate = useNavigate();
+  const { site_content } = useLanguage();
   const { isUserLoggedIn } = useUser();
   if (!isUserLoggedIn()) return null;
   return (
@@ -36,13 +41,13 @@ const SignInSignUp = () => {
         onClick={() => navigate("/login")}
         className="w-32 rounded-md bg-blue-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
-        Sign In
+        {site_content.signIn}
       </button>
       <button
         onClick={() => navigate("/login?signup=true")}
         className="registerButton w-32"
       >
-        Sign Up
+        {site_content.signUp}
       </button>
     </div>
   );

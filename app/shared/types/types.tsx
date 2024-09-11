@@ -17,20 +17,6 @@ export type AccountRegistration = AccountCredentials<{
   confirmPassword: string;
 }>;
 
-export type RequestType = RestRequestType | GraphqlRequestType;
-
-export enum RestRequestType {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
-  // PATCH = "PATCH",
-  // OPTIONS = "OPTIONS",
-  // HEAD = "HEAD",
-  // CONNECT = "CONNECT",
-  TRACE = "TRACE",
-}
-
 export enum GraphqlRequestType {
   GRAPHQL = "GRAPHQL",
 }
@@ -50,6 +36,16 @@ export type HistoryRequest = {
   shortUrl: string;
 };
 
+export interface FormValuesGraphql {
+  endpoint: string;
+  sdlURL: string;
+  headers: { key: string; value: string }[];
+  query: string;
+  variables: string;
+}
+
+export type RequestType = RestRequestType | GraphqlRequestType;
+
 export interface FormValues {
   method: RestRequestType | GraphqlRequestType;
   endpoint: string;
@@ -57,10 +53,20 @@ export interface FormValues {
   body: string;
 }
 
-export interface FormValuesGraphql {
-  endpoint: string;
-  sdlURL: string;
-  headers: { key: string; value: string }[];
-  query: string;
-  variables: string;
+export interface DecodedData {
+  method?: RestRequestType;
+  endpointUrl?: string;
+  requestBody?: object;
+  headers?: Record<string, string>;
+}
+export enum RestRequestType {
+  GET = "GET",
+  // POST = "POST",
+  // PUT = "PUT",
+  // DELETE = "DELETE",
+  // PATCH = "PATCH",
+  // OPTIONS = "OPTIONS",
+  // HEAD = "HEAD",
+  // CONNECT = "CONNECT",
+  // TRACE = "TRACE",
 }

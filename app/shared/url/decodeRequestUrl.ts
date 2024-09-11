@@ -1,45 +1,60 @@
-export function decodeRequestUrl(encodedUrl: string): {
-  method: string;
-  endpointUrl: string;
-  requestBody?: object;
-  headers?: Record<string, string>;
-} {
+import {
+  FormValues,
+  GraphqlRequestType,
+  RestRequestType,
+} from "~/shared/types";
+
+/**
+ * Decodes an encoded request URL into a request data object.
+ *
+ * @param encodedUrl - The encoded request URL in the format "{method}/{encodedEndpointUrl}/{encodedBody}?{queryParams}".
+ * @returns A `FormValues` object which includes:
+ * - `method`: The request method, cast to `RestRequestType` or `GraphqlRequestType`.
+ * - `endpoint`: The decoded request endpoint.
+ * - `body`: The decoded request body if it exists.
+ * - `headers`: An array of headers, where each header has `key` and `value`.
+ * @Author @andron13 - Andrej Podlubnyj
+ */
+export function decodeRequestUrl(encodedUrl: string): FormValues {
   const [baseUrl, queryParams] = encodedUrl.split("?");
-  console.log("Query Parameters:", queryParams);
   const [method, encodedEndpointUrl, encodedBody] = baseUrl
     .split("/")
     .filter(Boolean);
 
-  let endpointUrl: string;
+  let endpoint: string;
   try {
-    endpointUrl = atob(encodedEndpointUrl);
+    endpoint = decodeURIComponent(atob(encodedEndpointUrl));
   } catch (error) {
-    // console.error("Error decoding endpointUrl:", error);
-    endpointUrl = "";
+    endpoint = "";
   }
 
-  let requestBody: object | undefined;
+  let body: string;
   if (encodedBody) {
     try {
-      requestBody = JSON.parse(atob(encodedBody));
+      body = decodeURIComponent(atob(encodedBody));
     } catch (error) {
-      // console.error("Error decoding requestBody:", error);
-      requestBody = undefined;
+      body = "";
     }
+  } else {
+    body = "";
   }
 
-  let headers: Record<string, string> = {};
+  let headers: { key: string; value: string }[] = [];
   if (queryParams) {
-    const headerEntries = queryParams
+    headers = queryParams
       .split("&")
       .map((param) => param.split("="))
       .filter(([key, value]) => key && value)
-      .map(([key, value]) => [
-        decodeURIComponent(key),
-        decodeURIComponent(value),
-      ]);
-
-    headers = Object.fromEntries(headerEntries);
+      .map(([key, value]) => ({
+        key: decodeURIComponent(key),
+        value: decodeURIComponent(value),
+      }));
   }
-  return { method, endpointUrl, requestBody, headers };
+
+  return {
+    method: method as RestRequestType | GraphqlRequestType,
+    endpoint,
+    body,
+    headers,
+  };
 }

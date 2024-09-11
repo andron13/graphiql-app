@@ -1,16 +1,13 @@
-// app/entities/clients-forms/response-section.tsx
 import { FC } from "react";
 
-import { dummyResponseBody, dummyResponseStatus } from "~/test/mock";
-
 interface ResponseSectionProps {
-  responseStatus?: string;
-  responseBody?: string;
+  responseStatus: string;
+  responseBody: string;
 }
 
 export const ResponseSection: FC<ResponseSectionProps> = ({
-  responseStatus = dummyResponseStatus,
-  responseBody = dummyResponseBody,
+  responseStatus,
+  responseBody,
 }) => {
   return (
     <div className="mt-4 rounded-lg bg-white p-4 shadow">

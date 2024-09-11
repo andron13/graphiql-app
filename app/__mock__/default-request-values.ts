@@ -1,16 +1,12 @@
 import { RestRequestType, UrlencodedFormData } from "~/shared/types";
 
 export const defaultRequestValues: UrlencodedFormData = {
-  method: RestRequestType.POST,
-  endpoint: "https://hp-api.onrender.com/api/characters",
+  method: RestRequestType.GET,
+  endpoint: "https://swapi.dev/api/people/1/",
   headers: [
     { key: "Accept", value: "application/json" },
     { key: "Authorization", value: "Bearer YOUR_TOKEN" },
     { key: "Content-Type", value: "application/json" },
   ],
-  body: JSON.stringify({
-    name: "Harry Potter",
-    house: "Gryffindor",
-    age: 11,
-  }),
+  body: "",
 };

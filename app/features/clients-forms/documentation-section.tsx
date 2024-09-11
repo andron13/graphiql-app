@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { dummySdlResponse } from "~/test/mock/dummy-response-values";
+import { dummySdlResponse } from "~/__mock__/dummy-response-values";
 
 interface DocumentationSectionProps {
   sdlResponse?: string;

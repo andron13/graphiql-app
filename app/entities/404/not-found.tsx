@@ -1,17 +1,6 @@
-import { MetaFunction } from "@remix-run/node";
 import { Link, useLocation } from "@remix-run/react";
 
 import { useLanguage } from "~/shared/context";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Error 404 - Not Found" },
-    {
-      name: "description",
-      content: "Error 404 - Not Found",
-    },
-  ];
-};
 
 export function NotFound() {
   const { site_content } = useLanguage();

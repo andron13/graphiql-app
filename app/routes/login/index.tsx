@@ -1,4 +1,3 @@
-// app/routes/login/index.tsx
 import { useSearchParams } from "@remix-run/react";
 
 import { LoginForm } from "~/entities/login-form";

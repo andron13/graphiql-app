@@ -1,8 +1,7 @@
-import { Link, useLocation, useNavigate } from "@remix-run/react";
+import { useLocation } from "@remix-run/react";
 import { render, screen } from "@testing-library/react";
 import { Mock, describe, expect, it, vi } from "vitest";
 
-import { NotFound } from "~/entities/404/not-found";
 import NotFound404 from "~/routes/$";
 import { UserProvider } from "~/shared/context";
 

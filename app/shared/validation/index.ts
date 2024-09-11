@@ -1,4 +1,1 @@
-export {
-  createYupSchema,
-  createYupSchemaSignIn,
-} from "~/shared/validation/validationSchema";
+export { createYupSchema, createYupSchemaSignIn } from "./validationSchema";
