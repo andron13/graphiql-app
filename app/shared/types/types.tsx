@@ -50,7 +50,7 @@ export interface FormValues {
   method: RestRequestType | GraphqlRequestType;
   endpoint: string;
   headers: { key: string; value: string }[];
-  body: string;
+  body: string | Record<string, unknown> | null;
 }
 
 export interface DecodedData {
@@ -61,12 +61,12 @@ export interface DecodedData {
 }
 export enum RestRequestType {
   GET = "GET",
-  // POST = "POST",
-  // PUT = "PUT",
-  // DELETE = "DELETE",
-  // PATCH = "PATCH",
-  // OPTIONS = "OPTIONS",
-  // HEAD = "HEAD",
-  // CONNECT = "CONNECT",
-  // TRACE = "TRACE",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+  OPTIONS = "OPTIONS",
+  HEAD = "HEAD",
+  CONNECT = "CONNECT",
+  TRACE = "TRACE",
 }
