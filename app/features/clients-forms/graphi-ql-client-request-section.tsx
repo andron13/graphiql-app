@@ -43,8 +43,11 @@ export const GraphiQLClientRequestSection: FC<GraphqlRequestSectionProps> = ({
       onSubmit={handleSubmit(handleFormSubmit)}
     >
       <div className="mb-4">
-        <label className="mb-2 block font-medium">Endpoint URL</label>
+        <label className="mb-2 block font-medium" htmlFor="endpoint">
+          Endpoint URL
+        </label>
         <input
+          id="endpoint"
           type="text"
           {...register("endpoint")}
           className="w-full rounded border border-gray-300 p-2"
@@ -98,8 +101,11 @@ export const GraphiQLClientRequestSection: FC<GraphqlRequestSectionProps> = ({
         </div>
       </div>
       <div className="mb-4">
-        <label className="mb-2 block font-medium">Query</label>
+        <label className="mb-2 block font-medium" htmlFor="query">
+          Query
+        </label>
         <textarea
+          id="query"
           className="h-32 w-full rounded border border-gray-300 p-2"
           placeholder="GraphQL Query"
           {...register("query")}

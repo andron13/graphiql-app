@@ -28,7 +28,10 @@ const websiteConfig = {
         title: "VadymPopov",
       },
     },
-    course: "https://rs.school/courses/reactjs",
+    course: {
+      pathname: "https://rs.school/courses/reactjs",
+      title: "RSS React 2024 Q3",
+    },
   },
   contact: {
     email: "contact@mywebsite.com",

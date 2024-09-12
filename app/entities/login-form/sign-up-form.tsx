@@ -45,22 +45,33 @@ export function SignUpForm() {
       className="flex flex-col justify-between space-y-4"
     >
       <div>
-        <label className="passwordLabel">Email:</label>
-        <input type="text" {...register("email")} className="textInput" />
+        <label className="passwordLabel" htmlFor="email">
+          Email:
+        </label>
+        <input
+          type="text"
+          {...register("email")}
+          className="textInput"
+          id="email"
+        />
         {errors.email && (
           <span className="text-sm text-red-500">{errors.email.message}</span>
         )}
       </div>
 
       <div>
-        <label className="passwordLabel">Password:</label>
+        <label className="passwordLabel" htmlFor="password">
+          Password:
+        </label>
         <div className="relative flex items-center">
           <input
             type={showPassword ? "text" : "password"}
             {...register("password")}
             className="textInput"
+            id="password"
           />
           <button
+            id="show-password"
             type="button"
             onClick={togglePasswordVisibility}
             className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
@@ -80,15 +91,19 @@ export function SignUpForm() {
       </div>
 
       <div>
-        <label className="passwordLabel">Confirm Password:</label>
+        <label className="passwordLabel" htmlFor="confirmPassword">
+          Confirm Password:
+        </label>
 
         <div className="relative">
           <input
             type={showConfirmPassword ? "text" : "password"}
             {...register("confirmPassword")}
             className="textInput"
+            id="confirmPassword"
           />
           <button
+            id="show-confirmPassword"
             type="button"
             onClick={toggleConfirmPasswordVisibility}
             className="absolute inset-y-0 right-0 flex items-center px-2 text-sm text-gray-500"
