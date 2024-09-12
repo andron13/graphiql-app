@@ -10,8 +10,7 @@ import {
 import { RoutesLayout } from "~/layouts";
 import { useRequestHistory } from "~/shared/hooks";
 import { FormValues, RestRequestType } from "~/shared/types";
-import { decodeRequestUrl, encodeRequestUrl } from "~/shared/url";
-import { sendRequest } from "~/shared/url/send-request";
+import { decodeRequestUrl, encodeRequestUrl, sendRequest } from "~/shared/url";
 
 interface ApiResponse {
   [key: string]: unknown;

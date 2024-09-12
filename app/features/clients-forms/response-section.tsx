@@ -27,7 +27,7 @@ export const ResponseSection: FC<ResponseSectionProps> = ({
         <label className="mb-1 block text-sm font-medium text-gray-600">
           Body:
         </label>
-        <div className="h-96 overflow-auto rounded border border-gray-300 bg-gray-100 p-2 text-sm">
+        <div className="m-h-96 overflow-auto rounded border border-gray-300 bg-gray-100 p-2 text-sm">
           <JsonBodyViewer data={responseBody} />
         </div>
       </div>

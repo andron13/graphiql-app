@@ -1,25 +1,11 @@
-/**
- * @Author @andron13 - Andrej Podlubnyj
- * Encodes request data into a URL string.
- *
- * This function takes an object containing the request method, endpoint URL, body, and headers,
- * and encodes these values into a URL string format. The URL string includes the encoded endpoint URL,
- * optional encoded body, and headers as query parameters.
- *
- * @param data - An object containing the request data, which includes:
- * - `method`: The HTTP method for the request.
- * - `endpoint`: The URL endpoint for the request.
- * - `body`: The body of the request, if present.
- * - `headers`: An array of headers, where each header has a `key` and `value`.
- * @returns The encoded URL string in the format "{method}/{encodedEndpoint}/{encodedBody}?{queryParams}".
- */
-import { UrlencodedFormData } from "~/shared/types";
+import { FormValues } from "~/shared/types";
 
 /**
- * Encodes a string into Base64 format after URI encoding.
+ * @Autor @andron13 - https://github.com/andron13
+ * Encodes a string in Base64 format.
  *
- * @param data - The string to be encoded.
- * @returns The Base64-encoded string. Returns an empty string if encoding fails.
+ * @param {string} data - The string to encode.
+ * @returns {string} The Base64 encoded string, or an empty string if encoding fails.
  */
 function encodeBase64(data: string): string {
   try {
@@ -30,16 +16,19 @@ function encodeBase64(data: string): string {
 }
 
 /**
- * Encodes request data into a URL string.
+ * Encodes a `FormValues` object into a request URL.
  *
- * @param data - An object of type `UrlencodedFormData` containing:
- * - `method`: The HTTP method for the request.
- * - `endpoint`: The URL endpoint for the request.
- * - `body`: The body of the request, if present.
- * - `headers`: An array of headers, where each header has a `key` and `value`.
- * @returns The encoded URL string in the format "{method}/{encodedEndpoint}/{encodedBody}?{queryParams}".
+ * The URL format is: `/{method}/{encodedEndpoint}/{encodedBody}?{queryParams}`
+ *
+ * - `method`: HTTP method (e.g., GET, POST)
+ * - `endpoint`: API endpoint
+ * - `body`: Request body, encoded in Base64
+ * - `headers`: Query parameters, encoded in Base64
+ *
+ * @param {FormValues} data - The form values to encode into a URL.
+ * @returns {string} The encoded URL.
  */
-export function encodeRequestUrl(data: UrlencodedFormData): string {
+export function encodeRequestUrl(data: FormValues): string {
   const { method, endpoint, body, headers } = data;
 
   if (!method || !endpoint) {
@@ -47,9 +36,12 @@ export function encodeRequestUrl(data: UrlencodedFormData): string {
   }
 
   const encodedEndpoint = encodeBase64(endpoint);
-  const encodedBody = body ? encodeBase64(body) : "";
 
-  const queryParams = headers
+  const encodedBody = body
+    ? encodeBase64(typeof body === "string" ? body : JSON.stringify(body))
+    : "";
+
+  const queryParams = (headers as { key: string; value: string }[])
     .map((header) => {
       if (!header.key || !header.value) {
         return "";
@@ -62,5 +54,6 @@ export function encodeRequestUrl(data: UrlencodedFormData): string {
   const fullUrl = `/${method}/${encodedEndpoint}${
     encodedBody ? "/" + encodedBody : ""
   }${queryParams ? "?" + queryParams : ""}`;
+
   return fullUrl;
 }

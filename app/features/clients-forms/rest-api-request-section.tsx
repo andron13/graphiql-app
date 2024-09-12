@@ -114,7 +114,11 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
             <textarea
               className="h-32 w-full rounded border border-gray-300 p-2"
               placeholder="JSON/Text Editor"
-              {...field}
+              value={typeof field.value === "string" ? field.value : ""}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              name={field.name}
+              ref={field.ref}
             />
           )}
         />
