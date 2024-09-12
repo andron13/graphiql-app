@@ -1,4 +1,4 @@
-import { IAppStrings } from "../types";
+import { IAppStrings, LanguageCode } from "../types";
 
 export const jp: IAppStrings = {
   websiteConfig: {
@@ -37,5 +37,19 @@ export const jp: IAppStrings = {
     wrongTurnMessage:
       "道を間違えたようです。 ホームページに戻って、探しているものを見つけてください。",
     goBackToHomepage: "ホームページに戻る",
+  },
+  emailConfig: {
+    email: "メールアドレス",
+    password: "パスワード",
+    confirmPassword: "パスワードを確認",
+  },
+  languageLabels: {
+    [LanguageCode.EN_GB]: "英語 - en",
+    [LanguageCode.DE_DE]: "ドイツ語 - de",
+    [LanguageCode.RU_RU]: "ロシア語 - ru",
+    [LanguageCode.BE_BY]: "ベラルーシ語 - by",
+    [LanguageCode.UK_UA]: "ウクライナ語 - ua",
+    [LanguageCode.PL_PL]: "ポーランド語 - pl",
+    [LanguageCode.JA_JP]: "日本語 - jp",
   },
 };

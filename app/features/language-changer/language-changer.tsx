@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useUser } from "~/shared/context";
+import { useLanguage, useUser } from "~/shared/context";
 import { LanguageCode } from "~/shared/types";
 
 const languageOptions = [
@@ -19,6 +19,7 @@ export const LanguageChanger = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(
     user.language || LanguageCode.EN_GB,
   );
+  const { site_content } = useLanguage();
 
   useEffect(() => {
     setSelectedLanguage(user.language || LanguageCode.EN_GB);
@@ -51,7 +52,7 @@ export const LanguageChanger = () => {
                   onClick={() => handleLanguageChange(code)}
                   className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100"
                 >
-                  {label}
+                  {site_content.languageLabels[code]}
                 </button>
               </li>
             ))}

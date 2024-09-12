@@ -1,4 +1,4 @@
-export type { DecodedData } from "~/shared/types/types";
+export type { DecodedData } from "./types";
 
 export type { FormValues, FormValuesGraphql } from "./types";
 

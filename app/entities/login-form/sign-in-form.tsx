@@ -58,7 +58,7 @@ export function SignInForm() {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Email:
+          {site_content.emailConfig.email}
         </label>
         <input
           type="email"
@@ -76,7 +76,7 @@ export function SignInForm() {
           className="block text-sm font-medium text-gray-700"
           htmlFor="password"
         >
-          Password:
+          {site_content.emailConfig.password}
         </label>
         <input
           type="password"

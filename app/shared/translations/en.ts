@@ -1,4 +1,4 @@
-import { IAppStrings } from "../types";
+import { IAppStrings, LanguageCode } from "../types";
 
 export const en: IAppStrings = {
   websiteConfig: {
@@ -37,5 +37,19 @@ export const en: IAppStrings = {
     wrongTurnMessage:
       "It looks like you took a wrong turn. Please go back to the homepage to find what you are looking for.",
     goBackToHomepage: "Go back to the homepage",
+  },
+  emailConfig: {
+    email: "Email",
+    password: "Password",
+    confirmPassword: "Confirm password",
+  },
+  languageLabels: {
+    [LanguageCode.EN_GB]: "English",
+    [LanguageCode.DE_DE]: "German",
+    [LanguageCode.RU_RU]: "Russian",
+    [LanguageCode.BE_BY]: "Belarusian",
+    [LanguageCode.UK_UA]: "Ukrainian",
+    [LanguageCode.PL_PL]: "Polish",
+    [LanguageCode.JA_JP]: "Japanese",
   },
 };

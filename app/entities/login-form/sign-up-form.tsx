@@ -46,7 +46,7 @@ export function SignUpForm() {
     >
       <div>
         <label className="passwordLabel" htmlFor="email">
-          Email:
+          {site_content.emailConfig.email}
         </label>
         <input
           type="text"
@@ -61,7 +61,7 @@ export function SignUpForm() {
 
       <div>
         <label className="passwordLabel" htmlFor="password">
-          Password:
+          {site_content.emailConfig.password}
         </label>
         <div className="relative flex items-center">
           <input
@@ -92,7 +92,7 @@ export function SignUpForm() {
 
       <div>
         <label className="passwordLabel" htmlFor="confirmPassword">
-          Confirm Password:
+          {site_content.emailConfig.confirmPassword}
         </label>
 
         <div className="relative">

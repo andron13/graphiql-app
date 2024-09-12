@@ -38,6 +38,11 @@ export interface IAppStrings {
   signUp: string;
   submit: string;
   register: string;
+  emailConfig: {
+    email: string;
+    password: string;
+    confirmPassword: string;
+  };
   validationErrors: {
     emailRequired: string;
     emailInvalid: string;
@@ -52,5 +57,8 @@ export interface IAppStrings {
     pageNotFoundMessage: string;
     wrongTurnMessage: string;
     goBackToHomepage: string;
+  };
+  languageLabels: {
+    [code: string]: string;
   };
 }

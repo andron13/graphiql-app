@@ -50,7 +50,7 @@ export interface FormValues {
   method: RestRequestType | GraphqlRequestType;
   endpoint: string;
   headers: { key: string; value: string }[];
-  body: string | Record<string, unknown> | null;
+  body?: string | Record<string, unknown> | null;
 }
 
 export interface DecodedData {
