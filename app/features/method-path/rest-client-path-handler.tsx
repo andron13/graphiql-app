@@ -25,16 +25,25 @@ export function RestClientPathHandler() {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  // Define variables for debugging
   const urlForDecode = location.pathname + location.search;
   const decodedData: FormValues = decodeRequestUrl(urlForDecode);
   const requestData: FormValues = decodedData.endpoint
     ? decodedData
     : defaultRequestValues;
 
+  // console.log("URL for decoding:", urlForDecode);
+  // console.log("Decoded data:", decodedData);
+  // console.log("Request data:", requestData);
+
   const handleSubmit = async (data: FormValues) => {
-    console.log("Submitting data:", data);
+    // console.log("Submitting data:", data);
+
     const method = data.method as RestRequestType;
     const encodedUrl = encodeRequestUrl(data);
+
+    // console.log("Method:", method);
+    // console.log("Encoded URL:", encodedUrl);
 
     const request = {
       timestamp: Date.now(),
@@ -42,6 +51,8 @@ export function RestClientPathHandler() {
       url: encodedUrl,
       shortUrl: data.endpoint,
     };
+
+    // console.log("Request for history:", request);
 
     addRequestToHistory(request);
     navigate(encodedUrl);
@@ -57,10 +68,13 @@ export function RestClientPathHandler() {
       {} as Record<string, string>,
     );
 
+    // console.log("Headers object:", headersObject);
+
     try {
       const result = await sendRequest(data);
       setResponse(result.response);
     } catch (err) {
+      // console.error("Request error:", err);
       setError(err as Error);
     } finally {
       setLoading(false);

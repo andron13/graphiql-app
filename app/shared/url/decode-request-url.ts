@@ -4,57 +4,79 @@ import {
   RestRequestType,
 } from "~/shared/types";
 
-/**
- * Decodes an encoded request URL into a request data object.
- *
- * @param encodedUrl - The encoded request URL in the format "{method}/{encodedEndpointUrl}/{encodedBody}?{queryParams}".
- * @returns A `FormValues` object which includes:
- * - `method`: The request method, cast to `RestRequestType` or `GraphqlRequestType`.
- * - `endpoint`: The decoded request endpoint.
- * - `body`: The decoded request body if it exists.
- * - `headers`: An array of headers, where each header has `key` and `value`.
- * @Author @andron13 - Andrej Podlubnyj
- */
 export function decodeRequestUrl(encodedUrl: string): FormValues {
   const [baseUrl, queryParams] = encodedUrl.split("?");
-  const [method, encodedEndpointUrl, encodedBody] = baseUrl
+  const [method, encodedEndpointUrl, encodedBody, encodedVariables] = baseUrl
     .split("/")
     .filter(Boolean);
 
-  let endpoint: string;
+  // Декодируем endpoint
+  let endpoint: string = "";
   try {
     endpoint = decodeURIComponent(atob(encodedEndpointUrl));
   } catch (error) {
+    // Если декодирование не удалось, endpoint остаётся пустой строкой
     endpoint = "";
   }
 
-  let body: string;
+  // Декодируем body
+  let body: string | Record<string, unknown> | null = "";
   if (encodedBody) {
     try {
-      body = decodeURIComponent(atob(encodedBody));
+      const decodedBody = decodeURIComponent(atob(encodedBody));
+      body = decodedBody.startsWith("{")
+        ? JSON.parse(decodedBody)
+        : decodedBody;
     } catch (error) {
+      // Если декодирование или парсинг не удались, body остаётся пустой строкой
       body = "";
     }
-  } else {
-    body = "";
   }
 
-  let headers: { key: string; value: string }[] = [];
+  // Декодируем variables
+  let variables: Record<string, string>[] = [];
+  if (encodedVariables) {
+    try {
+      const variablesString = decodeURIComponent(atob(encodedVariables));
+      variables = JSON.parse(variablesString) || [];
+    } catch (error) {
+      // Если декодирование или парсинг не удались, variables остаётся пустым массивом
+      variables = [];
+    }
+  }
+
+  // Разбираем queryParams на headers и queries
+  const headers: { key: string; value: string }[] = [];
+  const queries: string[][] = [];
+
   if (queryParams) {
-    headers = queryParams
-      .split("&")
-      .map((param) => param.split("="))
-      .filter(([key, value]) => key && value)
-      .map(([key, value]) => ({
-        key: decodeURIComponent(key),
-        value: decodeURIComponent(value),
-      }));
+    queryParams.split("&").forEach((param) => {
+      const [key, value] = param.split("=");
+      if (key && value) {
+        const decodedKey = decodeURIComponent(key);
+        const decodedValue = decodeURIComponent(value);
+
+        if (decodedKey.startsWith("query")) {
+          // Если параметр query, добавляем его в массив queries
+          queries.push(decodedValue.split(","));
+        } else {
+          // Остальные параметры рассматриваем как заголовки
+          headers.push({
+            key: decodedKey,
+            value: decodedValue,
+          });
+        }
+      }
+    });
   }
 
+  // Возвращаем значения в формате FormValues
   return {
     method: method as RestRequestType | GraphqlRequestType,
-    endpoint,
-    body,
+    endpoint: endpoint || "", // Гарантируем, что вернётся пустая строка, а не null
+    body: body || "", // То же для body
     headers,
+    variables,
+    query: queries.length > 0 ? queries : undefined, // Возвращаем queries только если они есть
   };
 }

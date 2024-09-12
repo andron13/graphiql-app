@@ -18,18 +18,19 @@ function encodeBase64(data: string): string {
 /**
  * Encodes a `FormValues` object into a request URL.
  *
- * The URL format is: `/{method}/{encodedEndpoint}/{encodedBody}?{queryParams}`
+ * The URL format is: `/{method}/{encodedEndpoint}/{encodedBody}/{encodedVariables}?{queryParams}`
  *
  * - `method`: HTTP method (e.g., GET, POST)
  * - `endpoint`: API endpoint
  * - `body`: Request body, encoded in Base64
+ * - `variables`: Encoded variables as a JSON string
  * - `headers`: Query parameters, encoded in Base64
  *
  * @param {FormValues} data - The form values to encode into a URL.
  * @returns {string} The encoded URL.
  */
 export function encodeRequestUrl(data: FormValues): string {
-  const { method, endpoint, body, headers } = data;
+  const { method, endpoint, body, headers, variables, query } = data;
 
   if (!method || !endpoint) {
     return "";
@@ -41,7 +42,18 @@ export function encodeRequestUrl(data: FormValues): string {
     ? encodeBase64(typeof body === "string" ? body : JSON.stringify(body))
     : "";
 
+  const encodedVariables = variables
+    ? encodeBase64(JSON.stringify(variables))
+    : "";
+
+  // Correctly handle queries, which are expected to be string[][]
   const queryParams = (headers as { key: string; value: string }[])
+    .concat(
+      query?.map((queryItem, index) => ({
+        key: `query${index}`,
+        value: queryItem.join(","), // Join string[] into a single string
+      })) || [],
+    )
     .map((header) => {
       if (!header.key || !header.value) {
         return "";
@@ -53,7 +65,9 @@ export function encodeRequestUrl(data: FormValues): string {
 
   const fullUrl = `/${method}/${encodedEndpoint}${
     encodedBody ? "/" + encodedBody : ""
-  }${queryParams ? "?" + queryParams : ""}`;
+  }${encodedVariables ? "/" + encodedVariables : ""}${
+    queryParams ? "?" + queryParams : ""
+  }`;
 
   return fullUrl;
 }
