@@ -4,51 +4,63 @@ import {
   RestRequestType,
 } from "~/shared/types";
 
-/**
- * Decodes an encoded request URL into a request data object.
- *
- * @param encodedUrl - The encoded request URL in the format "{method}/{encodedEndpointUrl}/{encodedBody}?{queryParams}".
- * @returns A `FormValues` object which includes:
- * - `method`: The request method, cast to `RestRequestType` or `GraphqlRequestType`.
- * - `endpoint`: The decoded request endpoint.
- * - `body`: The decoded request body if it exists.
- * - `headers`: An array of headers, where each header has `key` and `value`.
- * @Author @andron13 - Andrej Podlubnyj
- */
 export function decodeRequestUrl(encodedUrl: string): FormValues {
   const [baseUrl, queryParams] = encodedUrl.split("?");
-  const [method, encodedEndpointUrl, encodedBody] = baseUrl
+  const [method, encodedEndpointUrl, encodedBody, encodedVariables] = baseUrl
     .split("/")
     .filter(Boolean);
 
-  let endpoint: string;
+  let endpoint: string = "";
   try {
     endpoint = decodeURIComponent(atob(encodedEndpointUrl));
   } catch (error) {
-    endpoint = "";
+    // Handle decoding error
   }
 
-  let body: string;
+  let body: string | Record<string, unknown> | null = null;
   if (encodedBody) {
     try {
-      body = decodeURIComponent(atob(encodedBody));
+      const decodedBody = decodeURIComponent(atob(encodedBody));
+      body = decodedBody.startsWith("{")
+        ? JSON.parse(decodedBody)
+        : decodedBody;
     } catch (error) {
-      body = "";
+      // Handle decoding or parsing error
     }
-  } else {
-    body = "";
   }
 
-  let headers: { key: string; value: string }[] = [];
+  let variables: Record<string, string>[] = [];
+  if (encodedVariables) {
+    try {
+      const variablesString = decodeURIComponent(atob(encodedVariables));
+      variables = JSON.parse(variablesString) || [];
+    } catch (error) {
+      // Handle decoding or parsing error
+    }
+  }
+
+  const headers: { key: string; value: string }[] = [];
+  const queries: string[][] = [];
+
   if (queryParams) {
-    headers = queryParams
-      .split("&")
-      .map((param) => param.split("="))
-      .filter(([key, value]) => key && value)
-      .map(([key, value]) => ({
-        key: decodeURIComponent(key),
-        value: decodeURIComponent(value),
-      }));
+    queryParams.split("&").forEach((param) => {
+      const [key, value] = param.split("=");
+      if (key && value) {
+        const decodedKey = decodeURIComponent(key);
+        const decodedValue = decodeURIComponent(value);
+
+        if (decodedKey.startsWith("query")) {
+          // Если параметр query, добавляем в массив queries
+          queries.push(decodedValue.split(","));
+        } else {
+          // Остальные параметры рассматриваем как заголовки
+          headers.push({
+            key: decodedKey,
+            value: decodedValue,
+          });
+        }
+      }
+    });
   }
 
   return {
@@ -56,5 +68,7 @@ export function decodeRequestUrl(encodedUrl: string): FormValues {
     endpoint,
     body,
     headers,
+    variables,
+    query: queries.length > 0 ? queries : undefined, // Возвращаем только если есть queries
   };
 }

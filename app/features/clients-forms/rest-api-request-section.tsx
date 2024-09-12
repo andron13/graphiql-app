@@ -26,6 +26,7 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
         value: "Variable value",
       },
     ],
+    query: [["queryKey", "queryValue"]],
   },
 }) => {
   const { control, handleSubmit, register } = useForm<FormValues>({
@@ -50,6 +51,15 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
     name: "variables",
   });
 
+  const {
+    fields: queryFields,
+    append: appendQuery,
+    remove: removeQuery,
+  } = useFieldArray({
+    control,
+    name: "query",
+  });
+
   const handleAddHeader = () => {
     appendHeader({ key: "", value: "" });
   };
@@ -64,6 +74,14 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
 
   const handleRemoveVariable = (index: number) => {
     removeVariable(index);
+  };
+
+  const handleAddQuery = () => {
+    appendQuery(["", ""]);
+  };
+
+  const handleRemoveQuery = (index: number) => {
+    removeQuery(index);
   };
 
   const handleFormSubmit = (data: FormValues) => {
@@ -99,6 +117,7 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
         </div>
       </div>
 
+      {/* Headers Section */}
       <div className="mb-4">
         <label className="mb-2 block font-medium">Headers</label>
         {headerFields.length > 0 ? (
@@ -137,6 +156,7 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
         </button>
       </div>
 
+      {/* Variables Section */}
       <div className="mb-4">
         <label className="mb-2 block font-medium">Variables</label>
         {variableFields.length > 0 ? (
@@ -172,6 +192,45 @@ export const RestApiRequestSection: FC<RestApiRequestSectionProps> = ({
           onClick={handleAddVariable}
         >
           Add Variable
+        </button>
+      </div>
+
+      {/* Queries Section */}
+      <div className="mb-4">
+        <label className="mb-2 block font-medium">Queries</label>
+        {queryFields.length > 0 ? (
+          queryFields.map((item, index) => (
+            <div key={item.id} className="mb-2 flex items-center gap-2">
+              <input
+                type="text"
+                placeholder="Query Key"
+                className="flex-1 rounded border border-gray-300 p-2"
+                {...register(`query.${index}.0` as const)}
+              />
+              <input
+                type="text"
+                placeholder="Query Value"
+                className="flex-1 rounded border border-gray-300 p-2"
+                {...register(`query.${index}.1` as const)}
+              />
+              <button
+                type="button"
+                className="rounded bg-red-500 p-2 text-white"
+                onClick={() => handleRemoveQuery(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-500">No queries added</p>
+        )}
+        <button
+          type="button"
+          className="mt-2 rounded bg-blue-500 p-2 text-white"
+          onClick={handleAddQuery}
+        >
+          Add Query
         </button>
       </div>
 

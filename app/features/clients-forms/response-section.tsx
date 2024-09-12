@@ -4,7 +4,7 @@ import { JsonBodyViewer } from "~/entities/json-body-viewer";
 import { StatusIndicator } from "~/entities/status-indicator";
 
 interface ResponseSectionProps {
-  responseStatus: string;
+  responseStatus: string | number | null;
   responseBody: string;
 }
 
@@ -22,7 +22,7 @@ export const ResponseSection: FC<ResponseSectionProps> = ({
           <label className="mb-1 block text-sm font-medium text-gray-600">
             Status:
           </label>
-          <StatusIndicator status={responseStatus} />
+          <StatusIndicator status={responseStatus as string} />
         </div>
         <label className="mb-1 block text-sm font-medium text-gray-600">
           Body:
