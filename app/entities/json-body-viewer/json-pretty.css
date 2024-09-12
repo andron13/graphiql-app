@@ -1,0 +1,29 @@
+.__json-pretty__ {
+  line-height: 1.3;
+  color: #333; /* Dark gray text */
+  background: #f9f9f9; /* Light background */
+  overflow: auto;
+}
+
+.__json-pretty__ .__json-key__ {
+  color: #0056b3; /* Blue for keys */
+}
+
+.__json-pretty__ .__json-value__ {
+  color: #008000; /* Green for values */
+}
+
+.__json-pretty__ .__json-string__ {
+  color: #d14; /* Red for strings */
+}
+
+.__json-pretty__ .__json-boolean__ {
+  color: #a71d5d; /* Burgundy for boolean values */
+}
+
+.__json-pretty-error__ {
+  line-height: 1.3;
+  color: #d14; /* Red text for errors */
+  background: #f9f9f9; /* Light background for errors */
+  overflow: auto;
+}
