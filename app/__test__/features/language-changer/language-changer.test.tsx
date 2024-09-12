@@ -2,20 +2,31 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Mock, describe, expect, it, vi } from "vitest";
 
 import { LanguageChanger } from "~/features/language-changer";
-import { useUser } from "~/shared/context";
+import { useLanguage, useUser } from "~/shared/context";
 import { LanguageCode } from "~/shared/types";
 
 vi.mock("~/shared/context", () => ({
   useUser: vi.fn(),
+  useLanguage: vi.fn(),
 }));
 
 describe("LanguageChanger Component", () => {
   it("renders with the default language and allows language selection", () => {
     const mockSetLanguage = vi.fn();
+    const mockSiteContent = {
+      languageLabels: {
+        [LanguageCode.EN_GB]: "English",
+        [LanguageCode.DE_DE]: "German",
+        [LanguageCode.UK_UA]: "Ukrainian",
+      },
+    };
 
     (useUser as Mock).mockReturnValue({
       user: { language: LanguageCode.EN_GB },
       setLanguage: mockSetLanguage,
+    });
+    (useLanguage as Mock).mockReturnValue({
+      site_content: mockSiteContent,
     });
 
     render(<LanguageChanger />);
@@ -40,10 +51,18 @@ describe("LanguageChanger Component", () => {
 
   it("displays the current user language if it's set", () => {
     const mockSetLanguage = vi.fn();
+    const mockSiteContent = {
+      languageLabels: {
+        [LanguageCode.BE_BY]: "Belarusian",
+      },
+    };
 
     (useUser as Mock).mockReturnValue({
       user: { language: LanguageCode.BE_BY },
       setLanguage: mockSetLanguage,
+    });
+    (useLanguage as Mock).mockReturnValue({
+      site_content: mockSiteContent,
     });
 
     render(<LanguageChanger />);

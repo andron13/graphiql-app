@@ -12,31 +12,34 @@ vi.mock("@firebase/auth", () => ({
   signInWithEmailAndPassword: vi.fn(),
   getAuth: vi.fn(),
 }));
+
 vi.mock("@remix-run/react", () => ({
   useNavigate: vi.fn(),
-  Link: vi.fn(),
 }));
+
 vi.mock("~/shared/context/use-context", () => ({
-  ...vi.importActual("~/shared/context/use-context"),
   useUser: vi.fn(),
 }));
+
 vi.mock("~/shared/context/use-language", () => ({
-  ...vi.importActual("~/shared/context/use-language"),
   useLanguage: vi.fn(),
 }));
+
 describe("SignInForm", () => {
   beforeEach(() => {
     const mockLanguage = {
       site_content: {
         submit: "Submit",
+        emailConfig: {
+          email: "Email",
+          password: "Password",
+        },
         validationErrors: {
           emailRequired: "Email is required",
           emailInvalid: "Email must be a valid email address",
           passwordRequired: "Password is required",
           passwordStrength:
             "Password must be at least 8 characters long, include at least 1 digit, one special character, and at least one letter (Unicode characters are supported)",
-          confirmPasswordRequired: "Confirm Password is required",
-          passwordsMustMatch: "Passwords must match",
           invalidEmailPassword: "Invalid email or password",
         },
       },
@@ -53,18 +56,18 @@ describe("SignInForm", () => {
 
     render(<SignInForm />);
     expect(screen.getByText(/Submit/)).toBeInTheDocument();
-    expect(screen.getByText(/Email/)).toBeInTheDocument();
-    expect(screen.getByText(/Password/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Email/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Password/)).toBeInTheDocument();
   });
 
-  it("submit form", async () => {
+  it("submits form and handles login success", async () => {
     const loginContext = vi.fn();
     const mockedUser = {
       login: loginContext,
     };
     const mockNavigate = vi.fn();
 
-    vi.mocked(signInWithEmailAndPassword as Mock).mockResolvedValue({
+    (signInWithEmailAndPassword as Mock).mockResolvedValue({
       user: { email: "test@mail.com" },
     });
 
@@ -72,10 +75,10 @@ describe("SignInForm", () => {
     (useUser as Mock).mockReturnValue(mockedUser);
 
     render(<SignInForm />);
-    fireEvent.change(screen.getByLabelText(/Email:/i), {
+    fireEvent.change(screen.getByLabelText(/Email/i), {
       target: { value: "test@mail.com" },
     });
-    fireEvent.change(screen.getByLabelText(/Password:/i), {
+    fireEvent.change(screen.getByLabelText(/Password/i), {
       target: { value: "password123" },
     });
     fireEvent.click(screen.getByText(/Submit/i));
@@ -88,7 +91,7 @@ describe("SignInForm", () => {
       );
     });
 
-    expect(loginContext).toHaveBeenCalled();
+    expect(loginContext).toHaveBeenCalledWith("test@mail.com", "password123");
     expect(mockNavigate).toHaveBeenCalledWith("/");
   });
 
@@ -97,27 +100,31 @@ describe("SignInForm", () => {
     fireEvent.click(screen.getByText(/Submit/i));
 
     expect(await screen.findByText(/Email is required/i)).toBeInTheDocument();
-    expect(await screen.findByText("Password is required")).toBeInTheDocument();
+    expect(
+      await screen.findByText(/Password is required/i),
+    ).toBeInTheDocument();
   });
 
   it("displays error message when login fails", async () => {
     (signInWithEmailAndPassword as Mock).mockRejectedValueOnce(
-      new Error("Login failed"),
+      new Error("Invalid email or password"),
     );
 
     render(<SignInForm />);
 
-    fireEvent.change(screen.getByLabelText(/Email:/i), {
+    fireEvent.change(screen.getByLabelText(/Email/i), {
       target: { value: "invalid@mail.com" },
     });
-    fireEvent.change(screen.getByLabelText(/Password:/i), {
+    fireEvent.change(screen.getByLabelText(/Password/i), {
       target: { value: "wrongpassword" },
     });
 
     fireEvent.click(screen.getByText(/Submit/i));
 
     await waitFor(() => {
-      expect(screen.getByText("Invalid email or password")).toBeInTheDocument();
+      expect(
+        screen.getByText(/Invalid email or password/i),
+      ).toBeInTheDocument();
     });
   });
 });
