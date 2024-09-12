@@ -22,7 +22,7 @@ describe("NotFound404 Component", () => {
       </UserProvider>,
     );
 
-    expect(screen.getByText(/Rest path:/i)).toBeInTheDocument();
+    expect(screen.getByText(/Method/i)).toBeInTheDocument();
   });
 
   it("should render GraphqlPath when the path matches a GraphQL request", () => {
@@ -36,7 +36,7 @@ describe("NotFound404 Component", () => {
       </UserProvider>,
     );
 
-    expect(screen.getByText(/GraphQL path:/i)).toBeInTheDocument();
+    expect(screen.getByText(/SDL URL/i)).toBeInTheDocument();
   });
 
   it("should render NotFound when the path does not match REST or GraphQL requests", () => {

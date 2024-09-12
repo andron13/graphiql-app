@@ -54,7 +54,10 @@ export function SignInForm() {
       className="flex flex-col justify-between space-y-4"
     >
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700"
+        >
           Email:
         </label>
         <input
@@ -62,13 +65,17 @@ export function SignInForm() {
           {...register("email")}
           name="email"
           className="textInput"
+          id="email"
         />
         {errors.email && (
           <span className="text-sm text-red-500">{errors.email.message}</span>
         )}
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label
+          className="block text-sm font-medium text-gray-700"
+          htmlFor="password"
+        >
           Password:
         </label>
         <input
@@ -76,6 +83,7 @@ export function SignInForm() {
           {...register("password")}
           name="password"
           className="textInput"
+          id="password"
         />
         {errors.password && (
           <span className="text-sm text-red-500">

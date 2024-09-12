@@ -47,8 +47,8 @@ export const Footer: FC = (): ReactNode => {
         </div>
         <p className="flex items-center text-sm">Anno 08.2024</p>
         <Link
-          to={websiteConfig.links.course}
-          title={websiteConfig.links.authors.lead.title}
+          to={websiteConfig.links.course.pathname}
+          title={websiteConfig.links.course.title}
         >
           <img src={websiteConfig.logos.rssLogo} alt="RS SCHOOL" width={30} />
         </Link>

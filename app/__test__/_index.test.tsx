@@ -85,13 +85,26 @@ describe("Index Page", () => {
     expect(screen.getByText(/Welcome back user@test.com/i)).toBeInTheDocument();
   });
 
-  it.skip("should navigate when Sign In or Sign Up buttons are clicked", () => {
+  it("should navigate when Sign In or Sign Up buttons are clicked", () => {
+    const mockLanguage = {
+      site_content: {
+        welcomeMessage: { title: "Ласкаво просимо" },
+        secondaryMenu: {
+          restClient: "Rest Client",
+          graphiqlClient: "GraphiQL Client",
+          history: "Історія",
+        },
+        signIn: "Увійти",
+        signUp: "Зареєструватися",
+      },
+    };
     const mockNavigate = vi.fn();
     const mockUser = {
       user: { email: "user@example.com" },
       isUserLoggedIn: () => true,
     };
 
+    (useLanguage as Mock).mockReturnValue(mockLanguage);
     (useNavigate as Mock).mockReturnValue(mockNavigate);
     (useUser as Mock).mockReturnValue(mockUser);
 
@@ -100,11 +113,11 @@ describe("Index Page", () => {
         <Index />
       </MemoryRouter>,
     );
-    // TODO: text changed to translate
-    fireEvent.click(screen.getByText(/Sign In/i));
+
+    fireEvent.click(screen.getByText(/Увійти/i));
     expect(mockNavigate).toHaveBeenCalledWith("/login");
 
-    fireEvent.click(screen.getByText(/Sign Up/i));
+    fireEvent.click(screen.getByText(/Зареєструватися/i));
     expect(mockNavigate).toHaveBeenCalledWith("/login?signup=true");
   });
 });
