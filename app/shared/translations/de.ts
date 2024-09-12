@@ -1,4 +1,4 @@
-import { IAppStrings } from "~/shared/types";
+import { IAppStrings, LanguageCode } from "~/shared/types";
 
 export const de: IAppStrings = {
   websiteConfig: {
@@ -38,5 +38,19 @@ export const de: IAppStrings = {
     wrongTurnMessage:
       "Es scheint, dass Sie sich verirrt haben. Bitte gehen Sie zur Startseite zurück, um das Gesuchte zu finden.",
     goBackToHomepage: "Zur Startseite zurückkehren",
+  },
+  emailConfig: {
+    email: "E-Mail",
+    password: "Passwort",
+    confirmPassword: "Passwort bestätigen",
+  },
+  languageLabels: {
+    [LanguageCode.EN_GB]: "Englisch",
+    [LanguageCode.DE_DE]: "Deutsch",
+    [LanguageCode.RU_RU]: "Russisch",
+    [LanguageCode.BE_BY]: "Weißrussisch",
+    [LanguageCode.UK_UA]: "Ukrainisch",
+    [LanguageCode.PL_PL]: "Polnisch",
+    [LanguageCode.JA_JP]: "Japanisch",
   },
 };

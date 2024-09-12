@@ -1,4 +1,4 @@
-import { IAppStrings } from "~/shared/types";
+import { IAppStrings, LanguageCode } from "~/shared/types";
 
 export const ru: IAppStrings = {
   websiteConfig: {
@@ -37,5 +37,19 @@ export const ru: IAppStrings = {
     wrongTurnMessage:
       "Похоже, вы ошиблись. Вернитесь на главную страницу, чтобы найти то, что вам нужно.",
     goBackToHomepage: "Вернуться на главную страницу",
+  },
+  emailConfig: {
+    email: "Электронная почта",
+    password: "Пароль",
+    confirmPassword: "Подтвердите пароль",
+  },
+  languageLabels: {
+    [LanguageCode.EN_GB]: "Английский",
+    [LanguageCode.DE_DE]: "Немецкий",
+    [LanguageCode.RU_RU]: "Русский",
+    [LanguageCode.BE_BY]: "Белорусский",
+    [LanguageCode.UK_UA]: "Украинский",
+    [LanguageCode.PL_PL]: "Польский",
+    [LanguageCode.JA_JP]: "Японский",
   },
 };

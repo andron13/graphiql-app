@@ -1,6 +1,6 @@
-import { RestRequestType, UrlencodedFormData } from "~/shared/types";
+import { FormValues, RestRequestType } from "~/shared/types";
 
-export const defaultRequestValues: UrlencodedFormData = {
+export const defaultRequestValues: FormValues = {
   method: RestRequestType.GET,
   endpoint: "https://swapi.dev/api/people/1/",
   headers: [
@@ -9,4 +9,5 @@ export const defaultRequestValues: UrlencodedFormData = {
     { key: "Content-Type", value: "application/json" },
   ],
   body: "",
+  variables: [{ key: "Variable key", value: "Variable value" }],
 };

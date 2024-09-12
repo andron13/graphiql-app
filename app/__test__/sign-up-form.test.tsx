@@ -19,11 +19,16 @@ vi.mock("~/shared/context/use-language", () => ({
   useLanguage: vi.fn(),
 }));
 
-describe("SignInForm", () => {
+describe("SignUpForm", () => {
   beforeEach(() => {
     const mockLanguage = {
       site_content: {
         register: "Register",
+        emailConfig: {
+          email: "Email",
+          password: "Password",
+          confirmPassword: "Confirm Password",
+        },
         validationErrors: {
           emailRequired: "Email is required",
           emailInvalid: "Email must be a valid email address",
@@ -32,7 +37,6 @@ describe("SignInForm", () => {
             "Password must be at least 8 characters long, include at least 1 digit, one special character, and at least one letter (Unicode characters are supported)",
           confirmPasswordRequired: "Confirm Password is required",
           passwordsMustMatch: "Passwords must match",
-          invalidEmailPassword: "Invalid email or password",
         },
       },
     };
@@ -44,19 +48,19 @@ describe("SignInForm", () => {
 
     expect(screen.getByText(/Register/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Email/)).toBeInTheDocument();
-    expect(screen.getByLabelText("Password:")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password")).toBeInTheDocument();
     expect(screen.getByLabelText(/Confirm Password/)).toBeInTheDocument();
   });
 
   it("calls submitHandler", async () => {
     render(<SignUpForm />);
-    fireEvent.change(screen.getByLabelText(/Email:/i), {
+    fireEvent.change(screen.getByLabelText(/Email/i), {
       target: { value: "test@mail.com" },
     });
-    fireEvent.change(screen.getByLabelText("Password:"), {
+    fireEvent.change(screen.getByLabelText("Password"), {
       target: { value: "Password123@" },
     });
-    fireEvent.change(screen.getByLabelText("Confirm Password:"), {
+    fireEvent.change(screen.getByLabelText("Confirm Password"), {
       target: { value: "Password123@" },
     });
     fireEvent.click(screen.getByText(/Register/i));
@@ -72,11 +76,11 @@ describe("SignInForm", () => {
   it("shows password and confirm password visibility toggle icons", () => {
     const { container } = render(<SignUpForm />);
 
-    expect(screen.getByLabelText("Password:").getAttribute("type")).toBe(
+    expect(screen.getByLabelText("Password").getAttribute("type")).toBe(
       "password",
     );
     expect(
-      screen.getByLabelText(/Confirm Password:/i).getAttribute("type"),
+      screen.getByLabelText(/Confirm Password/i).getAttribute("type"),
     ).toBe("password");
 
     const showPasswordBtn = container.querySelector(
@@ -87,13 +91,11 @@ describe("SignInForm", () => {
     ) as HTMLButtonElement;
 
     fireEvent.click(showPasswordBtn);
-    expect(screen.getByLabelText("Password:").getAttribute("type")).toBe(
-      "text",
-    );
+    expect(screen.getByLabelText("Password").getAttribute("type")).toBe("text");
 
     fireEvent.click(showConfirmPasswordBtn);
     expect(
-      screen.getByLabelText(/Confirm Password:/i).getAttribute("type"),
+      screen.getByLabelText(/Confirm Password/i).getAttribute("type"),
     ).toBe("text");
   });
 

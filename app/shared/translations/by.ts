@@ -1,4 +1,4 @@
-import { IAppStrings } from "../types";
+import { IAppStrings, LanguageCode } from "../types";
 
 export const by: IAppStrings = {
   websiteConfig: {
@@ -37,5 +37,19 @@ export const by: IAppStrings = {
     wrongTurnMessage:
       "Здаецца, вы збіліся з шляху. Вярніцеся на галоўную старонку, каб знайсці патрэбную інфармацыю.",
     goBackToHomepage: "Вярнуцца на галоўную старонку",
+  },
+  emailConfig: {
+    email: "Электронная пошта",
+    password: "Пароль",
+    confirmPassword: "Пацвердзіць пароль",
+  },
+  languageLabels: {
+    [LanguageCode.EN_GB]: "English",
+    [LanguageCode.DE_DE]: "Нямецкая",
+    [LanguageCode.RU_RU]: "Русский",
+    [LanguageCode.BE_BY]: "Беларускі",
+    [LanguageCode.UK_UA]: "Украінская",
+    [LanguageCode.PL_PL]: "Польская",
+    [LanguageCode.JA_JP]: "Японская",
   },
 };

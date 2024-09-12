@@ -22,12 +22,12 @@ export enum GraphqlRequestType {
 }
 export type Header = { key: string; value: string };
 
-export type UrlencodedFormData = {
-  method: RequestType;
-  endpoint: string;
-  headers: Header[];
-  body: string;
-};
+// export type UrlencodedFormData = {
+//   method: RequestType;
+//   endpoint: string;
+//   headers: Header[];
+//   body: string;
+// };
 
 export type HistoryRequest = {
   timestamp: number;
@@ -50,23 +50,26 @@ export interface FormValues {
   method: RestRequestType | GraphqlRequestType;
   endpoint: string;
   headers: { key: string; value: string }[];
-  body: string;
+  body?: string | Record<string, unknown> | null;
+  variables?: Record<string, string>[];
+  queries?: string[];
 }
 
-export interface DecodedData {
-  method?: RestRequestType;
-  endpointUrl?: string;
-  requestBody?: object;
-  headers?: Record<string, string>;
-}
+// export interface DecodedData {
+//   method?: RestRequestType;
+//   endpointUrl?: string;
+//   requestBody?: object;
+//   headers?: Record<string, string>;
+// }
+
 export enum RestRequestType {
   GET = "GET",
-  // POST = "POST",
-  // PUT = "PUT",
-  // DELETE = "DELETE",
-  // PATCH = "PATCH",
-  // OPTIONS = "OPTIONS",
-  // HEAD = "HEAD",
-  // CONNECT = "CONNECT",
-  // TRACE = "TRACE",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+  OPTIONS = "OPTIONS",
+  HEAD = "HEAD",
+  CONNECT = "CONNECT",
+  TRACE = "TRACE",
 }
