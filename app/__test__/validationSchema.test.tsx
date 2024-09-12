@@ -39,8 +39,18 @@ const siteContent: IAppStrings = {
     wrongTurnMessage: "",
     goBackToHomepage: "",
   },
+  emailConfig: {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  },
+  languageLabels: {
+    en_GB: "English",
+    de_DE: "Deutsch",
+    ru_RU: "Русский",
+    // Add other language labels as needed
+  },
 };
-
 describe("createYupSchema", () => {
   it("should validate a correct password", async () => {
     const schema = createYupSchema(siteContent);

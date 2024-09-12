@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { RestRequestType, UrlencodedFormData } from "~/shared/types";
+import { FormValues, RestRequestType } from "~/shared/types";
 import { encodeRequestUrl } from "~/shared/url/encode-request-url";
 
 describe("encodeRequestUrl", () => {
   it("encodes request data into a URL string with method, endpoint, body, and headers", () => {
-    const requestData: UrlencodedFormData = {
+    const requestData: FormValues = {
       method: RestRequestType.POST,
       endpoint: "https://example.com/api/test",
       body: '{"key":"value"}',
@@ -23,7 +23,7 @@ describe("encodeRequestUrl", () => {
   });
 
   it("encodes request data without body", () => {
-    const requestData: UrlencodedFormData = {
+    const requestData: FormValues = {
       method: RestRequestType.GET,
       endpoint: "https://example.com/api/data",
       body: "",
@@ -38,7 +38,7 @@ describe("encodeRequestUrl", () => {
   });
 
   it("encodes request data without headers", () => {
-    const requestData: UrlencodedFormData = {
+    const requestData: FormValues = {
       method: RestRequestType.PUT,
       endpoint: "https://example.com/api/update",
       body: '{"key":"value"}',
@@ -53,7 +53,7 @@ describe("encodeRequestUrl", () => {
   });
 
   it("returns an empty string if method or endpoint is missing", () => {
-    const requestDataMissingMethod: UrlencodedFormData = {
+    const requestDataMissingMethod: FormValues = {
       method: "" as RestRequestType,
       endpoint: "https://example.com/api/missing",
       body: "",
@@ -63,7 +63,7 @@ describe("encodeRequestUrl", () => {
     const resultMissingMethod = encodeRequestUrl(requestDataMissingMethod);
     expect(resultMissingMethod).toBe("");
 
-    const requestDataMissingEndpoint: UrlencodedFormData = {
+    const requestDataMissingEndpoint: FormValues = {
       method: RestRequestType.DELETE,
       endpoint: "",
       body: "",
@@ -75,7 +75,7 @@ describe("encodeRequestUrl", () => {
   });
 
   it.skip("handles invalid Base64 encoding gracefully", () => {
-    const invalidRequestData: UrlencodedFormData = {
+    const invalidRequestData: FormValues = {
       method: RestRequestType.PATCH,
       endpoint: "invalid_url_with_special_#_characters",
       body: "",
