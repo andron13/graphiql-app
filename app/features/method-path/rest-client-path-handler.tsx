@@ -9,6 +9,7 @@ import {
 } from "~/features/clients-forms";
 import { ApiResponse } from "~/features/clients-forms/response-section";
 import { RoutesLayout } from "~/layouts";
+import { useUser } from "~/shared/context";
 import { useRequestHistory } from "~/shared/hooks";
 import { FormValues, RestRequestType } from "~/shared/types";
 import { decodeRequestUrl, encodeRequestUrl, sendRequest } from "~/shared/url";
@@ -17,6 +18,8 @@ export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, isUserLoggedIn } = useUser();
+  const isUserLogged = isUserLoggedIn();
 
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -58,6 +61,9 @@ export function RestClientPathHandler() {
       setLoading(false);
     }
   };
+
+  // TODO: wie need navigate to frontpage
+  if (!isUserLogged) return null;
 
   return (
     <RoutesLayout>
