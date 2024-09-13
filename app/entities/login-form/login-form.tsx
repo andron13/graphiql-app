@@ -11,7 +11,6 @@ export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
   const [isRegistering, setIsRegistering] = useState(isSignup);
   const authForm = isRegistering ? <SignUpForm /> : <SignInForm />;
   const { site_content } = useLanguage();
-
   return (
     <div className="text flex w-96 items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-4xl rounded-lg bg-white p-8 shadow-lg">

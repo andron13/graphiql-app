@@ -52,4 +52,19 @@ export const by: IAppStrings = {
     [LanguageCode.PL_PL]: "Польская",
     [LanguageCode.JA_JP]: "Японская",
   },
+  authErrors: {
+    invalidCredentials: "Няправільны адрас электроннай пошты ці пароль.",
+    accountLocked:
+      "Ваш рахунак заблакаваны. Калі ласка, звярніцеся ў службу падтрымкі.",
+    passwordExpired:
+      "Тэрмін дзеяння вашага пароля скончыўся. Калі ласка, абновіце яго.",
+    tooManyAttempts:
+      "Занадта шмат спробаў увайсці. Калі ласка, паспрабуйце пазней.",
+    emailInUseError: "Карыстальнік з такім email ужо існуе",
+  },
+  registrationMessages: {
+    registrationFailed:
+      "Рэгістрацыя не ўдалася. Калі ласка, паспрабуйце яшчэ раз.",
+    registrationSuccessful: "Рэгістрацыя паспяховая! Вітаем на борце.",
+  },
 };

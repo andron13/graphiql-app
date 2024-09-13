@@ -61,4 +61,15 @@ export interface IAppStrings {
   languageLabels: {
     [code: string]: string;
   };
+  authErrors: {
+    invalidCredentials: string;
+    accountLocked: string;
+    passwordExpired: string;
+    tooManyAttempts: string;
+    emailInUseError: string;
+  };
+  registrationMessages: {
+    registrationFailed: string;
+    registrationSuccessful: string;
+  };
 }

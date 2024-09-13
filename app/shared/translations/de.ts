@@ -53,4 +53,18 @@ export const de: IAppStrings = {
     [LanguageCode.PL_PL]: "Polnisch",
     [LanguageCode.JA_JP]: "Japanisch",
   },
+  authErrors: {
+    invalidCredentials: "Ungültige E-Mail-Adresse oder Passwort.",
+    accountLocked:
+      "Ihr Konto ist gesperrt. Bitte kontaktieren Sie den Support.",
+    passwordExpired: "Ihr Passwort ist abgelaufen. Bitte setzen Sie es zurück.",
+    tooManyAttempts:
+      "Zu viele Anmeldeversuche. Bitte versuchen Sie es später erneut.",
+    emailInUseError: "Ein Benutzer mit dieser E-Mail-Adresse existiert bereits",
+  },
+  registrationMessages: {
+    registrationFailed:
+      "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    registrationSuccessful: "Registrierung erfolgreich! Willkommen an Bord.",
+  },
 };

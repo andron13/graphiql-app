@@ -52,4 +52,18 @@ export const ua: IAppStrings = {
     [LanguageCode.PL_PL]: "Польська",
     [LanguageCode.JA_JP]: "Японська",
   },
+  authErrors: {
+    invalidCredentials: "Неправильна електронна пошта або пароль.",
+    accountLocked:
+      "Ваш обліковий запис заблоковано. Будь ласка, зв'яжіться з підтримкою.",
+    passwordExpired:
+      "Термін дії вашого пароля закінчився. Будь ласка, скиньте його.",
+    tooManyAttempts:
+      "Занадто багато спроб входу. Будь ласка, спробуйте пізніше.",
+    emailInUseError: "Користувач з таким email вже існує",
+  },
+  registrationMessages: {
+    registrationFailed: "Реєстрація не вдалася. Будь ласка, спробуйте ще раз.",
+    registrationSuccessful: "Реєстрація успішна! Ласкаво просимо.",
+  },
 };

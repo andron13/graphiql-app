@@ -52,4 +52,19 @@ export const ru: IAppStrings = {
     [LanguageCode.PL_PL]: "Польский",
     [LanguageCode.JA_JP]: "Японский",
   },
+  authErrors: {
+    invalidCredentials: "Неверный адрес электронной почты или пароль.",
+    accountLocked:
+      "Ваш аккаунт заблокирован. Пожалуйста, свяжитесь с поддержкой.",
+    passwordExpired:
+      "Срок действия вашего пароля истёк. Пожалуйста, сбросьте его.",
+    tooManyAttempts:
+      "Слишком много попыток входа. Пожалуйста, попробуйте позже.",
+    emailInUseError: "Пользователь с таким email уже существует",
+  },
+  registrationMessages: {
+    registrationFailed:
+      "Регистрация не удалась. Пожалуйста, попробуйте ещё раз.",
+    registrationSuccessful: "Регистрация успешна! Добро пожаловать.",
+  },
 };
