@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "@remix-run/react";
 
@@ -18,7 +18,7 @@ export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, isUserLoggedIn } = useUser();
+  const { isUserLoggedIn } = useUser();
   const isUserLogged = isUserLoggedIn();
 
   const [response, setResponse] = useState<ApiResponse | null>(null);
@@ -62,9 +62,11 @@ export function RestClientPathHandler() {
     }
   };
 
-  // TODO: wie need navigate to frontpage
-  if (!isUserLogged) return null;
-
+  useEffect(() => {
+    if (!isUserLogged) {
+      navigate("/");
+    }
+  });
   return (
     <RoutesLayout>
       <RestApiRequestSection onSubmit={handleSubmit} data={requestData} />

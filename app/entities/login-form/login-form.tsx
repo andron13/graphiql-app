@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { useNavigate } from "@remix-run/react";
 
 import { SignInForm, SignUpForm } from "~/entities/login-form";
-import { useLanguage } from "~/shared/context";
+import { useLanguage, useUser } from "~/shared/context";
 
 interface LoginFormProps {
   isSignup?: boolean;
 }
 
 export const LoginForm = ({ isSignup = false }: LoginFormProps) => {
+  const navigate = useNavigate();
+  const { isUserLoggedIn } = useUser();
+  const isUserLogged = isUserLoggedIn();
+  useEffect(() => {
+    if (isUserLogged) {
+      navigate("/");
+    }
+  });
   const [isRegistering, setIsRegistering] = useState(isSignup);
   const authForm = isRegistering ? <SignUpForm /> : <SignInForm />;
   const { site_content } = useLanguage();
