@@ -1,20 +1,15 @@
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 
-import { auth } from "~/shared/authentification/firebase";
+import { auth } from "../firebase";
 
 export const registerWithEmailAndPassword = async (
   email: string,
   password: string,
 ) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
-    const user = userCredential.user;
-    console.log("Registered user:", user);
-  } catch (error) {
-    console.error("Error during registration:", error);
-  }
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  return userCredential.user;
 };

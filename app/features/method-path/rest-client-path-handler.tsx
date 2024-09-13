@@ -7,43 +7,33 @@ import {
   ResponseSection,
   RestApiRequestSection,
 } from "~/features/clients-forms";
+import { ApiResponse } from "~/features/clients-forms/response-section";
 import { RoutesLayout } from "~/layouts";
+import { useUser } from "~/shared/context";
 import { useRequestHistory } from "~/shared/hooks";
 import { FormValues, RestRequestType } from "~/shared/types";
 import { decodeRequestUrl, encodeRequestUrl, sendRequest } from "~/shared/url";
-
-interface ApiResponse {
-  [key: string]: unknown;
-}
 
 export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, isUserLoggedIn } = useUser();
+  const isUserLogged = isUserLoggedIn();
 
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Define variables for debugging
   const urlForDecode = location.pathname + location.search;
   const decodedData: FormValues = decodeRequestUrl(urlForDecode);
   const requestData: FormValues = decodedData.endpoint
     ? decodedData
     : defaultRequestValues;
 
-  // console.log("URL for decoding:", urlForDecode);
-  // console.log("Decoded data:", decodedData);
-  // console.log("Request data:", requestData);
-
   const handleSubmit = async (data: FormValues) => {
-    // console.log("Submitting data:", data);
-
     const method = data.method as RestRequestType;
     const encodedUrl = encodeRequestUrl(data);
-
-    // console.log("Method:", method);
-    // console.log("Encoded URL:", encodedUrl);
 
     const request = {
       timestamp: Date.now(),
@@ -52,44 +42,35 @@ export function RestClientPathHandler() {
       shortUrl: data.endpoint,
     };
 
-    // console.log("Request for history:", request);
-
     addRequestToHistory(request);
     navigate(encodedUrl);
 
     setLoading(true);
     setError(null);
 
-    const headersObject: Record<string, string> = data.headers.reduce(
-      (acc, { key, value }) => {
-        acc[key] = value;
-        return acc;
-      },
-      {} as Record<string, string>,
-    );
-
-    // console.log("Headers object:", headersObject);
-
     try {
       const result = await sendRequest(data);
-      setResponse(result.response);
+      const status = result.status;
+      setResponse({
+        status: status,
+        body: JSON.stringify(result.response, null, 2),
+      });
     } catch (err) {
-      // console.error("Request error:", err);
       setError(err as Error);
     } finally {
       setLoading(false);
     }
   };
 
+  // TODO: wie need navigate to frontpage
+  if (!isUserLogged) return null;
+
   return (
     <RoutesLayout>
       <RestApiRequestSection onSubmit={handleSubmit} data={requestData} />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      <ResponseSection
-        responseStatus={response ? "Success" : "N/A"}
-        responseBody={response ? JSON.stringify(response, null, 2) : ""}
-      />
+      <ResponseSection response={response} />
     </RoutesLayout>
   );
 }

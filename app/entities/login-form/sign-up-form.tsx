@@ -3,16 +3,23 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "@remix-run/react";
 
 import { registerWithEmailAndPassword } from "~/shared/authentification";
-import { useLanguage } from "~/shared/context";
+import { useLanguage, useUser } from "~/shared/context";
 import { AccountRegistration } from "~/shared/types";
 import { createYupSchema } from "~/shared/validation";
 
 export function SignUpForm() {
+  const navigate = useNavigate();
+  const { login: loginContext } = useUser();
   const { site_content } = useLanguage();
   const yupSchema = createYupSchema(site_content);
-
+  const registrationFailed: string =
+    site_content.registrationMessages.registrationFailed;
+  const registrationSuccessful: string =
+    site_content.registrationMessages.registrationSuccessful;
+  const emailInUseError: string = site_content.authErrors.emailInUseError;
   const {
     register,
     handleSubmit,
@@ -23,6 +30,8 @@ export function SignUpForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
@@ -32,10 +41,29 @@ export function SignUpForm() {
 
   const onSubmit: SubmitHandler<AccountRegistration> = async (data) => {
     const { email, password } = data;
+    const timeout = 1000;
     try {
       await registerWithEmailAndPassword(email, password);
+      setSuccessMessage(registrationSuccessful);
+      setErrorMessage(null);
+
+      setTimeout(() => {
+        loginContext(email, password);
+        setTimeout(() => {
+          navigate("/rest-client");
+        }, timeout);
+      }, timeout);
     } catch (error) {
-      console.error("Ошибка регистрации:", error);
+      const firebaseError = error as Error;
+      if (
+        (firebaseError as unknown as { code: string }).code ===
+        "auth/email-already-in-use"
+      ) {
+        setErrorMessage(emailInUseError);
+      } else {
+        setErrorMessage(registrationFailed);
+      }
+      setSuccessMessage(null);
     }
   };
 
@@ -121,6 +149,10 @@ export function SignUpForm() {
           </span>
         )}
       </div>
+
+      {successMessage && <div className="text-green-500">{successMessage}</div>}
+      {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+
       <button type="submit" className="registerButton">
         {site_content.register}
       </button>

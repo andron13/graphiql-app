@@ -26,7 +26,7 @@ export function SignInForm() {
 
   const onSubmit: SubmitHandler<AccountCredentials> = async (data) => {
     const { email, password } = data;
-
+    const invalidCredentials = site_content.authErrors.invalidCredentials;
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -34,16 +34,14 @@ export function SignInForm() {
         password,
       );
       const firebaseUser = userCredential.user;
-      console.log({ firebaseUser });
-      console.log("логин успешен");
-      console.log("Logged in user:");
-      loginContext(email, password);
-      navigate("/");
+      if (firebaseUser) {
+        loginContext(email, password);
+        navigate("/rest-client");
+      }
     } catch (error) {
-      console.error("Error during login:", error);
       setError("email", {
         type: "firebase",
-        message: "Invalid email or password",
+        message: invalidCredentials,
       });
     }
   };
@@ -61,7 +59,7 @@ export function SignInForm() {
           {site_content.emailConfig.email}
         </label>
         <input
-          type="email"
+          type="text"
           {...register("email")}
           name="email"
           className="textInput"

@@ -52,4 +52,19 @@ export const pl: IAppStrings = {
     [LanguageCode.PL_PL]: "Polski",
     [LanguageCode.JA_JP]: "Japoński",
   },
+  authErrors: {
+    invalidCredentials: "Nieprawidłowy adres e-mail lub hasło.",
+    accountLocked:
+      "Twoje konto jest zablokowane. Skontaktuj się z pomocą techniczną.",
+    passwordExpired: "Twoje hasło wygasło. Proszę je zresetować.",
+    tooManyAttempts:
+      "Zbyt wiele prób logowania. Proszę spróbować ponownie później.",
+    emailInUseError: "Użytkownik o tym emailu już istnieje",
+  },
+  registrationMessages: {
+    registrationFailed:
+      "Rejestracja nie powiodła się. Proszę spróbować ponownie.",
+    registrationSuccessful:
+      "Rejestracja zakończona sukcesem! Witamy na pokładzie.",
+  },
 };

@@ -19,13 +19,12 @@ export default function Index() {
   const isUserLogged = isUserLoggedIn();
   return (
     <>
-      <h1 className="mb-4 text-4xl font-bold text-gray-800">
-        {isUserLogged
-          ? `Welcome back ${"email" in user ? user.email : null}`
-          : site_content.welcomeMessage.title}
+      <h1 className="mb-4 text-2xl font-bold text-gray-800">
+        {site_content.welcomeMessage.title}{" "}
+        {isUserLogged && ` ${"email" in user && user.email}!`}
       </h1>
       <SignInSignUp />
-      <SecondaryMenu />
+      {isUserLogged && <SecondaryMenu />}
     </>
   );
 }
@@ -34,18 +33,18 @@ const SignInSignUp = () => {
   const navigate = useNavigate();
   const { site_content } = useLanguage();
   const { isUserLoggedIn } = useUser();
-  if (!isUserLoggedIn()) return null;
+  if (isUserLoggedIn()) return null;
   return (
     <div className="mb-6 flex justify-center space-x-4">
       <button
         onClick={() => navigate("/login")}
-        className="w-32 rounded-md bg-blue-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        className="w-48 rounded-md bg-blue-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
         {site_content.signIn}
       </button>
       <button
         onClick={() => navigate("/login?signup=true")}
-        className="registerButton w-32"
+        className="registerButton w-48"
       >
         {site_content.signUp}
       </button>

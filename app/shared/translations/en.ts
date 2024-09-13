@@ -52,4 +52,15 @@ export const en: IAppStrings = {
     [LanguageCode.PL_PL]: "Polish",
     [LanguageCode.JA_JP]: "Japanese",
   },
+  authErrors: {
+    invalidCredentials: "Invalid email or password.",
+    accountLocked: "Your account is locked. Please contact support.",
+    passwordExpired: "Your password has expired. Please reset it.",
+    tooManyAttempts: "Too many login attempts. Please try again later.",
+    emailInUseError: "A user with this email already exists",
+  },
+  registrationMessages: {
+    registrationFailed: "Registration failed. Please try again.",
+    registrationSuccessful: "Registration successful! Welcome aboard.",
+  },
 };

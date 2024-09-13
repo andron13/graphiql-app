@@ -52,4 +52,17 @@ export const jp: IAppStrings = {
     [LanguageCode.PL_PL]: "ポーランド語 - pl",
     [LanguageCode.JA_JP]: "日本語 - jp",
   },
+  authErrors: {
+    invalidCredentials: "無効なメールアドレスまたはパスワードです。",
+    accountLocked:
+      "アカウントがロックされています。サポートに連絡してください。",
+    passwordExpired: "パスワードの有効期限が切れました。リセットしてください。",
+    tooManyAttempts:
+      "ログイン試行回数が多すぎます。後でもう一度お試しください。",
+    emailInUseError: "このメールアドレスのユーザーはすでに存在します",
+  },
+  registrationMessages: {
+    registrationFailed: "登録に失敗しました。もう一度お試しください。",
+    registrationSuccessful: "登録が成功しました！ようこそ。",
+  },
 };
