@@ -1,14 +1,15 @@
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 
-import { auth } from "~/shared/authentification/firebase";
+import { auth } from "../firebase";
 
-export const registerWithEmailAndPassword = (
+export const registerWithEmailAndPassword = async (
   email: string,
   password: string,
 ) => {
-  return createUserWithEmailAndPassword(auth, email, password).then(
-    (userCredential) => {
-      return userCredential.user;
-    },
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
   );
+  return userCredential.user;
 };

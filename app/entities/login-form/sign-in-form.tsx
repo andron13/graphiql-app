@@ -59,7 +59,7 @@ export function SignInForm() {
           {site_content.emailConfig.email}
         </label>
         <input
-          type="email"
+          type="text"
           {...register("email")}
           name="email"
           className="textInput"
