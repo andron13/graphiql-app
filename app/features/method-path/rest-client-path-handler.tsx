@@ -62,11 +62,14 @@ export function RestClientPathHandler() {
     }
   };
 
+  // TODO: weak point
   useEffect(() => {
+    console.log({ isUserLogged });
     if (!isUserLogged) {
       navigate("/");
     }
   });
+
   return (
     <RoutesLayout>
       <RestApiRequestSection onSubmit={handleSubmit} data={requestData} />

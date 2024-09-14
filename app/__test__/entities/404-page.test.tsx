@@ -8,7 +8,7 @@ import { UserProvider } from "~/shared/context";
 vi.mock("@remix-run/react", () => ({
   ...vi.importActual("@remix-run/react"),
   useLocation: vi.fn(),
-  useNavigate: vi.fn(),
+  useNavigate: vi.fn(() => vi.fn()),
   Link: vi.fn(),
 }));
 

@@ -73,19 +73,4 @@ describe("encodeRequestUrl", () => {
     const resultMissingEndpoint = encodeRequestUrl(requestDataMissingEndpoint);
     expect(resultMissingEndpoint).toBe("");
   });
-
-  it.skip("handles invalid Base64 encoding gracefully", () => {
-    const invalidRequestData: FormValues = {
-      method: RestRequestType.PATCH,
-      endpoint: "invalid_url_with_special_#_characters",
-      body: "",
-      headers: [],
-    };
-
-    const result = encodeRequestUrl(invalidRequestData);
-
-    expect(result).toBe(
-      "/PATCH/aW52YWxpZF91cmxfd2l0aF9zcGVjaWFsXyUzRF9jaGFyYWN0ZXJz",
-    );
-  });
 });

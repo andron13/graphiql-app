@@ -12,6 +12,7 @@ import {
 import { signOut } from "firebase/auth";
 
 import { auth } from "~/shared/authentification";
+import { useAuthToken } from "~/shared/hooks/useAuthToken";
 import { defaultLanguage } from "~/shared/translations";
 import { BaseUser, LanguageCode, User } from "~/shared/types";
 
@@ -24,13 +25,19 @@ interface UserContextType {
   isUserLoggedIn: () => boolean;
 }
 
-const UseContext = createContext<UserContextType | undefined>(undefined);
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<BaseUser | User>({
     language: defaultLanguage,
   });
   const [isClient, setIsClient] = useState<boolean>(false);
+  const {
+    token,
+    saveToken,
+    removeToken,
+    isUserLoggedIn: isTokenValid,
+  } = useAuthToken();
 
   useEffect(() => {
     setIsClient(true);
@@ -63,30 +70,35 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
       password,
       language: user.language,
     };
+    saveToken("authToken");
     setUser(userData);
   };
 
   const logout = async () => {
     const lang = user.language;
     await signOut(auth);
+    removeToken();
     setUser({ language: lang });
   };
 
-  const isUserLoggedIn = () => {
-    return "email" in user;
-  };
-
   return (
-    <UseContext.Provider
-      value={{ user, setUser, setLanguage, login, logout, isUserLoggedIn }}
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        setLanguage,
+        login,
+        logout,
+        isUserLoggedIn: isTokenValid,
+      }}
     >
       {children}
-    </UseContext.Provider>
+    </UserContext.Provider>
   );
 };
 
 export const useUser = (): UserContextType => {
-  const context = useContext(UseContext);
+  const context = useContext(UserContext);
   if (context === undefined) {
     throw new Error("useUser must be used within a UserProvider");
   }
