@@ -30,11 +30,12 @@ export type HistoryRequest = {
 };
 
 export interface FormValuesGraphql {
+  method?: GraphqlRequestType;
   endpoint: string;
-  sdlURL: string;
+  sdlURL?: string;
   headers: { key: string; value: string }[];
+  variables?: Record<string, string>[];
   query: string;
-  variables: string;
 }
 
 export type RequestType = RestRequestType | GraphqlRequestType;

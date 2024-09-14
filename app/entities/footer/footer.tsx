@@ -49,6 +49,8 @@ export const Footer: FC = (): ReactNode => {
         <Link
           to={websiteConfig.links.course.pathname}
           title={websiteConfig.links.course.title}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img src={websiteConfig.logos.rssLogo} alt="RS SCHOOL" width={30} />
         </Link>

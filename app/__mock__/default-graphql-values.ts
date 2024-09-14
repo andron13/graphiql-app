@@ -14,7 +14,10 @@ export const defaultGraphqlRequestValues = {
     birthYear
   }
 }`,
-  variables: `{
-    "personId": "cGVvcGxlOjI="
-  }`,
+  variables: [
+    {
+      key: "personId",
+      value: "cGVvcGxlOjI=",
+    },
+  ],
 };
