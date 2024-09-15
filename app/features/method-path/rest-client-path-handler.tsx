@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useLocation, useNavigate } from "@remix-run/react";
 
@@ -19,7 +19,6 @@ export function RestClientPathHandler() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isUserLoggedIn } = useUser();
-  const isUserLogged = isUserLoggedIn();
 
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -61,14 +60,6 @@ export function RestClientPathHandler() {
       setLoading(false);
     }
   };
-
-  // TODO: weak point
-  useEffect(() => {
-    console.log({ isUserLogged });
-    if (!isUserLogged) {
-      navigate("/");
-    }
-  });
 
   return (
     <RoutesLayout>
