@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: "sunday"
+    reviewers:
+      - 'andron13'
+    commit-message:
+      prefix: 'chore'
+    groups:
+      production-dependencies:
+        dependency-type: 'production'
+      development-dependencies:
+        dependency-type: 'development'
+    ignore:
+      - dependency-name: 'eslint-plugin-react-compiler'
+      - dependency-name: 'eslint'
+        update-types: ['version-update:semver-major']
+    labels:
+      - "npm dependencies"
+    target-branch: "develop"
+

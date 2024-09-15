@@ -1,0 +1,22 @@
+node_modules
+
+/.cache
+/build
+.env
+.env.local
+
+# idea
+.idea
+
+# tests
+/coverage
+
+
+# dont ignore .env.example
+!*.example
+
+# my own files
+devtools
+
+# misc
+vite.config.ts.*

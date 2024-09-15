@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+  body {
+    @apply flex min-h-screen flex-col bg-gray-100;
+  }
+
+  /*body > main {*/
+  /*  @apply mx-auto flex flex-grow flex-col items-center justify-center md:w-[1024px];*/
+  /*}*/
+
+  body > footer {
+    @apply sticky bottom-0 border-2 border-gray-200 bg-white p-2;
+  }
+
+  body > header {
+    @apply sticky top-0 bg-white shadow-md;
+  }
+
+  article {
+    @apply flex flex-col items-center justify-center rounded-lg border-2 border-gray-200 p-8 shadow-md;
+  }
+
+  pre {
+    @apply max-w-full overflow-x-auto rounded-lg border border-gray-300 bg-gray-50 p-5 text-gray-900 shadow-inner;
+  }
+
+  a {
+    @apply transition duration-300 ease-in-out;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply h-5 w-5;
+  }
+
+  .registerButton {
+    @apply w-full rounded-md bg-indigo-600 px-4 py-2 font-semibold text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+  }
+
+  .buttonLanguageSwitcher {
+    @apply rounded-md px-4 py-2 font-medium text-white transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .passwordLabel {
+    @apply mb-1 block text-sm font-medium text-gray-700;
+  }
+
+  .textInput {
+    @apply mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 tracking-wider shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
+  }
+
+  .notFoundLink {
+    @apply mt-8 inline-block rounded-md bg-green-500 px-6 py-3 text-lg font-medium text-white shadow hover:bg-green-600;
+  }
+}

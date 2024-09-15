@@ -1,4 +1,6 @@
-# GraphiQL-App: REST/GraphQL Client
+# ⚛️ GraphiQL-App: REST/GraphQL Client
+
+🦥 RS-School React Final Task.
 
 ## Overview
 
@@ -14,37 +16,161 @@ The goal is to create a tool that supports both REST and GraphQL requests, integ
 - GraphiQL client with query editor and documentation explorer.
 - User authentication via Firebase.
 - Request history with easy retrieval and re-execution.
-- Internationalization support with at least two languages.
+- Internationalization support.
 
-## Repository Structure
+**\*GraphiQL:** Your interactive GraphQL and RESTful API IDE, empowering website development with syntax highlighting, autocompletion, and dynamic documentation 🤩.\*
 
-- **main branch**: Contains only the README.md.
-- **develop branch**: Active development branch.
+**Deployed project preview - [GraphiQL](https://graphiql-app-psi.vercel.app/) 👀**
 
-## Technical Requirements
+# Getting Started 🚀
 
-- React 18+, NextJS or Remix with Vite, Typescript, Eslint, Prettier.
+To run our project locally, you would have to download zip file with our repository or clone it to your computer. ✨
 
-## Layout 
+## Setup and Running ⚠️
+
+What things do you need to do in order to run our project locally? 🤔
+
+- Use node 20.x or higher. ⚡
+- Installed [.git](https://git-scm.com/) on your computer. ✌️
+- Code Editor of your choice. 📝
+- Installed [npm](https://www.npmjs.com/). 📦
+
+## Installation And Preparation 🔮
+
+First make sure you have all the things listed in the previous section. Then clone our repository to your computer: 👌
+
+with SSH
 
 ```
-+----------------------------------------------------+
-|                      Header                        |
-|  +---------------------------------------------+   |
-|  | [Logo] | Language Toggle | [Sign In]        |   |
-|  +---------------------------------------------+   |
-+----------------------------------------------------+
-|                                                    |
-|   +--------------------------------------------+   |
-|   |                                            |   |
-|   |                Welcome!                    |   |
-|   |                                            |   |
-|   | [Sign In] [Sign Up]                        |   |
-|   |                                            |   |
-|   +--------------------------------------------+   |
-|                                                    |
-+----------------------------------------------------+
-|                      Footer                        |
-|    [GitHub Link] | Year | [Course Logo]            |
-+----------------------------------------------------+
+git clone git@github.com:andron13/graphiql-app.git
 ```
+
+with HTTPS
+
+```
+git clone https://github.com/andron13/graphiql-app.git
+```
+
+or download zip file manually with our repository.
+
+Navigate into project folder and run 📦:
+
+```
+npm install
+```
+
+Finally run a development server: 🤩
+
+```
+npm run dev
+```
+
+Aaaaand you're done! 🎉🥳
+
+# Features 😍
+
+tbd
+
+## Available Scripts 🥑
+
+Here you can find all the scripts that are available in our project. 🦚
+
+Lint the App with **ESlint**: ✅
+
+```
+npm run lint
+```
+
+Format the App with **Prettier**: 🧹
+
+```
+npm run format:fix
+```
+
+Type check the App with **TypeScript**: 🦁
+
+```
+npm run typecheck
+```
+
+Install **Husky** to enable pre-commit hooks: 🎣
+
+```
+npm run prepare
+```
+
+Run unit-tests with **Vitest**: 🧪
+
+```
+npm run test
+```
+
+Run unit-tests coverage with **Vitest**: 🧪
+
+```
+npm run coverage
+```
+
+**Build** project for production: 🎁
+
+```
+npm run build
+```
+
+**Preview** the **production build** locally: 👀
+
+```
+npm run dev
+```
+
+# Technology Stack ⚙️
+
+## Developing 🦈
+
+- **Remix** - The React.JS Web Framework 💘
+- **TypeScript** - The Language 💖
+- **Tailwind** - The CSS Framework 🍃
+- **Vite** - The Bundler 📦
+- **Firebase** - Authentication 🔥
+
+## Code Quality 🧹
+
+- **Vitest** - The GraphqlPath Runner 🧪
+- **Testing** Library - The Testing Framework 🫂
+- **React Testing Library** - The Testing Framework 🫂
+- **ESLint** — Air-bnb base - The Linter 🔔
+- **Prettier** - The Code Formatter 👏
+- **Husky** - The Pre-commit Hooks 🪝
+- **Lint Staged** - The Pre-commit Hooks Config 🦚
+- **Clsx + Tailwind Merge** - The Tailwind Classnames Resolver 🎨
+
+## External Libraries 📚
+
+- **Yup** - The Form Validation Schema Builder 🏛️
+- **React Hook Form** - The Form Library 📑
+
+# Core Development Team 👨‍💻
+
+### **Andrej Podlubnyj 🦁**
+
+_Front-end. UI/UX Design._
+
+### Contact 👋:
+
+- Email - `andron13@gmail.com` 📬
+- Linkedin - [Andrej Podlubnyj](https://www.linkedin.com/in/ptchom/) ✒️
+- Telegram - [@ptchom](https://t.me/ptchom) 📱
+- GitHub - [andron13](https://github.com/andron13) 🦉
+
+#
+
+### **Vadym Popov** 🦈
+
+_Front-end. Back-end._
+
+### Contact 👋:
+
+- Email - `vadympopov.dev@gmail.com` 📬
+- Linkedin - [Vadym Popov](https://www.linkedin.com/in/vadym-popov/) ✒️
+- Telegram - [@boy_cristal](https://t.me/boy_cristal) 📱
+- GitHub - [Vadym Popov](https://github.com/VadymPopov) 🦉
