@@ -34,6 +34,8 @@ describe("Index Page", () => {
           graphiqlClient: "graphql-client",
           history: "history",
         },
+        signIn: "Sign In",
+        signUp: "Sign Up",
       },
     };
     const mockUser = {
@@ -52,14 +54,15 @@ describe("Index Page", () => {
     );
 
     expect(screen.getByText(/Welcome aboard!/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Sign In/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Sign In/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Sign Up/i)).toBeInTheDocument();
   });
 
   it("should render user email when logged in", () => {
     const mockNavigate = vi.fn();
     const mockLanguage = {
       site_content: {
-        welcomeMessage: { title: "Welcome aboard!" },
+        welcomeMessage: { title: "Welcome back" },
         secondaryMenu: {
           restClient: "rest-client",
           graphiqlClient: "graphql-client",
@@ -82,26 +85,28 @@ describe("Index Page", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByText(/Welcome back user@test.com/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Welcome back user@test.com!/i),
+    ).toBeInTheDocument();
   });
 
   it("should navigate when Sign In or Sign Up buttons are clicked", () => {
     const mockLanguage = {
       site_content: {
-        welcomeMessage: { title: "Ласкаво просимо" },
+        welcomeMessage: { title: "Welcome aboard" },
         secondaryMenu: {
           restClient: "Rest Client",
           graphiqlClient: "GraphiQL Client",
-          history: "Історія",
+          history: "History",
         },
-        signIn: "Увійти",
-        signUp: "Зареєструватися",
+        signIn: "Sign In",
+        signUp: "Sign Up",
       },
     };
     const mockNavigate = vi.fn();
     const mockUser = {
-      user: { email: "user@example.com" },
-      isUserLoggedIn: () => true,
+      user: { email: "" },
+      isUserLoggedIn: () => false,
     };
 
     (useLanguage as Mock).mockReturnValue(mockLanguage);
@@ -114,10 +119,10 @@ describe("Index Page", () => {
       </MemoryRouter>,
     );
 
-    fireEvent.click(screen.getByText(/Увійти/i));
+    fireEvent.click(screen.getByText(/Sign In/i));
     expect(mockNavigate).toHaveBeenCalledWith("/login");
 
-    fireEvent.click(screen.getByText(/Зареєструватися/i));
+    fireEvent.click(screen.getByText(/Sign Up/i));
     expect(mockNavigate).toHaveBeenCalledWith("/login?signup=true");
   });
 });

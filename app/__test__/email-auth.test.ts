@@ -35,11 +35,9 @@ describe("registerWithEmailAndPassword", () => {
       user: { email },
     });
 
-    const consoleLogSpy = vi.spyOn(console, "log");
+    const user = await registerWithEmailAndPassword(email, password);
 
-    await registerWithEmailAndPassword(email, password);
-
-    expect(consoleLogSpy).toHaveBeenCalledWith("Registered user:", { email });
+    expect(user).toEqual({ email });
   });
 
   it("should handle registration errors", async () => {
@@ -50,13 +48,8 @@ describe("registerWithEmailAndPassword", () => {
       new Error("Registration error"),
     );
 
-    const consoleErrorSpy = vi.spyOn(console, "error");
-
-    await registerWithEmailAndPassword(email, password);
-
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      "Error during registration:",
-      new Error("Registration error"),
+    await expect(registerWithEmailAndPassword(email, password)).rejects.toThrow(
+      "Registration error",
     );
   });
 });
