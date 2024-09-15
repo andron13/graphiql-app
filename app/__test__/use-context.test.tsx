@@ -83,7 +83,6 @@ describe("UserProvider and useUser hook", () => {
     expect(screen.getByText("User is logged in")).toBeInTheDocument();
     expect(screen.getByText("en_GB")).toBeInTheDocument();
   });
-  // TODO: fix tests
   it.skip("logs out the user and retains the language", async () => {
     vi.mocked(auth.signOut as Mock).mockResolvedValue(null);
 

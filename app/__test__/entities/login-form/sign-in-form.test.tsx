@@ -59,7 +59,6 @@ describe("SignInForm", () => {
     expect(screen.getByLabelText(/Email/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/)).toBeInTheDocument();
   });
-  // TODO: fix tests
   it.skip("submits form and handles login success", async () => {
     const loginContext = vi.fn();
     const mockedUser = {

@@ -48,7 +48,17 @@ const siteContent: IAppStrings = {
     en_GB: "English",
     de_DE: "Deutsch",
     ru_RU: "Русский",
-    // Add other language labels as needed
+  },
+  authErrors: {
+    invalidCredentials: "Invalid email or password.",
+    accountLocked: "Your account is locked. Please contact support.",
+    passwordExpired: "Your password has expired. Please reset it.",
+    tooManyAttempts: "Too many login attempts. Please try again later.",
+    emailInUseError: "A user with this email already exists",
+  },
+  registrationMessages: {
+    registrationFailed: "Registration failed. Please try again.",
+    registrationSuccessful: "Registration successful! Welcome aboard.",
   },
 };
 describe("createYupSchema", () => {

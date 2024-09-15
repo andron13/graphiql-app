@@ -13,7 +13,6 @@ interface HistoryListItemProps {
 export const HistoryListItem: FC<HistoryListItemProps> = ({ request }) => {
   const germanDate = new Date(request.timestamp).toLocaleString("de-DE");
 
-  // Определение стиля для ссылки
   const linkStyle = "text-blue-500 hover:underline truncate";
 
   return (

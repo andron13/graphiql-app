@@ -6,7 +6,6 @@ import { useAuthToken } from "~/shared/hooks/useAuthToken";
 
 describe("useAuthToken", () => {
   beforeEach(() => {
-    // Очистка localStorage перед каждым тестом
     localStorage.clear();
   });
 

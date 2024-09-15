@@ -34,7 +34,6 @@ const mockFetchResponse = (data: unknown, status = 200) => {
     text: vi.fn(),
   } as Response;
 };
-// TODO: fix tests
 describe.skip("GraphqlPath Component", () => {
   it("submits form, adds request to history, navigates, and displays the response", async () => {
     const mockNavigate = vi.fn();

@@ -32,7 +32,6 @@ export const sendRequest = async (formValues: FormValues) => {
       loading: false,
     };
   } catch (error) {
-    console.error("Request Error:", error);
     return {
       status: undefined,
       response: null,

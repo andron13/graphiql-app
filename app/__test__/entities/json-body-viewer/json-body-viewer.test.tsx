@@ -32,7 +32,6 @@ describe("JsonBodyViewer", () => {
   it("should render nothing if no data is provided", () => {
     render(<JsonBodyViewer data={null} />);
 
-    // Проверяем, что ничего не отображается
     expect(screen.queryByText("key")).not.toBeInTheDocument();
     expect(screen.queryByText("value")).not.toBeInTheDocument();
     expect(screen.queryByText("number")).not.toBeInTheDocument();

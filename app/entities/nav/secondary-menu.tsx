@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 
-import { useLanguage, useUser } from "~/shared/context";
+import { useLanguage } from "~/shared/context";
 
 export const SecondaryMenu = () => {
   const { site_content } = useLanguage();
@@ -11,9 +11,6 @@ export const SecondaryMenu = () => {
     { name: site_content.secondaryMenu.history, to: "/history" },
   ];
 
-  const { isUserLoggedIn } = useUser();
-  //   TODO: FOR PRODUCTION, COMMENT IT OUT
-  // if (!isUserLoggedIn()) return null;
   return (
     <nav className="mt-20 w-2/3">
       <ul className="flex w-full justify-between space-x-6">

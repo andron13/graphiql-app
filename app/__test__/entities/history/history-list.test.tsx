@@ -2,7 +2,6 @@ import { MemoryRouter } from "react-router-dom";
 
 import { render, screen } from "@testing-library/react";
 
-// Import MemoryRouter
 import { HistoryList } from "~/entities/history";
 import { HistoryRequest, RestRequestType } from "~/shared/types";
 

@@ -46,7 +46,6 @@ export function encodeRequestUrl(data: FormValues): string {
     ? encodeBase64(JSON.stringify(variables))
     : "";
 
-  // Correctly handle queries, which are expected to be string[][]
   const queryParams = (headers as { key: string; value: string }[])
     .concat(
       query?.map((queryItem, index) => ({

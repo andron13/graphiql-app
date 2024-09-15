@@ -45,16 +45,10 @@ describe("GraphiQLClientRequestSection", () => {
         defaultValues={defaultValues}
       />,
     );
-
-    // Добавляем заголовок
     fireEvent.click(screen.getByText("Add Header"));
-
     expect(screen.getAllByPlaceholderText("Header Key").length).toBe(1);
     expect(screen.getAllByPlaceholderText("Header Value").length).toBe(1);
-
-    // Удаляем заголовок
     fireEvent.click(screen.getByText("Remove"));
-
     expect(screen.queryByPlaceholderText("Header Key")).toBeNull();
   });
 
@@ -66,16 +60,10 @@ describe("GraphiQLClientRequestSection", () => {
         defaultValues={defaultValues}
       />,
     );
-
-    // Добавляем переменную
     fireEvent.click(screen.getByText("Add Variable"));
-
     expect(screen.getAllByPlaceholderText("Variable Key").length).toBe(1);
     expect(screen.getAllByPlaceholderText("Variable Value").length).toBe(1);
-
-    // Удаляем переменную
     fireEvent.click(screen.getByText("Remove"));
-
     expect(screen.queryByPlaceholderText("Variable Key")).toBeNull();
   });
 
@@ -88,7 +76,6 @@ describe("GraphiQLClientRequestSection", () => {
       />,
     );
 
-    // Вводим endpoint и проверяем обновление SDL URL
     fireEvent.change(screen.getByLabelText("Endpoint URL"), {
       target: { value: "http://example.com" },
     });

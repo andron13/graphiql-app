@@ -1,4 +1,4 @@
-import { Link, LinkProps, useNavigate } from "@remix-run/react";
+import { LinkProps, useNavigate } from "@remix-run/react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Mock } from "vitest";
 
@@ -112,48 +112,4 @@ describe("SecondaryMenu", () => {
     expect(screen.getByText("GraphiQL Client")).toBeInTheDocument();
     expect(screen.getByText("History")).toBeInTheDocument();
   });
-  //   const mockedUser = {
-  //     isUserLoggedIn: () => false,
-  //   };
-  //   const mockLanguage = {
-  //     site_content: {
-  //       signOut: "Sign Out",
-  //       signIn: "Sign In",
-  //     },
-  //   };
-
-  //   (useUser as Mock).mockReturnValue(mockedUser);
-  //   (useLanguage as Mock).mockReturnValue(mockLanguage);
-
-  //   render(<PrimaryMenu />);
-
-  //   expect(screen.getByText(/Sign In/)).toBeInTheDocument();
-  //   expect(screen.queryByText(/Sign Out/)).not.toBeInTheDocument();
-  // });
-
-  // it("calls logout and navigates on sign out", () => {
-  //   const logoutContext = vi.fn();
-  //   const mockedUser = {
-  //     isUserLoggedIn: () => true,
-  //     logout: logoutContext,
-  //   };
-  //   const mockLanguage = {
-  //     site_content: {
-  //       signOut: "Sign Out",
-  //       signIn: "Sign In",
-  //     },
-  //   };
-  //   const navigate = vi.fn();
-
-  //   (useUser as Mock).mockReturnValue(mockedUser);
-  //   (useLanguage as Mock).mockReturnValue(mockLanguage);
-
-  //   (useNavigate as Mock).mockReturnValue(navigate);
-
-  //   render(<PrimaryMenu />);
-
-  //   fireEvent.click(screen.getByText(/Sign Out/i));
-  //   expect(logoutContext).toHaveBeenCalledTimes(1);
-  //   expect(navigate).toHaveBeenCalledWith("/");
-  // });
 });

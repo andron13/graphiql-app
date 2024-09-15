@@ -12,7 +12,7 @@ export const PrimaryMenu = () => {
       logoutContext();
       navigate("/");
     } catch (error) {
-      console.error("Error during logout:", error);
+      // console.error("Error during logout:", error);
     }
   };
 

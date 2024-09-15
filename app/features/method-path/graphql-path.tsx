@@ -142,7 +142,6 @@ export function GraphqlPath() {
       const data = JSON.stringify(result.response.data, null, 2);
       setDocumentation(data);
     } catch (error) {
-      console.log(error);
       setDocumentation("");
     }
   };

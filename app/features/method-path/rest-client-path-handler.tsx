@@ -18,7 +18,6 @@ export function RestClientPathHandler() {
   const { addRequestToHistory } = useRequestHistory();
   const location = useLocation();
   const navigate = useNavigate();
-  const { isUserLoggedIn } = useUser();
 
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
